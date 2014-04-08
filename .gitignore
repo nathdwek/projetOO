@@ -1,0 +1,14 @@
+#mint - perso
+.directory
+
+#Eclipse
+.classpath
+.project
+.settings
+.metadata/
+
+#java
+bin/
+
+#vim
+*.swp
