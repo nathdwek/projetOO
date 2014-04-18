@@ -1,24 +1,25 @@
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class HittablesHandler {
 	
-	private LinkedList<Hittable> hittables;
-	private LinkedList<Hittable> movingHittables;
+	private LinkedList<Hittable> fixedHittables;
+	private ArrayList<Hittable> movingHittables;
 	
 	
 	public HittablesHandler(){}
 	
 	public void handleCollisions(){
-		for (Hittable movingHittable : movingHittables){
-			for (Hittable otherHittable : hittables){
-				detectSingleCollision(movingHittable, otherHittable);
+		for (int i = 0; i<movingHittables.size();i++){
+			for (Hittable fixedHittable : fixedHittables){
+				detectSingleCollision(movingHittables.get(i), fixedHittable);
+			}
+			for (int j=i+1; j<movingHittables.size();j++){
+				detectSingleCollision(movingHittables.get(i),movingHittables.get(j));
 			}
 		}
 	}
 	
 	public void detectSingleCollision(Hittable h1, Hittable h2){
-		if (h1.getHitbox().collides(h2.getHitbox())){
-		//TODO (Maybe previous line too)
-		}
 	}
 }
