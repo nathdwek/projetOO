@@ -20,6 +20,21 @@ public class HittablesHandler {
 		}
 	}
 	
+	public void addFixedHittable(Hittable h){
+		//Check if already in?
+		fixedHittables.add(h);
+	}
+	
+	public void addMovingHittable(Hittable h){
+		//Check if already in?
+		movingHittables.add(h);
+	}
+	
+	public void destroyHittable(Hittable h){
+		//h should appear only one time across fixedHittables AND movingHittables
+		//return value if not found?
+	}
+	
 	public void detectSingleCollision(Hittable h1, Hittable h2){
 	}
 }
