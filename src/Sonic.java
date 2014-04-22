@@ -1,4 +1,3 @@
-package projetInfo;
 import java.awt.event.KeyEvent;
 
 public class Sonic implements movable{
@@ -25,10 +24,10 @@ public class Sonic implements movable{
 		}
 		if (key == KeyEvent.VK_DOWN){
 			isBall= true;
-		    }
+		}
 		}
 		
-	public void keyRealesed (.KeyEvent e){
+	public void keyReleased (KeyEvent e){
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_RIGHT){
 			if (vx < 0){
@@ -47,5 +46,5 @@ public class Sonic implements movable{
 		if (key == KeyEvent.VK_DOWN){
 			isBall= false;
 		}
-  	}
+	}
 }
