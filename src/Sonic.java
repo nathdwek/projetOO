@@ -1,7 +1,7 @@
 import java.awt.event.KeyEvent;
 
-public class Sonic implements movable{
-	public void move(){
+public class Sonic implements SelfUpdatable{
+	public void selfUpdate(){
 		x+=vx*t;
 		y+=dy
 	}
