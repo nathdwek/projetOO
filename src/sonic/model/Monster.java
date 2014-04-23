@@ -1,4 +1,4 @@
-package sonic;
+package sonic.model;
 public class Monster implements SelfUpdatable {
 	public void selfUpdate(){
 		/*x+=dir*i*t;
