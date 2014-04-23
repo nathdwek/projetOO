@@ -7,5 +7,10 @@ public class View {
 	public View(Model m){
 		
 	}
+
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -20,7 +20,10 @@ public class Controller {
 	public void runGame() {
 		while (!model.gameOver()){
 			Long startTime = System.currentTimeMillis();
-			//Stuff goes here
+			
+			model.update();
+			view.refresh();
+			
 			try {
 				Thread.sleep(loopTime-(System.currentTimeMillis()-startTime));
 			}

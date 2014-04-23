@@ -7,4 +7,9 @@ public class Model {
 		return false;
 	}
 
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
