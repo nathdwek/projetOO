@@ -1,3 +1,4 @@
+package sonic;
 import java.awt.event.KeyEvent;
 
 public class Sonic implements SelfUpdatable{
