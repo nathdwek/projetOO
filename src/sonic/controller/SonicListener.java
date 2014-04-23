@@ -15,43 +15,34 @@ public class SonicListener implements KeyListener {
 
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_RIGHT){
-			if (vx < vmax){
-			vx+=1;
-			}
+		switch (key){
+			case KeyEvent.VK_RIGHT: 
+				sonic.accelerateRight();
+				break;
+			case KeyEvent.VK_LEFT:
+				sonic.accelerateLeft();
+				break;
+			case KeyEvent.VK_SPACE: 
+				sonic.jump();
+				break;
+			case KeyEvent.VK_DOWN:
+				sonic.beBall();
 		}
-		if (key == KeyEvent.VK_LEFT){
-			if ( vx >-vmax){
-			vx-=1;
-			}
-		}
-			
-		if (key == KeyEvent.VK_UP){
-			vy+=1;
-			
-		}
-		if (key == KeyEvent.VK_DOWN){
-			isBall= true;
-		}
-		}
+	}
+		
+		
 		
 	public void keyReleased (KeyEvent e){
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_RIGHT){
-			Sonic.tryAccelerate();
-		}
-			
-		}
-		if (key == KeyEvent.VK_LEFT){
-			if (vx > 0){
-				vx+=1;
-			}
-		}
-		if (key == KeyEvent.VK_UP){
-			dy=0;
-		}
-		if (key == KeyEvent.VK_DOWN){
-			isBall= false;
+		switch (key){
+		case KeyEvent.VK_RIGHT: 
+			sonic.startDecelerateRight();
+			break;
+		case KeyEvent.VK_LEFT:
+			sonic.startDecelerateLeft();
+			break;
+		case KeyEvent.VK_DOWN:
+			sonic.beSonic();
 		}
 	}
 }
