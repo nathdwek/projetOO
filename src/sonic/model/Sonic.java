@@ -1,27 +1,26 @@
 package sonic.model;
 
-public class Sonic implements selfUpdatable {
+public class Sonic implements SelfUpdatable {
 
 	public void accelerateRight() {
-		if (vx<vMaxX){
-			decelarating= false;
+		acceleratingRight=true;
 		}
 		
-	}
+	
 
-	public void accelerateLeft() {
-		if (vx>-vMaxX){
+	public void accelerateLeft(){
+		acceleratingLeft=true;
 			
 		}
 		
-	}
+	
 
 	public void jump() {
-		if (vy<vMaxY){
+		acceleratingUp=true;
 			
 		}
 		
-	}
+	
 
 	public void beBall() {
 		vMaxX= 
@@ -30,10 +29,44 @@ public class Sonic implements selfUpdatable {
 	}
 
 	public void startDecelerateRight() {
-		decelerating=true;
-			
-		
-	}
+		acceleratingRight=false;
+		}
 	
-
+	public void startDecelerateLeft() {
+		acceleratingLeft=false;
+		}
+	
+	public void beSonic(){
+		vMaxX=
+		isBall=false
+		
+	public void contactGround(){
+		
+		}
+	
+	
+	public void selfUpdate(){
+		if (acceleratingRight){
+			if (vx<vMaxX){
+				vx+=
+			}
+		}
+		else if (acceleratingLeft){
+			if (vx>-vMaxX){
+				vx-=
+			}
+		}else{
+			if (vx>0){
+				vx-=
+			}
+			else if(vx<0){
+				vx+=
+			}
+		}
+		
+		
+		
+		posX+=vx;
+		posY+=vy;
+	}
 }

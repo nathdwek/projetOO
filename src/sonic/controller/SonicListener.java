@@ -45,4 +45,7 @@ public class SonicListener implements KeyListener {
 			sonic.beSonic();
 		}
 	}
+	public void keyTyped(KeyEvent e){
+		
+	}
 }
