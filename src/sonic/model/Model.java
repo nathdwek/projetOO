@@ -29,6 +29,11 @@ public class Model {
 	}
 	
 	public void detectSingleCollision(Hittable h1, Hittable h2){
+		int collisionAngle=h1.getHitbox().collides(h2.getHitbox();
+		if (collisionAngle != -1){
+			h1.handleCollision(h2,collisionAngle);
+			h2.handleCollision(h1, collisionAngle);
+		}
 	}
 
 }

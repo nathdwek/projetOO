@@ -18,6 +18,7 @@ public class Controller {
 	}
 
 	public void runGame() {
+		//Initialize
 		while (!model.gameOver()){
 			Long startTime = System.currentTimeMillis();
 			
