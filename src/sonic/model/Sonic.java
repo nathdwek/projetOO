@@ -1,15 +1,16 @@
 package sonic.model;
 
 public class Sonic extends Monster implements SelfUpdatable {
-	
+
 	private Point speedMax;
 	private int life;
 	private int coins;
-	boolean acceleratingRight;
-	boolean acceleratingLeft;
-	boolean acceleratingUp;
-	boolean isBall;
-	
+	private boolean acceleratingRight;
+	private boolean acceleratingLeft;
+	private boolean acceleratingUp;
+	private boolean isBall;
+	private Coin coin;
+	private boolean gravity;
 
 	public Sonic(Point position, Point speed) {
 		super(position,speed);
@@ -20,8 +21,9 @@ public class Sonic extends Monster implements SelfUpdatable {
 		this.acceleratingLeft=true;
 		this.acceleratingUp=true;
 		this.isBall=false;
+		this.gravity=false;
 	}
-	
+
 	public void getCoins(){
 		coins+=1;
 	}
@@ -32,55 +34,55 @@ public class Sonic extends Monster implements SelfUpdatable {
 
 	public void accelerateRight() {
 		acceleratingRight=true;
-		}
-		
-	
+	}
+
+
 
 	public void accelerateLeft(){
 		acceleratingLeft=true;
-			
-		}
-		
-	
+
+	}
+
+
 
 	public void jump() {
 		acceleratingUp=true;
-			
-		}
-		
-	
+
+	}
+
+
 
 	public void beBall() {
 		speedMax.setX(20);
 		isBall=true;
-		
+
 	}
 
 	public void startDecelerateRight() {
 		acceleratingRight=false;
-		}
-	
+	}
+
 	public void startDecelerateLeft() {
 		acceleratingLeft=false;
-		}
-	
+	}
+
 	public void beSonic(){
 		speedMax.setX(25);
 		isBall=false;
-		}
+	}
 	public void contactGround(){
-		
-		}
-	
-	
+
+	}
+
+
 	public void selfUpdate(){
-		
+
 		Double posX=this.getPosition().getX();
 		Double posY=this.getPosition().getY();
 		Double vX=this.getSpeed().getX();
 		Double vY=this.getSpeed().getY();
 		Double vMaxX=speedMax.getX();
-	
+
 		if (acceleratingRight){
 			if (vX<vMaxX){
 				vX+=
@@ -98,7 +100,9 @@ public class Sonic extends Monster implements SelfUpdatable {
 				vX+=
 			}
 		}
-		
+
+
+
 		posX+=vX;
 		posY+=vY;
 		this.getSpeed().setX(vX);
@@ -106,7 +110,23 @@ public class Sonic extends Monster implements SelfUpdatable {
 		this.getPosition().setX(posX);
 		this.getPosition().setX(posY);
 	}
-	
-	
+
+
 	public void draw(){}
+
+
+	public void handleCollision(Hittable otherHittable, Point normal) {
+		if (otherHittable instanceof Coin){
+			this.getCoins();
+		}
+		if (otherHittable instanceof ExtraLife){
+			this.getLife();
+		}
+		if (otherHittable instanceof Monster){
+			if (!isBall && life==0){
+				//game over
+			}
+
+		}
+	}
 }

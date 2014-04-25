@@ -6,4 +6,14 @@ public class ExtraLife extends Bonus {
 		super(position);
 	}
 
+
+	public void handleCollision(Hittable otherHittable, Point normal) {
+
+
+	}
+
+
+
 }
+
+
