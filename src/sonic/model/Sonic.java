@@ -1,6 +1,34 @@
 package sonic.model;
 
-public class Sonic implements SelfUpdatable {
+public class Sonic extends Monster implements SelfUpdatable {
+	
+	private Point speedMax;
+	private int life;
+	private int coins;
+	boolean acceleratingRight;
+	boolean acceleratingLeft;
+	boolean acceleratingUp;
+	boolean isBall;
+	
+
+	public Sonic(Point position, Point speed, int life, int coins, Point speedMax, boolean acceleratingRight, boolean acceleratingLeft,boolean acceleratingUp, boolean isBall){
+		super(position,speed);
+		this.speedMax=speedMax;
+		this.life=life;
+		this.coins=coins;
+		this.acceleratingRight=acceleratingRight;
+		this.acceleratingLeft=acceleratingLeft;
+		this.acceleratingUp=acceleratingUp;
+		this.isBall=isBall;
+	}
+	
+	public void getCoins(){
+		coins+=1;
+	}
+
+	public void getLife(){
+		life+=1;
+	}
 
 	public void accelerateRight() {
 		acceleratingRight=true;
@@ -23,7 +51,7 @@ public class Sonic implements SelfUpdatable {
 	
 
 	public void beBall() {
-		vMaxX= 
+		speedMax.setX(20);
 		isBall=true;
 		
 	}
@@ -37,36 +65,48 @@ public class Sonic implements SelfUpdatable {
 		}
 	
 	public void beSonic(){
-		vMaxX=
-		isBall=false
-		
+		speedMax.setX(25);
+		isBall=false;
+		}
 	public void contactGround(){
 		
 		}
 	
 	
 	public void selfUpdate(){
+		
+		Double posX=this.getPosition().getX();
+		Double posY=this.getPosition().getY();
+		Double vX=this.getSpeed().getX();
+		Double vY=this.getSpeed().getY();
+		Double vMaxX=speedMax.getX();
+	
 		if (acceleratingRight){
-			if (vx<vMaxX){
-				vx+=
+			if (vX<vMaxX){
+				vX+=
 			}
 		}
 		else if (acceleratingLeft){
-			if (vx>-vMaxX){
-				vx-=
+			if (vX>-vMaxX){
+				vX-=
 			}
 		}else{
-			if (vx>0){
-				vx-=
+			if (vX>0){
+				vX-=
 			}
-			else if(vx<0){
-				vx+=
+			else if(speed.getX<0){
+				vX+=
 			}
 		}
 		
-		
-		
-		posX+=vx;
-		posY+=vy;
+		posX+=vX;
+		posY+=vY;
+		this.getSpeed().setX(vX);
+		this.getSpeed().setY(vY);
+		this.getPosition().setX(posX);
+		this.getPosition().setX(posY);
 	}
+	
+	
+	public void draw(){}
 }

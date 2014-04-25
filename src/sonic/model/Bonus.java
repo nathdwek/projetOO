@@ -2,7 +2,11 @@ package sonic.model;
 
 import sonic.view.Drawable;
 
-public class Bonus implements Drawable, Hittable {
+public abstract class Bonus extends Hittable {
+	
+	public Bonus(Point position){
+		super(position);
+	}
 
 	public void draw() {
 	}

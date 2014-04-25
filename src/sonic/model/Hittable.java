@@ -11,6 +11,9 @@ public abstract class Hittable implements Drawable {
 	public Point getPosition(){
 		return position;
 	}
+	public void setPosition(Point p){
+		position = p;
+	}
 
 	public void handleCollision(Hittable otherHittable);
 
