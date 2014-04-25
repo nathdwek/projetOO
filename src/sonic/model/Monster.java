@@ -1,5 +1,4 @@
 package sonic.model;
-import sonic.view.Drawable;
 
 public abstract class Monster extends Hittable implements SelfUpdatable  {
 	private Point speed;
@@ -15,11 +14,4 @@ public abstract class Monster extends Hittable implements SelfUpdatable  {
 	public void setSpeed(Point s){
 		speed=s;
 	}
-
-
-	public void handleCollision(Hittable otherHittable) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

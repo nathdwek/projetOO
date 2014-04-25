@@ -11,15 +11,15 @@ public class Sonic extends Monster implements SelfUpdatable {
 	boolean isBall;
 	
 
-	public Sonic(Point position, Point speed, int life, int coins, Point speedMax, boolean acceleratingRight, boolean acceleratingLeft,boolean acceleratingUp, boolean isBall){
+	public Sonic(Point position, Point speed) {
 		super(position,speed);
-		this.speedMax=speedMax;
-		this.life=life;
-		this.coins=coins;
-		this.acceleratingRight=acceleratingRight;
-		this.acceleratingLeft=acceleratingLeft;
-		this.acceleratingUp=acceleratingUp;
-		this.isBall=isBall;
+		//this.speedMax=
+		this.life=0;
+		this.coins=0;
+		this.acceleratingRight=true;
+		this.acceleratingLeft=true;
+		this.acceleratingUp=true;
+		this.isBall=false;
 	}
 	
 	public void getCoins(){
