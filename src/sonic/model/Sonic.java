@@ -116,6 +116,13 @@ public class Sonic extends Monster implements SelfUpdatable {
 
 
 	public void handleCollision(Hittable otherHittable, Point normal) {
+		/*switch otherHittable.getRank() ou otherHittable.getType() (à implémenter){
+
+		etc
+		}*/
+
+
+
 		if (otherHittable instanceof Coin){
 			this.getCoins();
 		}
