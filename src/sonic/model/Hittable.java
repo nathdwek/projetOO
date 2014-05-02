@@ -2,12 +2,9 @@ package sonic.model;
 import sonic.view.Drawable;
 public abstract class Hittable implements Drawable {
 	private Point position;
-	private Double[] hitbox;
-	private Point[] normals;
 
 	public Hittable(Point position){
 		this.position= position;
-
 	}
 
 	public Point getPosition(){
@@ -17,14 +14,17 @@ public abstract class Hittable implements Drawable {
 		position = p;
 	}
 
-	public abstract void handleCollision(Hittable otherHittable,Point normal);
-
-	public double getSize(int side){
+	/*{
 		return hitbox[side];
-	}
+	}*/
 
-	public Point normalAt(int side) {
+	/*{
 		return normals[side];
-	}
+	}*/
+
+	public abstract void handleCollision(Hittable otherHittable,Point normal);
+	public abstract double getSize(int side);
+	public abstract Point normalAt(int side);
+	public abstract String getType();
 
 }

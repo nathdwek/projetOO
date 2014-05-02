@@ -75,7 +75,7 @@ public class Sonic extends Monster implements SelfUpdatable {
 	}
 
 
-	public void selfUpdate(){
+	public void selfUpdate(Double dT){
 
 		Double posX=this.getPosition().getX();
 		Double posY=this.getPosition().getY();

@@ -14,12 +14,24 @@ public class Model {
 	private static final int BOTTOM=3;
 	private static final double COLLISION_DISTANCE = 1;
 
+	public Model(){
+		AMonster aM=new AMonster(10.0,10.0,10.0,0.0);
+		Block aB=new Block(50.0, 0.0, 200.0, 20.0);
+
+		selfUpdatables =  new LinkedList<SelfUpdatable>();
+		fixedHittables = new LinkedList<Hittable>() ;
+		movingHittables = new ArrayList<Hittable>();
+
+		movingHittables.add(aM);
+		selfUpdatables.add(aM);
+		fixedHittables.add(aB);
+	}
+
 	public boolean gameOver() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public void update() {
+	public void update(Double dT) {
 		for (int i = 0; i<movingHittables.size();i++){
 			for (Hittable fixedHittable : fixedHittables){
 				handleSingleCollision(movingHittables.get(i), fixedHittable);
@@ -29,7 +41,7 @@ public class Model {
 			}
 		}
 		for (SelfUpdatable s :selfUpdatables){
-			s.selfUpdate();
+			s.selfUpdate(dT);
 		}
 	}
 

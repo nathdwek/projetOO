@@ -8,7 +8,11 @@ public class Point {
 	public Point(Double x, Double y){
 		this.x=x;
 		this.y=y;
+	}
 
+	public Point(Integer x, Integer y){
+		this.x=Double.valueOf(x);
+		this.y=Double.valueOf(y);
 	}
 	public Double getX(){
 		return x;
@@ -21,5 +25,18 @@ public class Point {
 	}
 	public void setY(double y){
 		this.y=y;
+	}
+
+	public Point times(Double dT) {
+		return new Point(dT*x,dT*y);
+	}
+
+	public void add(Point dR) {
+		this.x+=dR.x;
+		this.y+=dR.y;
+	}
+
+	public String toString(){
+		return "("+ String.valueOf(x)+","+String.valueOf(y)+")";
 	}
 }

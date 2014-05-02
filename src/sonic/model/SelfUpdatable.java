@@ -1,5 +1,5 @@
 package sonic.model;
 
 public interface SelfUpdatable {
-	public void selfUpdate();
+	public void selfUpdate(Double dT);
 }
