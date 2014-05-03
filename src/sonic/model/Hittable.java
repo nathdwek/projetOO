@@ -14,14 +14,6 @@ public abstract class Hittable implements Drawable {
 		position = p;
 	}
 
-	/*{
-		return hitbox[side];
-	}*/
-
-	/*{
-		return normals[side];
-	}*/
-
 	public abstract void handleCollision(Hittable otherHittable,Point normal);
 	public abstract double getSize(int side);
 	public abstract Point normalAt(int side);

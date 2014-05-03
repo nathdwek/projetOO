@@ -10,9 +10,11 @@ public class Block extends Hittable{
 		hitbox = new Double[]{sizeX/2,sizeY/2,sizeX/2,sizeY/2};
 	}
 
-	public Block(Double x, Double y, Double sizeX, Double sizeY) {
-		super(new Point(x,y));
-		hitbox = new Double[]{sizeX/2,sizeY/2,sizeX/2,sizeY/2};
+	public Block(Double sideX1, Double sideX2, Double sideY1, Double sideY2) {
+		super(new Point((sideX1+sideX2)/2,(sideY1+sideY2)/2));
+		Double halfSizeX=Math.abs(sideX1-sideX2)/2;
+		Double halfSizeY=Math.abs(sideY1-sideY2)/2;
+		hitbox = new Double[]{halfSizeX,halfSizeY,halfSizeX,halfSizeY};
 	}
 
 	@Override

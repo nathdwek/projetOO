@@ -39,4 +39,9 @@ public class Point {
 	public String toString(){
 		return "("+ String.valueOf(x)+","+String.valueOf(y)+")";
 	}
+
+	public void setZero() {
+		this.x=0.0;
+		this.y=0.0;
+	}
 }

@@ -1,6 +1,7 @@
 package sonic.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Model {
@@ -15,16 +16,17 @@ public class Model {
 	private static final double COLLISION_DISTANCE = 1;
 
 	public Model(){
-		AMonster aM=new AMonster(10.0,10.0,10.0,0.0);
-		Block aB=new Block(50.0, 0.0, 200.0, 20.0);
+		AMonster aM=new AMonster(0.0,20.0,2.0,0.0);
+		Block aB=new Block(-100.0, 100.0,-10.0,10.0);
+		Block aB2 = new Block(20.0,40.0,10.0,50.0);
+		Block aB3 = new Block(-20.0,-40.0,10.0,50.0);
 
-		selfUpdatables =  new LinkedList<SelfUpdatable>();
-		fixedHittables = new LinkedList<Hittable>() ;
-		movingHittables = new ArrayList<Hittable>();
+		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{aM}));
+		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{aM}));
 
-		movingHittables.add(aM);
-		selfUpdatables.add(aM);
-		fixedHittables.add(aB);
+		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
+
+
 	}
 
 	public boolean gameOver() {
@@ -69,28 +71,28 @@ public class Model {
 				}
 			}
 			else{
-				if ((dX<h1.getSize(LEFT)+h2.getSize(RIGHT)) && Math.abs(dY-h1.getSize(TOP)-h2.getSize(BOTTOM))<COLLISION_DISTANCE){
+				if ((dX<h1.getSize(LEFT)+h2.getSize(RIGHT)) && Math.abs(-dY-h1.getSize(TOP)-h2.getSize(BOTTOM))<COLLISION_DISTANCE){
 					normals= new Point[] {h1.normalAt(TOP),h2.normalAt(BOTTOM)};
 				}
-				else if((dY<h1.getSize(TOP)+h2.getSize(BOTTOM)) && Math.abs(dX-h1.getSize(LEFT)-h2.getSize(RIGHT))<COLLISION_DISTANCE){
+				else if((-dY<h1.getSize(TOP)+h2.getSize(BOTTOM)) && Math.abs(dX-h1.getSize(LEFT)-h2.getSize(RIGHT))<COLLISION_DISTANCE){
 					normals= new Point[] {h1.normalAt(LEFT),h2.normalAt(RIGHT)};
 				}
 			}
 		}
 		else{
 			if (dY>0){
-				if ((dX<h1.getSize(RIGHT)+h2.getSize(LEFT)) && Math.abs(dY-h1.getSize(BOTTOM)-h2.getSize(TOP))<COLLISION_DISTANCE){
+				if ((-dX<h1.getSize(RIGHT)+h2.getSize(LEFT)) && Math.abs(dY-h1.getSize(BOTTOM)-h2.getSize(TOP))<COLLISION_DISTANCE){
 					normals= new Point[] {h1.normalAt(BOTTOM),h2.normalAt(TOP)};
 				}
-				else if((dY<h1.getSize(BOTTOM)+h2.getSize(TOP)) && Math.abs(dX-h1.getSize(RIGHT)-h2.getSize(LEFT))<COLLISION_DISTANCE){
+				else if((dY<h1.getSize(BOTTOM)+h2.getSize(TOP)) && Math.abs(-dX-h1.getSize(RIGHT)-h2.getSize(LEFT))<COLLISION_DISTANCE){
 					normals= new Point[] {h1.normalAt(RIGHT),h2.normalAt(LEFT)};
 				}
 			}
 			else{
-				if ((dX<h1.getSize(RIGHT)+h2.getSize(LEFT)) && Math.abs(dY-h1.getSize(TOP)-h2.getSize(BOTTOM))<COLLISION_DISTANCE){
+				if ((-dX<h1.getSize(RIGHT)+h2.getSize(LEFT)) && Math.abs(-dY-h1.getSize(TOP)-h2.getSize(BOTTOM))<COLLISION_DISTANCE){
 					normals= new Point[] {h1.normalAt(TOP),h2.normalAt(BOTTOM)};
 				}
-				else if((dY<h1.getSize(TOP)+h2.getSize(BOTTOM)) && Math.abs(dX-h1.getSize(RIGHT)-h2.getSize(LEFT))<COLLISION_DISTANCE){
+				else if((-dY<h1.getSize(TOP)+h2.getSize(BOTTOM)) && Math.abs(-dX-h1.getSize(RIGHT)-h2.getSize(LEFT))<COLLISION_DISTANCE){
 					normals= new Point[] {h1.normalAt(RIGHT),h2.normalAt(LEFT)};
 				}
 			}
