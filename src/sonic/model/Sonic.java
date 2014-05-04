@@ -2,26 +2,30 @@ package sonic.model;
 
 public class Sonic extends Monster implements SelfUpdatable {
 
-	private Point speedMax;
-	private int life;
-	private int coins;
-	private boolean acceleratingRight;
-	private boolean acceleratingLeft;
-	private boolean acceleratingUp;
-	private boolean isBall;
-	private Coin coin;
-	private boolean gravity;
+	private Integer life;
+	private Integer coins;
+
+	private Boolean isBall = false;
+
+	private Double maxXSpeed;
+	private static final Double normalMaxXSpeed=10.0;
+	private static final Double ballMaxXSpeed=20.0;
+
+	private Double maxYUpSpeed;
+	private Double maxYDownSpeed;
+
+	private Boolean floor;
+
+	private Integer brakingX;
+	private Integer acceleratingX = 0;
+
+	private Integer acceleratingY = 0;
 
 	public Sonic(Point position, Point speed) {
 		super(position,speed);
 		//this.speedMax=
 		this.life=0;
 		this.coins=0;
-		this.acceleratingRight=true;
-		this.acceleratingLeft=true;
-		this.acceleratingUp=true;
-		this.isBall=false;
-		this.gravity=false;
 	}
 
 	public void getCoins(){
@@ -33,51 +37,81 @@ public class Sonic extends Monster implements SelfUpdatable {
 	}
 
 	public void accelerateRight() {
-		acceleratingRight=true;
+		if (getSpeed().getX()>=0){
+			acceleratingX=1;
+		}
+		else{
+			brakingX=-1;
+		}
 	}
-
-
 
 	public void accelerateLeft(){
-		acceleratingLeft=true;
-
+		if (getSpeed().getX()<=0){
+			acceleratingX=-1;
+		}
+		else{
+			brakingX=1;
+		}
 	}
-
-
 
 	public void jump() {
-		acceleratingUp=true;
-
+		if (getSpeed().getY()>=0){
+			acceleratingY=1;
+		}
 	}
 
-
-
 	public void beBall() {
-		speedMax.setX(20);
+		maxXSpeed=ballMaxXSpeed;
 		isBall=true;
-
 	}
 
 	public void startDecelerateRight() {
-		acceleratingRight=false;
+		if (getSpeed().getX() > 0){
+			brakingX=-1;
+		}
 	}
 
 	public void startDecelerateLeft() {
-		acceleratingLeft=false;
+		if (getSpeed().getX() < 0){
+			brakingX=-1;
+		}
 	}
 
 	public void beSonic(){
-		speedMax.setX(25);
+		maxXSpeed=normalMaxXSpeed;
 		isBall=false;
 	}
-	public void contactGround(){
 
+	public void startDecelerateUp() {
+		acceleratingY=0;
+	}
+
+	public void handleCollision(Hittable otherHittable, Point normal) {
+		/*switch (otherHittable.getType()){
+			case "Block":
+				handleBlock
+
+		}
+
+
+		/*if (otherHittable instanceof Coin){
+			this.getCoins();
+		}
+		if (otherHittable instanceof ExtraLife){
+			this.getLife();
+		}
+		if (otherHittable instanceof Monster){
+			if (!isBall && life==0){
+				//game over
+			}
+
+		}*/
 	}
 
 
 	public void selfUpdate(Double dT){
 
-		Double posX=this.getPosition().getX();
+/*		Double posX=this.getPosition().getX();
 		Double posY=this.getPosition().getY();
 		Double vX=this.getSpeed().getX();
 		Double vY=this.getSpeed().getY();
@@ -108,32 +142,31 @@ public class Sonic extends Monster implements SelfUpdatable {
 		this.getSpeed().setX(vX);
 		this.getSpeed().setY(vY);
 		this.getPosition().setX(posX);
-		this.getPosition().setX(posY);
+		this.getPosition().setX(posY);*/
 	}
 
-
-	public void draw(){}
-
-
-	public void handleCollision(Hittable otherHittable, Point normal) {
-		/*switch otherHittable.getRank() ou otherHittable.getType() (à implémenter){
-
-		etc
-		}*/
-
-
-
-		if (otherHittable instanceof Coin){
-			this.getCoins();
-		}
-		if (otherHittable instanceof ExtraLife){
-			this.getLife();
-		}
-		if (otherHittable instanceof Monster){
-			if (!isBall && life==0){
-				//game over
-			}
-
-		}
+	@Override
+	public double getSize(int side) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+	@Override
+	public Point normalAt(int side) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

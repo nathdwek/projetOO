@@ -4,16 +4,15 @@ public class AMonster extends Monster {
 
 	private static Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
-	private Boolean gravity;
+	private static final Double gravity= -10.0;
+	private Boolean floor = false;
 
 	public AMonster(Point position, Point speed) {
 		super(position, speed);
-		gravity=true;
 	}
 
 	public AMonster(Double x, Double y, Double vX, Double vY) {
 		super(new Point(x,y), new Point(vX,vY));
-		gravity=true;
 	}
 
 	@Override
@@ -33,10 +32,8 @@ public class AMonster extends Monster {
 	}
 
 	private void handleBlock(Point normal) {
-		if (normal.getY()>=1){
-			gravity=false;
-			getSpeed().setY(0);
-		}
+		floor = floor || normal.getY()>=1;
+
 		if (normal.getX()*getSpeed().getX()<0){
 			Point s=getSpeed();
 			Double vX = s.getX();
@@ -46,8 +43,14 @@ public class AMonster extends Monster {
 	}
 
 	public void selfUpdate(Double dT) {
-		if (gravity){
-			this.getAcceleration().setY(-10);
+		if (floor){
+			Point s=getSpeed();
+			if (s.getY()<0){
+				s.setY(0);
+			}
+		}
+		else{
+			getAcceleration().setY(gravity);
 		}
 		super.selfUpdate(dT);
 		System.out.println(getPosition()+" "+getSpeed());
@@ -55,7 +58,7 @@ public class AMonster extends Monster {
 
 	public void stepReset(){
 		super.stepReset();
-		gravity=true;
+		floor = false;
 	}
 
 	public String getType() {

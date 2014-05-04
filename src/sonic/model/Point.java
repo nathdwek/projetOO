@@ -35,6 +35,10 @@ public class Point {
 		this.x+=dR.x;
 		this.y+=dR.y;
 	}
+	public void add(double dX, double dY) {
+		this.x+=dX;
+		this.y+=dY;
+	}
 
 	public String toString(){
 		return "("+ String.valueOf(x)+","+String.valueOf(y)+")";

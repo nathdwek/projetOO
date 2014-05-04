@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import sonic.controller.Controller;
+
 public class Model {
+
+	private Controller controller;
 
 	private LinkedList<SelfUpdatable> selfUpdatables;
 	private LinkedList<Hittable> fixedHittables;
@@ -14,9 +18,13 @@ public class Model {
 	private static final int LEFT=2;
 	private static final int BOTTOM=3;
 	private static final double COLLISION_DISTANCE = 1;
+	private Sonic sonic;
 
-	public Model(){
-		AMonster aM=new AMonster(0.0,20.0,2.0,0.0);
+	public Model(Controller c){
+
+		controller=c;
+
+		AMonster aM=new AMonster(0.0,30.0,2.0,0.0);
 		Block aB=new Block(-100.0, 100.0,-10.0,10.0);
 		Block aB2 = new Block(20.0,40.0,10.0,50.0);
 		Block aB3 = new Block(-20.0,-40.0,10.0,50.0);
@@ -25,12 +33,13 @@ public class Model {
 		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{aM}));
 
 		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
-
-
 	}
 
 	public boolean gameOver() {
 		return false;
+	}
+	public Sonic getSonic() {
+		return sonic;
 	}
 
 	public void update(Double dT) {
