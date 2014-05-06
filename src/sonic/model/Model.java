@@ -46,9 +46,22 @@ public class Model {
 		for (int i = 0; i<movingHittables.size();i++){
 			for (Hittable fixedHittable : fixedHittables){
 				handleSingleCollision(movingHittables.get(i), fixedHittable);
+				if (fixedHittable.getType() =="DESTROYED"){
+					fixedHittables.remove(fixedHittable);
+				}
+
 			}
 			for (int j=i+1; j<movingHittables.size();j++){
 				handleSingleCollision(movingHittables.get(i),movingHittables.get(j));
+				if (movingHittables.get(i).getType()=="DESTROYED"){
+					movingHittables.remove(movingHittables.get(i));
+					selfUpdatables.remove(movingHittables.get(i));
+				}
+				if (movingHittables.get(j).getType()=="DESTROYED"){
+					movingHittables.remove(movingHittables.get(j));
+					selfUpdatables.remove(movingHittables.get(j));
+				}
+
 			}
 		}
 		for (SelfUpdatable s :selfUpdatables){
