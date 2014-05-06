@@ -7,23 +7,30 @@ public class Sonic extends Monster implements SelfUpdatable {
 
 	private Boolean isBall = false;
 
-	private Double maxXSpeed;
+	private Double maxXSpeed = normalMaxXSpeed;
 	private static final Double normalMaxXSpeed=10.0;
 	private static final Double ballMaxXSpeed=20.0;
 
-	private Double maxYUpSpeed;
-	private Double maxYDownSpeed;
-
-	private Boolean floor;
-
-	private Integer brakingX;
+	private Double maxXBrake = 20.0;
+	private Integer brakingX = 0;
 	private Integer acceleratingX = 0;
+	private Double maxXAcceleration = 10.0;
+
+	private Double maxYUpSpeed = 10.0;
+	private Double maxYDownSpeed = -20.0;
+
+	private Boolean floor = false;
 
 	private Integer acceleratingY = 0;
+	private Double maxYAcceleration = 10.0;
+	private double gravity = -10.0;
 
-	public Sonic(Point position, Point speed) {
-		super(position,speed);
-		//this.speedMax=
+	private Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
+	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
+	private boolean falling;
+
+	public Sonic(int posX, int posY) {
+		super(new Point(posX,posY), new Point (0,0));
 		this.life=0;
 		this.coins=0;
 	}
@@ -55,7 +62,7 @@ public class Sonic extends Monster implements SelfUpdatable {
 	}
 
 	public void jump() {
-		if (getSpeed().getY()>=0){
+		if (!falling){
 			acceleratingY=1;
 		}
 	}
@@ -73,7 +80,7 @@ public class Sonic extends Monster implements SelfUpdatable {
 
 	public void startDecelerateLeft() {
 		if (getSpeed().getX() < 0){
-			brakingX=-1;
+			brakingX=1;
 		}
 	}
 
@@ -87,86 +94,76 @@ public class Sonic extends Monster implements SelfUpdatable {
 	}
 
 	public void handleCollision(Hittable otherHittable, Point normal) {
-		/*switch (otherHittable.getType()){
-			case "Block":
-				handleBlock
+		switch (otherHittable.getType()){
+		case "Block":
+			handleBlock(normal);break;
 
 		}
-
-
-		/*if (otherHittable instanceof Coin){
-			this.getCoins();
-		}
-		if (otherHittable instanceof ExtraLife){
-			this.getLife();
-		}
-		if (otherHittable instanceof Monster){
-			if (!isBall && life==0){
-				//game over
-			}
-
-		}*/
 	}
 
 
+	private void handleBlock(Point normal) {
+		floor = floor || normal.getY()>=1;
+
+		if (normal.getX()*getSpeed().getX()<0){
+			Point s=getSpeed();
+			Double vX = s.getX();
+			s.setX(vX+2*normal.getX()*Math.abs(vX));
+
+		}
+	}
+
 	public void selfUpdate(Double dT){
-
-/*		Double posX=this.getPosition().getX();
-		Double posY=this.getPosition().getY();
-		Double vX=this.getSpeed().getX();
-		Double vY=this.getSpeed().getY();
-		Double vMaxX=speedMax.getX();
-
-		if (acceleratingRight){
-			if (vX<vMaxX){
-				vX+=
+		if (acceleratingY>0){
+			if (getSpeed().getY() < maxYUpSpeed){
+				getAcceleration().setY(acceleratingY*maxYAcceleration);
+			}
+			else{
+				falling = true;
 			}
 		}
-		else if (acceleratingLeft){
-			if (vX>-vMaxX){
-				vX-=
+		else if (floor){
+			Point s=getSpeed();
+			if (s.getY()<0){
+				s.setY(0);
 			}
-		}else{
-			if (vX>0){
-				vX-=
-			}
-			else if(speed.getX<0){
-				vX+=
-			}
+			falling = false;
+		}
+		else if (getSpeed().getY() > maxYDownSpeed){
+			getAcceleration().setY(gravity );
 		}
 
+		if (acceleratingX*getSpeed().getX() < maxXSpeed){
+			getAcceleration().setX(acceleratingX*maxXAcceleration);
+		}
+		else if (brakingX*getSpeed().getX() < 0){
+			getAcceleration().setX(brakingX*maxXBrake);
+		}
+		super.selfUpdate(dT);
+		System.out.println(getPosition()+" "+getSpeed());
+	}
 
-
-		posX+=vX;
-		posY+=vY;
-		this.getSpeed().setX(vX);
-		this.getSpeed().setY(vY);
-		this.getPosition().setX(posX);
-		this.getPosition().setX(posY);*/
+	public void stepReset(){
+		super.stepReset();
+		brakingX = 0;
+		acceleratingX = 0;
+		floor = false;
+		acceleratingY = 0;
 	}
 
 	@Override
 	public double getSize(int side) {
-		// TODO Auto-generated method stub
-		return 0;
+		return hitbox[side];
 	}
 
 	@Override
 	public Point normalAt(int side) {
-		// TODO Auto-generated method stub
-		return null;
+		return normals[side];
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
+		return "Sonic";
 	}
 
 }

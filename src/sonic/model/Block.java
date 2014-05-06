@@ -18,12 +18,6 @@ public class Block extends Hittable{
 	}
 
 	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void handleCollision(Hittable otherHittable, Point normal) {
 		System.out.println("Block touché en"+this.getPosition());
 	}

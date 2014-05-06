@@ -16,16 +16,10 @@ public class AMonster extends Monster {
 	}
 
 	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void handleCollision(Hittable otherHittable, Point normal) {
 		switch (otherHittable.getType()){
-			case "Block":
-				handleBlock(normal);
+		case "Block":
+			handleBlock(normal);
 
 		}
 		System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());

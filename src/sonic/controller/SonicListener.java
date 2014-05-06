@@ -10,23 +10,24 @@ public class SonicListener implements KeyListener {
 	private Sonic sonic;
 
 	public SonicListener(Sonic s){
+		System.out.println(s);
 		sonic =s;
 	}
 
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		switch (key){
-			case KeyEvent.VK_RIGHT:
-				sonic.accelerateRight();
-				break;
-			case KeyEvent.VK_LEFT:
-				sonic.accelerateLeft();
-				break;
-			case KeyEvent.VK_SPACE:
-				sonic.jump();
-				break;
-			case KeyEvent.VK_DOWN:
-				sonic.beBall();
+		case KeyEvent.VK_RIGHT:
+			sonic.accelerateRight();
+			break;
+		case KeyEvent.VK_LEFT:
+			sonic.accelerateLeft();
+			break;
+		case KeyEvent.VK_SPACE:
+			sonic.jump();
+			break;
+		case KeyEvent.VK_DOWN:
+			sonic.beBall();
 		}
 	}
 

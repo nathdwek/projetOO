@@ -19,7 +19,8 @@ public class View {
 	private void initializeControls() {
 		window = new JFrame("hi");
 		window.addKeyListener(new SonicListener(model.getSonic()));
-		window.pack();
+		window.setSize(300,400);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 	}
 

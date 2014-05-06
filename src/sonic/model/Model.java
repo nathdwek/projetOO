@@ -24,13 +24,13 @@ public class Model {
 
 		controller=c;
 
-		AMonster aM=new AMonster(0.0,30.0,2.0,0.0);
+		sonic =new Sonic(0, 20);
 		Block aB=new Block(-100.0, 100.0,-10.0,10.0);
 		Block aB2 = new Block(20.0,40.0,10.0,50.0);
 		Block aB3 = new Block(-20.0,-40.0,10.0,50.0);
 
-		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{aM}));
-		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{aM}));
+		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{sonic}));
+		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{sonic}));
 
 		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
 	}

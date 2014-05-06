@@ -1,6 +1,6 @@
 package sonic.model;
 import sonic.view.Drawable;
-public abstract class Hittable implements Drawable {
+public abstract class Hittable {
 	private Point position;
 
 	public Hittable(Point position){

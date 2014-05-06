@@ -34,4 +34,5 @@ public abstract class Monster extends Hittable implements SelfUpdatable {
 	public void stepReset(){
 		this.acceleration.setZero();
 	}
+
 }
