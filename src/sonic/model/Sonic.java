@@ -1,4 +1,8 @@
 package sonic.model;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 
 public class Sonic extends Unit implements Controllable {
 
@@ -171,4 +175,15 @@ public class Sonic extends Unit implements Controllable {
 	public String getType() {
 		return "Sonic";
 	}
+
+	public void paint(Graphics g) {
+		Color c = g.getColor();
+		g.setColor(Color.RED);
+		g.fillRect(10,10,80,80);
+
+	}
+
+
+
+
 }
