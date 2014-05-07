@@ -1,6 +1,6 @@
 package sonic.model;
 
-public class AMonster extends Monster {
+public class AMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};

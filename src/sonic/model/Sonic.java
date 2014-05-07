@@ -1,17 +1,17 @@
 package sonic.model;
 
-public class Sonic extends Monster implements SelfUpdatable {
+public class Sonic extends Unit implements Controllable {
 
 	private Integer life;
 	private Integer coins;
 
 	private Boolean isBall = false;
 
-	private Double maxXSpeed = normalMaxXSpeed;
+	private Double maxXSpeed;
 	private static final Double normalMaxXSpeed=10.0;
 	private static final Double ballMaxXSpeed=20.0;
 
-	private Double maxXBrake = 20.0;
+	private Double maxXBrake = 10.0;
 	private Integer brakingX = 0;
 	private Integer acceleratingX = 0;
 	private Double maxXAcceleration = 10.0;
@@ -33,6 +33,7 @@ public class Sonic extends Monster implements SelfUpdatable {
 		super(new Point(posX,posY), new Point (0,0));
 		this.life=0;
 		this.coins=0;
+		this.beNormal();
 	}
 
 	public void getCoins(){
@@ -43,54 +44,49 @@ public class Sonic extends Monster implements SelfUpdatable {
 		life+=1;
 	}
 
-	public void accelerateRight() {
-		if (getSpeed().getX()>=0){
-			acceleratingX=1;
-		}
-		else{
-			brakingX=-1;
-		}
+	public void goRight() {
+		brakingX=1;
+		acceleratingX=1;
 	}
-
-	public void accelerateLeft(){
-		if (getSpeed().getX()<=0){
-			acceleratingX=-1;
-		}
-		else{
-			brakingX=1;
-		}
+	public void goLeft(){
+		brakingX=-1;
+		acceleratingX=-1;
 	}
 
 	public void jump() {
-		if (!falling){
-			acceleratingY=1;
-		}
+		acceleratingY=1;
 	}
 
 	public void beBall() {
 		maxXSpeed=ballMaxXSpeed;
 		isBall=true;
 	}
+	public void beNormal(){
+		maxXSpeed=normalMaxXSpeed;
+		isBall=false;
+	}
 
-	public void startDecelerateRight() {
+	public void stopRight() {
+		if (acceleratingX>0){
+			acceleratingX=0;
+		}
 		if (getSpeed().getX() > 0){
 			brakingX=-1;
 		}
 	}
 
-	public void startDecelerateLeft() {
+	public void stopLeft() {
+		if (acceleratingX<0){
+			acceleratingX=0;
+		}
 		if (getSpeed().getX() < 0){
 			brakingX=1;
 		}
 	}
 
-	public void beSonic(){
-		maxXSpeed=normalMaxXSpeed;
-		isBall=false;
-	}
-
-	public void startDecelerateUp() {
+	public void stopJump() {
 		acceleratingY=0;
+		falling=true;
 	}
 
 	public void handleCollision(Hittable otherHittable, Point normal) {
@@ -101,54 +97,64 @@ public class Sonic extends Monster implements SelfUpdatable {
 		}
 	}
 
-
 	private void handleBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
 
-		if (normal.getX()*getSpeed().getX()<0){
+		/*if (normal.getX()*getSpeed().getX()<0){
 			Point s=getSpeed();
 			Double vX = s.getX();
 			s.setX(vX+2*normal.getX()*Math.abs(vX));
 
-		}
+		}*/
 	}
 
 	public void selfUpdate(Double dT){
-		if (acceleratingY>0){
-			if (getSpeed().getY() < maxYUpSpeed){
-				getAcceleration().setY(acceleratingY*maxYAcceleration);
+		Point s=getSpeed();
+		Point a=getAcceleration();
+
+		Double sX=s.getX();
+		Double sY=s.getY();
+
+		if (floor){
+			if (sY<0){
+				s.setY(0);
+			}
+			falling = false;
+		}
+
+		if (!falling && acceleratingY>0){
+			if (sY < maxYUpSpeed){
+				a.setY(acceleratingY*maxYAcceleration);
 			}
 			else{
 				falling = true;
 			}
 		}
-		else if (floor){
-			Point s=getSpeed();
-			if (s.getY()<0){
-				s.setY(0);
-			}
-			falling = false;
-		}
-		else if (getSpeed().getY() > maxYDownSpeed){
-			getAcceleration().setY(gravity );
+
+		if (falling && sY > maxYDownSpeed){
+			a.setY(gravity);
 		}
 
-		if (acceleratingX*getSpeed().getX() < maxXSpeed){
-			getAcceleration().setX(acceleratingX*maxXAcceleration);
+		if (brakingX*sX < 0){
+			a.setX(brakingX*maxXBrake);
 		}
-		else if (brakingX*getSpeed().getX() < 0){
-			getAcceleration().setX(brakingX*maxXBrake);
+		else{
+			brakingX=0;
+			if (acceleratingX*sX < maxXSpeed){
+				a.setX(acceleratingX*maxXAcceleration);
+			}
+			else{
+				acceleratingX=0;
+			}
 		}
+
 		super.selfUpdate(dT);
 		System.out.println(getPosition()+" "+getSpeed());
 	}
 
 	public void stepReset(){
 		super.stepReset();
-		brakingX = 0;
-		acceleratingX = 0;
 		floor = false;
-		acceleratingY = 0;
 	}
 
 	@Override
@@ -165,5 +171,4 @@ public class Sonic extends Monster implements SelfUpdatable {
 	public String getType() {
 		return "Sonic";
 	}
-
 }

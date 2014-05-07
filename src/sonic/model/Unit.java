@@ -1,10 +1,10 @@
 package sonic.model;
 
-public abstract class Monster extends Hittable implements SelfUpdatable {
+public abstract class Unit extends Hittable implements SelfUpdatable {
 	private Point speed;
 	private Point acceleration;
 
-	public Monster(Point position, Point speed){
+	public Unit(Point position, Point speed){
 		super(position);
 		this.speed= speed;
 		this.acceleration=new Point(0,0);

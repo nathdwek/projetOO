@@ -25,9 +25,9 @@ public class Model {
 		controller=c;
 
 		sonic =new Sonic(0, 20);
-		Block aB=new Block(-100.0, 100.0,-10.0,10.0);
-		Block aB2 = new Block(20.0,40.0,10.0,50.0);
-		Block aB3 = new Block(-20.0,-40.0,10.0,50.0);
+		Block aB=new Block(-1000.0, 1000.0,-10.0,10.0);
+		Block aB2 = new Block(20.0,40.0,-10.0,-50.0);
+		Block aB3 = new Block(-20.0,-40.0,-10.0,-50.0);
 
 		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{sonic}));
 		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{sonic}));

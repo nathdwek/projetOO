@@ -3,31 +3,32 @@ package sonic.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import sonic.model.Controllable;
 import sonic.model.Sonic;
 
 public class SonicListener implements KeyListener {
 
-	private Sonic sonic;
+	private Controllable hero;
 
-	public SonicListener(Sonic s){
-		System.out.println(s);
-		sonic =s;
+	public SonicListener(Controllable h){
+		System.out.println(h);
+		hero = h;
 	}
 
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		switch (key){
 		case KeyEvent.VK_RIGHT:
-			sonic.accelerateRight();
+			hero.goRight();
 			break;
 		case KeyEvent.VK_LEFT:
-			sonic.accelerateLeft();
+			hero.goLeft();
 			break;
 		case KeyEvent.VK_SPACE:
-			sonic.jump();
+			hero.jump();
 			break;
 		case KeyEvent.VK_DOWN:
-			sonic.beBall();
+			hero.beBall();
 		}
 	}
 
@@ -37,16 +38,16 @@ public class SonicListener implements KeyListener {
 		int key = e.getKeyCode();
 		switch (key){
 		case KeyEvent.VK_RIGHT:
-			sonic.startDecelerateRight();
+			hero.stopRight();
 			break;
 		case KeyEvent.VK_LEFT:
-			sonic.startDecelerateLeft();
+			hero.stopLeft();
 			break;
 		case KeyEvent.VK_DOWN:
-			sonic.beSonic();
+			hero.beNormal();
 			break;
-		case KeyEvent.VK_UP:
-			sonic.startDecelerateUp();
+		case KeyEvent.VK_SPACE:
+			hero.stopJump();
 		}
 	}
 	public void keyTyped(KeyEvent e){
