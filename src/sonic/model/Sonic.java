@@ -9,35 +9,40 @@ public class Sonic extends Unit implements Controllable {
 	private Integer life;
 	private Integer coins;
 
-	private Boolean isBall = false;
+	private Boolean isBall;
 
 	private Double maxXSpeed;
 	private static final Double normalMaxXSpeed=10.0;
 	private static final Double ballMaxXSpeed=20.0;
 
 	private Double maxXBrake = 10.0;
-	private Integer brakingX = 0;
-	private Integer acceleratingX = 0;
+	private Integer brakingX;
+	private Integer acceleratingX;
 	private Double maxXAcceleration = 10.0;
 
 	private Double maxYUpSpeed = 10.0;
 	private Double maxYDownSpeed = -20.0;
 
-	private Boolean floor = false;
+	private Boolean floor;
+	private Boolean falling;
 
-	private Integer acceleratingY = 0;
+	private Integer acceleratingY;
 	private Double maxYAcceleration = 10.0;
-	private double gravity = -10.0;
+	private Double gravity = -10.0;
 
 	private Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
-	private boolean falling;
 
 	public Sonic(int posX, int posY) {
 		super(new Point(posX,posY), new Point (0,0));
 		this.life=0;
 		this.coins=0;
 		this.beNormal();
+		this.acceleratingY=0;
+		this.acceleratingX=0;
+		this.brakingX = 0;
+		this.floor=false;
+		this.falling=false;
 	}
 
 	public void getCoins(){
