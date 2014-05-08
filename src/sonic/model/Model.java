@@ -24,7 +24,7 @@ public class Model {
 
 		controller=c;
 
-		sonic =new Sonic(0, 20);
+		sonic =new Sonic(200, 200);
 		Block aB=new Block(-1000.0, 1000.0,-10.0,10.0);
 		Block aB2 = new Block(20.0,40.0,-10.0,-50.0);
 		Block aB3 = new Block(-20.0,-40.0,-10.0,-50.0);

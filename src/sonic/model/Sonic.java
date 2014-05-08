@@ -179,7 +179,11 @@ public class Sonic extends Unit implements Controllable {
 	public void paint(Graphics g) {
 		Color c = g.getColor();
 		g.setColor(Color.RED);
-		g.fillRect(10,10,80,80);
+		double posx =  this.getPosition().getX();
+		int posX = (int) posx;
+		double posy = this.getPosition().getY();
+		int posY = (int) posy;
+		g.drawRect(posX, posY,80,80);
 
 	}
 
