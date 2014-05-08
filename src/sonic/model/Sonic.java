@@ -54,11 +54,9 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	public void goRight() {
-		brakingX=1;
 		acceleratingX=1;
 	}
 	public void goLeft(){
-		brakingX=-1;
 		acceleratingX=-1;
 	}
 
@@ -101,7 +99,8 @@ public class Sonic extends Unit implements Controllable {
 	public void handleCollision(Hittable otherHittable, Point normal) {
 		switch (otherHittable.getType()){
 		case "Block":
-			handleBlock(normal);break;
+			handleBlock(normal);
+			break;
 
 		}
 	}
