@@ -17,7 +17,7 @@ public class Model {
 	private static final int TOP=1;
 	private static final int LEFT=2;
 	private static final int BOTTOM=3;
-	private static final double COLLISION_DISTANCE = 1;
+	private static final double COLLISION_DISTANCE = 0.5;
 	private Sonic sonic;
 
 	public Model(Controller c){

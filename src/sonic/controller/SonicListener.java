@@ -29,6 +29,7 @@ public class SonicListener implements KeyListener {
 			break;
 		case KeyEvent.VK_DOWN:
 			hero.beBall();
+			break;
 		}
 	}
 
@@ -48,6 +49,7 @@ public class SonicListener implements KeyListener {
 			break;
 		case KeyEvent.VK_SPACE:
 			hero.stopJump();
+			break;
 		}
 	}
 	public void keyTyped(KeyEvent e){
