@@ -25,11 +25,12 @@ public class Model {
 		controller=c;
 
 		sonic =new Sonic(200, 200);
-		Block aB=new Block(-1000.0, 1000.0,-10.0,10.0);
-		Block aB2 = new Block(20.0,40.0,-10.0,-50.0);
-		Block aB3 = new Block(-20.0,-40.0,-10.0,-50.0);
+		AMonster m1 = new AMonster(200.0,200.0 , 0.0, 0.0);
+		Block aB=new Block(-1000.0, 1000.0,0.0,125.0);
+		Block aB2 = new Block(20.0,40.0,75.0,125.0);
+		Block aB3 = new Block(100.0,140.0,75.0,125.0);
 
-		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{sonic}));
+		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{sonic,m1}));
 		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{sonic}));
 
 		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
@@ -40,6 +41,12 @@ public class Model {
 	}
 	public Sonic getSonic() {
 		return sonic;
+	}
+	public LinkedList<Hittable> getFixedHittables(){
+		return fixedHittables;
+	}
+	public LinkedList<SelfUpdatable> getSelfUpdatables(){
+		return selfUpdatables;
 	}
 
 	public void update(Double dT) {

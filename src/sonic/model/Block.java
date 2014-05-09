@@ -1,5 +1,8 @@
 package sonic.model;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Block extends Hittable{
 
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
@@ -35,6 +38,15 @@ public class Block extends Hittable{
 	@Override
 	public Point normalAt(int side) {
 		return normals[side];
+	}
+	public void paint(Graphics g){
+		double posx =  this.getPosition().getX();
+		int posX = (int) posx;
+		double posy = this.getPosition().getY();
+		int posY = (int) posy;
+		g.setColor(Color.BLUE);
+		System.out.println(this.getPosition());
+		g.fillRect(posX, 690 -posY, (int) (this.getSize(0)) , (int) (this.getSize(1)) );
 	}
 
 }

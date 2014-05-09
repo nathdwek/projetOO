@@ -1,5 +1,8 @@
 package sonic.model;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class AMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
@@ -65,6 +68,14 @@ public class AMonster extends Unit {
 
 	public Point normalAt(int side) {
 		return normals[side];
+	}
+	public void paint(Graphics g){
+		double posx =  this.getPosition().getX();
+		int posX = (int) posx;
+		double posy = this.getPosition().getY();
+		int posY = (int) posy;
+		g.setColor(Color.BLUE);
+		g.fillRect(posX, 700 -posY, (int) (this.getSize(0)*2) , (int) (this.getSize(1)*2));
 	}
 
 }

@@ -18,21 +18,21 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean isBall;
 
 	private Double maxXSpeed;
-	private static final Double normalMaxXSpeed=10.0;
+	private static final Double normalMaxXSpeed=400.0;
 	private static final Double ballMaxXSpeed=20.0;
 
-	private Double naturalXBrake = 10.0;
+	private Double naturalXBrake = 100.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 10.0;
+	private Double maxXAcceleration = 200.0;
 
-	private Double maxYUpSpeed = 10.0;
-	private Double maxYDownSpeed = -20.0;
+	private Double maxYUpSpeed = 100.0;
+	private Double maxYDownSpeed = -50.0;
 
 	private Boolean floor;
 	private Boolean falling;
 
 	private Integer acceleratingY;
-	private Double maxYAcceleration = 10.0;
+	private Double maxYAcceleration = 200.0;
 	private Double gravity = -10.0;
 
 	private Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
@@ -189,7 +189,9 @@ public class Sonic extends Unit implements Controllable {
 		double posy = this.getPosition().getY();
 		int posY = (int) posy;
 		Image sonic = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonic.gif");
-		g.drawImage(sonic , posX, posY, 60, 60,  p);
+		Image backround = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
+		g.drawImage(backround , 0,0, 800,700,  p);
+		g.drawImage(sonic,posX  , 700-posY, 60,60, p);
 		g.finalize();
 	}
 
