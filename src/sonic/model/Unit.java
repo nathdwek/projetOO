@@ -3,6 +3,11 @@ package sonic.model;
 public abstract class Unit extends Hittable implements SelfUpdatable {
 	private Point speed;
 	private Point acceleration;
+	private static final Double miniRealSpeed = 0.5;
+
+	public static Double getMiniRealSpeed(){
+		return miniRealSpeed;
+	}
 
 	public Unit(Point position, Point speed){
 		super(position);

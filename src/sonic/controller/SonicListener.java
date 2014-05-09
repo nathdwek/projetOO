@@ -36,7 +36,7 @@ public class SonicListener implements KeyListener {
 
 
 	public void keyReleased (KeyEvent e){
-		int key = e.getKeyCode();
+		/*int key = e.getKeyCode();
 		switch (key){
 		case KeyEvent.VK_RIGHT:
 			hero.stopRight();
@@ -50,7 +50,7 @@ public class SonicListener implements KeyListener {
 		case KeyEvent.VK_SPACE:
 			hero.stopJump();
 			break;
-		}
+		}*/
 	}
 	public void keyTyped(KeyEvent e){
 

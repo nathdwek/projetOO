@@ -21,8 +21,7 @@ public class Sonic extends Unit implements Controllable {
 	private static final Double normalMaxXSpeed=10.0;
 	private static final Double ballMaxXSpeed=20.0;
 
-	private Double maxXBrake = 10.0;
-	private Integer brakingX;
+	private Double naturalXBrake = 10.0;
 	private Integer acceleratingX;
 	private Double maxXAcceleration = 10.0;
 
@@ -43,12 +42,8 @@ public class Sonic extends Unit implements Controllable {
 		super(new Point(posX,posY), new Point (0,0));
 		this.life=0;
 		this.coins=0;
-		this.beNormal();
-		this.acceleratingY=0;
-		this.acceleratingX=0;
-		this.brakingX = 0;
-		this.floor=false;
-		this.falling=false;
+		this.falling=true;
+		stepReset();
 	}
 
 	public void getCoins(){
@@ -59,117 +54,12 @@ public class Sonic extends Unit implements Controllable {
 		life+=1;
 	}
 
-	public void goRight() {
-		brakingX=1;
-		acceleratingX=1;
-	}
-	public void goLeft(){
-		brakingX=-1;
-		acceleratingX=-1;
-	}
-
-	public void jump() {
-		acceleratingY=1;
-	}
-
-	public void beBall() {
-		maxXSpeed=ballMaxXSpeed;
-		isBall=true;
-	}
-	public void beNormal(){
-		maxXSpeed=normalMaxXSpeed;
-		isBall=false;
-	}
-
-	public void stopRight() {
-		if (acceleratingX>0){
-			acceleratingX=0;
-		}
-		if (getSpeed().getX() > 0){
-			brakingX=-1;
-		}
-	}
-
-	public void stopLeft() {
-		if (acceleratingX<0){
-			acceleratingX=0;
-		}
-		if (getSpeed().getX() < 0){
-			brakingX=1;
-		}
-	}
-
-	public void stopJump() {
-		acceleratingY=0;
-		falling=true;
-	}
-
-	public void handleCollision(Hittable otherHittable, Point normal) {
-		switch (otherHittable.getType()){
-		case "Block":
-			handleBlock(normal);break;
-
-		}
-	}
-
-	private void handleBlock(Point normal) {
-		floor = floor || normal.getY()>=1;
-
-		/*if (normal.getX()*getSpeed().getX()<0){
-			Point s=getSpeed();
-			Double vX = s.getX();
-			s.setX(vX+2*normal.getX()*Math.abs(vX));
-
-		}*/
-	}
-
-	public void selfUpdate(Double dT){
-		Point s=getSpeed();
-		Point a=getAcceleration();
-
-		Double sX=s.getX();
-		Double sY=s.getY();
-
-		if (floor){
-			if (sY<0){
-				s.setY(0);
-			}
-			falling = false;
-		}
-
-		if (!falling && acceleratingY>0){
-			if (sY < maxYUpSpeed){
-				a.setY(acceleratingY*maxYAcceleration);
-			}
-			else{
-				falling = true;
-			}
-		}
-
-		if (falling && sY > maxYDownSpeed){
-			a.setY(gravity);
-		}
-
-		if (brakingX*sX < 0){
-			a.setX(brakingX*maxXBrake);
-		}
-		else{
-			brakingX=0;
-			if (acceleratingX*sX < maxXSpeed){
-				a.setX(acceleratingX*maxXAcceleration);
-			}
-			else{
-				acceleratingX=0;
-			}
-		}
-
-		super.selfUpdate(dT);
-		System.out.println(getPosition()+" "+getSpeed());
-	}
-
 	public void stepReset(){
 		super.stepReset();
-		floor = false;
+		beNormal();
+		this.acceleratingY=0;
+		this.acceleratingX=0;
+		this.floor=false;
 	}
 
 	@Override
@@ -187,16 +77,111 @@ public class Sonic extends Unit implements Controllable {
 		return "Sonic";
 	}
 
-	/*public void paint(Graphics g) {
+	public void paint(Graphics g) {
 		Color c = g.getColor();
 		g.setColor(Color.RED);
-		double posx =  this.getPosition().getX();
-		int posX = (int) posx;
-		double posy = this.getPosition().getY();
-		int posY = (int) posy;
-		g.drawRect(posX, posY,80,80);
+		g.fillRect(10,10,80,80);
 
-	}*/
+	}
+
+	@Override
+	public void goRight() {
+		acceleratingX = 1;
+
+	}
+
+	@Override
+	public void goLeft() {
+		acceleratingX=-1;
+	}
+
+	@Override
+	public void jump() {
+		if (!falling){
+			acceleratingY=1;
+
+		}
+	}
+
+	@Override
+	public void beBall() {
+		isBall = true;
+		maxXSpeed = ballMaxXSpeed;
+	}
+
+	private void beNormal(){
+		isBall = false;
+		maxXSpeed = normalMaxXSpeed;
+	}
+
+	@Override
+	public void handleCollision(Hittable otherHittable, Point normal) {
+		switch (otherHittable.getType()){
+		case "Block":
+			handleBlock(normal);
+
+		}
+		System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
+	}
+
+	private void handleBlock(Point normal) {
+		floor = floor || normal.getY()>=1;
+
+		/*if (normal.getX()*getSpeed().getX()<0){
+			Point s=getSpeed();
+			Double vX = s.getX();
+			s.setX(vX+2*normal.getX()*Math.abs(vX));
+
+		}*/
+	}
+
+
+	public void selfUpdate(Double dT){
+
+		Point s = getSpeed();
+		Double sX = s.getX();
+		Double sY = s.getY();
+
+		Point a = getAcceleration();
+
+
+		if (floor){
+			if (sY<0){
+				s.setY(0);
+			}
+			falling=false;
+		}
+
+		if (acceleratingX!=0){
+			if (acceleratingX*sX<maxXSpeed){
+				a.setX(acceleratingX*maxXAcceleration);
+			}
+		}
+		else{
+			if (Math.abs(sX)>Unit.getMiniRealSpeed()){
+				a.setX(-Math.signum(sX)*naturalXBrake);
+			}
+			else{
+				s.setX(0);
+			}
+
+		}
+
+		if (acceleratingY>0 && sY<maxYUpSpeed){
+			a.setY(acceleratingY*maxYAcceleration);
+		}
+		else if (!floor && sY>maxYDownSpeed){
+			falling=true;
+			a.setY(gravity);
+		}
+
+		super.selfUpdate(dT);
+
+		System.out.println(getPosition()+"  "+getSpeed());
+
+
+
+	}
 
 	public void paint(Graphics g, JPanel p) {
 		double posx =  this.getPosition().getX();
@@ -207,8 +192,5 @@ public class Sonic extends Unit implements Controllable {
 		g.drawImage(sonic , posX, posY, 60, 60,  p);
 		g.finalize();
 	}
-
-
-
 
 }
