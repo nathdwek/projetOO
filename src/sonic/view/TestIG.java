@@ -2,7 +2,13 @@ package sonic.view;
 
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
+
 import javax.swing.JPanel;
+
 import sonic.model.Sonic;
 
 
@@ -15,8 +21,7 @@ public class TestIG extends JPanel{
 		sonic = s;
 	}
 
-	public void paint(Graphics g) {
-		sonic.paint(g);
+	public void paint(Graphics g){
+		sonic.paint(g, this );
 	}
-
 }

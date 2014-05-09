@@ -1,8 +1,12 @@
 package sonic.view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
 import sonic.model.Sonic;
+
 import java.awt.Graphics;
+
 import sonic.controller.SonicListener;
 import sonic.model.Model;
 
@@ -26,10 +30,11 @@ public class View {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 	}
-
 	public void refresh() {
 		testig = new TestIG(model.getSonic());
 		window.add(testig);
+		window.repaint();
+
 	}
 
 

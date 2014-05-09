@@ -1,7 +1,13 @@
 package sonic.model;
+import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Graphics;
+import java.awt.image.ImageObserver;
+
+import javax.swing.JPanel;
 
 
 public class Sonic extends Unit implements Controllable {
@@ -181,7 +187,7 @@ public class Sonic extends Unit implements Controllable {
 		return "Sonic";
 	}
 
-	public void paint(Graphics g) {
+	/*public void paint(Graphics g) {
 		Color c = g.getColor();
 		g.setColor(Color.RED);
 		double posx =  this.getPosition().getX();
@@ -190,6 +196,16 @@ public class Sonic extends Unit implements Controllable {
 		int posY = (int) posy;
 		g.drawRect(posX, posY,80,80);
 
+	}*/
+
+	public void paint(Graphics g, JPanel p) {
+		double posx =  this.getPosition().getX();
+		int posX = (int) posx;
+		double posy = this.getPosition().getY();
+		int posY = (int) posy;
+		Image sonic = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonic.gif");
+		g.drawImage(sonic , posX, posY, 60, 60,  p);
+		g.finalize();
 	}
 
 

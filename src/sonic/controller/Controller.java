@@ -26,12 +26,16 @@ public class Controller {
 
 			model.update(Double.valueOf(loopTime)/1000);
 			view.refresh();
+			Long waitTime = loopTime-(System.currentTimeMillis()-startTime);
+			if (waitTime>0 ){
+				try {
+					Thread.sleep(waitTime);
+				}
+				catch (InterruptedException e) {
+				}
 
-			try {
-				Thread.sleep(loopTime-(System.currentTimeMillis()-startTime));
 			}
-			catch (InterruptedException e) {
-			}
+
 		}
 	}
 
