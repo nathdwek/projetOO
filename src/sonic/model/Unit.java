@@ -1,6 +1,8 @@
 package sonic.model;
 
-public abstract class Unit extends Hittable implements SelfUpdatable {
+import sonic.view.Drawable;
+
+public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
 	private Point speed;
 	private Point acceleration;
 	private static final Double miniRealSpeed = 0.5;

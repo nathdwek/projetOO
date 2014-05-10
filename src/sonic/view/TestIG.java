@@ -20,25 +20,15 @@ import sonic.model.Sonic;
 
 public class TestIG extends JPanel{
 
-	private Sonic sonic;
-	private LinkedList<Hittable> fixedHittables;
 	private Model model;
-	private LinkedList<SelfUpdatable> selfupdatable;
 
-	public TestIG(Sonic s, Model m){
-		sonic = s;
+	public TestIG(Model m){
 		model = m;
-		fixedHittables= m.getFixedHittables();
-		selfupdatable = m.getSelfUpdatables();
 	}
 
 	public void paint(Graphics g){
-		sonic.paint(g, this );
-		for (Hittable hittable : fixedHittables){
-			hittable.paint(g);
-		}
-		for (SelfUpdatable updatable : selfupdatable ){
-			updatable.paint(g);
+		for (Drawable d : model.getDrawables()){
+			d.paint(g, this);
 		}
 	}
 }

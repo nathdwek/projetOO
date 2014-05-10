@@ -26,15 +26,14 @@ public class View {
 	private void initializeControls() {
 		window = new JFrame("hi");
 		window.setSize(800,700);
-		window.addKeyListener(new SonicListener(model.getSonic()));
+		window.addKeyListener(new SonicListener(model.getHero()));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+		testig = new TestIG(model);
+		window.add(testig);
 	}
 	public void refresh() {
-		testig = new TestIG(model.getSonic(), model);
-		window.add(testig);
 		window.repaint();
-
 	}
 
 

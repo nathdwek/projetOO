@@ -8,7 +8,7 @@ public class Controller {
 
 	private Model model;
 	private View view;
-	private static final Short fps = 30;
+	private static final Short fps = 60;
 	private static final Integer loopTime = 1000/fps;
 
 
