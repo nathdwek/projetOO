@@ -10,9 +10,9 @@ public class Main {
 
 		Model m;
 		View v;
-		Controller c = null;
+		Controller c;
 
-		m = new Model(c);
+		m = new Model();
 		v = new View(m);
 		c = new Controller(m,v);
 

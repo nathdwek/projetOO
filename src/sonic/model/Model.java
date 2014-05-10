@@ -4,49 +4,47 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import sonic.controller.Controllable;
 import sonic.controller.Controller;
+import sonic.view.Drawable;
 
 public class Model {
-
-	private Controller controller;
 
 	private LinkedList<SelfUpdatable> selfUpdatables;
 	private LinkedList<Hittable> fixedHittables;
 	private ArrayList<Hittable> movingHittables;
+	private LinkedList<Drawable> drawables;
 	private static final int RIGHT=0;
 	private static final int TOP=1;
 	private static final int LEFT=2;
 	private static final int BOTTOM=3;
-	private static final double COLLISION_DISTANCE = 0.5;
-	private Sonic sonic;
+	private static final double COLLISION_DISTANCE = 1;
+	private Sonic hero;
 
-	public Model(Controller c){
+	public Model(){
 
-		controller=c;
-
-		sonic =new Sonic(500, 200);
+		hero =new Sonic(500, 150);
 		AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
 		Block aB=new Block(-1000.0, 1000.0,0.0,125.0);
 		Block aB2 = new Block(0.0,40.0,125.0,155.0);
 		Block aB3 = new Block(300.0,340.0,125.0,155.0);
 
-		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{sonic,m1}));
-		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{sonic,m1}));
+		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{hero,m1}));
+		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{hero,m1}));
 
 		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
+
+		drawables = new LinkedList<Drawable>(Arrays.asList(new Drawable[]{hero,m1,aB,aB2,aB3}));
 	}
 
 	public boolean gameOver() {
 		return false;
 	}
-	public Sonic getSonic() {
-		return sonic;
+	public Controllable getHero() {
+		return hero;
 	}
-	public LinkedList<Hittable> getFixedHittables(){
-		return fixedHittables;
-	}
-	public LinkedList<SelfUpdatable> getSelfUpdatables(){
-		return selfUpdatables;
+	public LinkedList<Drawable> getDrawables(){
+		return drawables;
 	}
 
 	public void update(Double dT) {

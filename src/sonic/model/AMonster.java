@@ -3,6 +3,8 @@ package sonic.model;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 public class AMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
@@ -69,7 +71,7 @@ public class AMonster extends Unit {
 	public Point normalAt(int side) {
 		return normals[side];
 	}
-	public void paint(Graphics g){
+	public void paint(Graphics g, JPanel p){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int left = posX-getSize(2).intValue();
