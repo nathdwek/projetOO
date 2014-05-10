@@ -9,6 +9,8 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.JPanel;
 
+import sonic.controller.Controllable;
+
 
 public class Sonic extends Unit implements Controllable {
 
