@@ -25,7 +25,7 @@ public class AMonster extends Unit {
 			handleBlock(normal);
 
 		}
-		System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par "+ otherHittable.getType());
+		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par "+ otherHittable.getType());
 	}
 
 	private void handleBlock(Point normal) {
@@ -50,7 +50,7 @@ public class AMonster extends Unit {
 			getAcceleration().setY(gravity);
 		}
 		super.selfUpdate(dT);
-		System.out.println(getPosition()+" "+getSpeed());
+		//System.out.println(getPosition()+" "+getSpeed());
 	}
 
 	public void stepReset(){
@@ -77,7 +77,7 @@ public class AMonster extends Unit {
 		int top = posY+getSize(1).intValue();
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(Color.BLUE);
-		System.out.println(this.getPosition());
+		//System.out.println(this.getPosition());
 		g.fillRect(left,700-top,width,height);
 	}
 

@@ -20,22 +20,22 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean isBall;
 
 	private Double maxXSpeed;
-	private static final Double normalMaxXSpeed=400.0;
-	private static final Double ballMaxXSpeed=20.0;
+	private static final Double normalMaxXSpeed=100.0;
+	private static final Double ballMaxXSpeed=200.0;
 
 	private Double naturalXBrake = 100.0;
 	private Integer acceleratingX;
 	private Double maxXAcceleration = 200.0;
 
 	private Double maxYUpSpeed = 100.0;
-	private Double maxYDownSpeed = -50.0;
+	private Double maxYDownSpeed = -200.0;
 
 	private Boolean floor;
 	private Boolean falling;
 
 	private Integer acceleratingY;
 	private Double maxYAcceleration = 200.0;
-	private Double gravity = -10.0;
+	private Double gravity = -400.0;
 
 	private Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
@@ -46,6 +46,9 @@ public class Sonic extends Unit implements Controllable {
 		this.coins=0;
 		this.falling=true;
 		stepReset();
+		beNormal();
+		this.acceleratingX=0;
+		this.acceleratingY=0;
 	}
 
 	public void getCoins(){
@@ -58,9 +61,6 @@ public class Sonic extends Unit implements Controllable {
 
 	public void stepReset(){
 		super.stepReset();
-		beNormal();
-		this.acceleratingY=0;
-		this.acceleratingX=0;
 		this.floor=false;
 	}
 
@@ -82,7 +82,6 @@ public class Sonic extends Unit implements Controllable {
 	@Override
 	public void goRight() {
 		acceleratingX = 1;
-
 	}
 
 	@Override
@@ -94,7 +93,6 @@ public class Sonic extends Unit implements Controllable {
 	public void jump() {
 		if (!falling){
 			acceleratingY=1;
-
 		}
 	}
 
@@ -104,7 +102,7 @@ public class Sonic extends Unit implements Controllable {
 		maxXSpeed = ballMaxXSpeed;
 	}
 
-	private void beNormal(){
+	public void beNormal(){
 		isBall = false;
 		maxXSpeed = normalMaxXSpeed;
 	}
@@ -116,7 +114,7 @@ public class Sonic extends Unit implements Controllable {
 			handleBlock(normal);
 
 		}
-		System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
+		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
 	}
 
 	private void handleBlock(Point normal) {
@@ -172,7 +170,7 @@ public class Sonic extends Unit implements Controllable {
 
 		super.selfUpdate(dT);
 
-		System.out.println(getPosition()+"  "+getSpeed());
+		//System.out.println(getPosition()+"  "+getSpeed());
 
 
 
@@ -188,6 +186,15 @@ public class Sonic extends Unit implements Controllable {
 		g.drawImage(background , 0,0, 800,700,  p);
 		g.drawImage(sonic,posX  , 700-posY, 60,60, p);
 		g.finalize();
+
+	@Override
+	public void stopX() {
+		acceleratingX=0;
+	}
+
+	@Override
+	public void stopJump() {
+		acceleratingY=0;
 	}
 
 }

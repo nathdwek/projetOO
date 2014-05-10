@@ -35,6 +35,7 @@ public class Controller {
 				}
 
 			}
+			else{System.out.println("lag");}
 
 		}
 	}

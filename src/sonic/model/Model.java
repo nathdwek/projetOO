@@ -25,7 +25,7 @@ public class Model {
 		controller=c;
 
 		sonic =new Sonic(500, 200);
-		AMonster m1 = new AMonster(100.0,200.0 ,10.0, 0.0);
+		AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
 		Block aB=new Block(-1000.0, 1000.0,0.0,125.0);
 		Block aB2 = new Block(0.0,40.0,125.0,155.0);
 		Block aB3 = new Block(300.0,340.0,125.0,155.0);

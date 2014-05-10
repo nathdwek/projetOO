@@ -22,7 +22,7 @@ public class Block extends Hittable{
 
 	@Override
 	public void handleCollision(Hittable otherHittable, Point normal) {
-		System.out.println("Block touché en"+this.getPosition());
+		//System.out.println("Block touché en"+this.getPosition());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class Block extends Hittable{
 		int top = posY+getSize(1).intValue();
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(Color.BLUE);
-		System.out.println(this.getPosition());
+		//System.out.println(this.getPosition());
 		g.fillRect(left,700-top,width,height);
 	}
 
