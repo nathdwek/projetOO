@@ -177,15 +177,25 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	public void paint(Graphics g, JPanel p) {
-		double posx =  this.getPosition().getX();
+		/*double posx =  this.getPosition().getX();
 		int posX = (int) posx;
 		double posy = this.getPosition().getY();
 		int posY = (int) posy;
-		Image sonic = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonic.gif");
-		Image background = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
+		Image sonic = Toolkit.getDefaultToolkit().getImage("/sonic.gif");
+		Image background = Toolkit.getDefaultToolkit().getImage("/image.jpg");
 		g.drawImage(background , 0,0, 800,700,  p);
 		g.drawImage(sonic,posX  , 700-posY, 60,60, p);
-		g.finalize();
+		g.finalize();*/
+		int posX =  this.getPosition().getX().intValue();
+		int posY = this.getPosition().getY().intValue();
+		int left = posX-getSize(2).intValue();
+		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
+		int top = posY+getSize(1).intValue();
+		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
+		g.setColor(Color.RED);
+		//System.out.println(this.getPosition());
+		g.fillRect(left,700-top,width,height);
+	}
 
 	@Override
 	public void stopX() {
