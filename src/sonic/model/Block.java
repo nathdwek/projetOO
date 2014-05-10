@@ -40,13 +40,15 @@ public class Block extends Hittable{
 		return normals[side];
 	}
 	public void paint(Graphics g){
-		double posx =  this.getPosition().getX();
-		int posX = (int) posx;
-		double posy = this.getPosition().getY();
-		int posY = (int) posy;
+		int posX =  this.getPosition().getX().intValue();
+		int posY = this.getPosition().getY().intValue();
+		int left = posX-getSize(2).intValue();
+		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
+		int top = posY+getSize(1).intValue();
+		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(Color.BLUE);
 		System.out.println(this.getPosition());
-		g.fillRect(posX, 690 -posY, (int) (this.getSize(0)) , (int) (this.getSize(1)) );
+		g.fillRect(left,700-top,width,height);
 	}
 
 }
