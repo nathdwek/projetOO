@@ -17,7 +17,7 @@ public abstract class Hittable {
 	}
 
 	public abstract void handleCollision(Hittable otherHittable,Point normal);
-	public abstract double getSize(int side);
+	public abstract Double getSize(int side);
 	public abstract Point normalAt(int side);
 	public abstract String getType();
 

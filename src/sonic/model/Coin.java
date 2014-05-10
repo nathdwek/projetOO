@@ -30,7 +30,7 @@ public class Coin extends Hittable{
 	}
 
 	@Override
-	public double getSize(int side) {
+	public Double getSize(int side) {
 		return hitbox[side];
 	}
 

@@ -31,7 +31,7 @@ public class Block extends Hittable{
 	}
 
 	@Override
-	public double getSize(int side) {
+	public Double getSize(int side) {
 		return hitbox[side];
 	}
 

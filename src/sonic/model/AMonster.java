@@ -25,7 +25,7 @@ public class AMonster extends Unit {
 			handleBlock(normal);
 
 		}
-		System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
+		System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par "+ otherHittable.getType());
 	}
 
 	private void handleBlock(Point normal) {
@@ -62,7 +62,7 @@ public class AMonster extends Unit {
 		return "AMonster";
 	}
 
-	public double getSize(int side) {
+	public Double getSize(int side) {
 		return hitbox[side];
 	}
 

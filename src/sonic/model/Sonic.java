@@ -65,7 +65,7 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public double getSize(int side) {
+	public Double getSize(int side) {
 		return hitbox[side];
 	}
 
@@ -77,13 +77,6 @@ public class Sonic extends Unit implements Controllable {
 	@Override
 	public String getType() {
 		return "Sonic";
-	}
-
-	public void paint(Graphics g) {
-		Color c = g.getColor();
-		g.setColor(Color.RED);
-		g.fillRect(10,10,80,80);
-
 	}
 
 	@Override
