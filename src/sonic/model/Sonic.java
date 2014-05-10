@@ -191,8 +191,8 @@ public class Sonic extends Unit implements Controllable {
 		double posy = this.getPosition().getY();
 		int posY = (int) posy;
 		Image sonic = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonic.gif");
-		Image backround = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
-		g.drawImage(backround , 0,0, 800,700,  p);
+		Image background = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
+		g.drawImage(background , 0,0, 800,700,  p);
 		g.drawImage(sonic,posX  , 700-posY, 60,60, p);
 		g.finalize();
 	}
