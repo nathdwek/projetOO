@@ -13,7 +13,7 @@ public class Coin extends Hittable implements Drawable{
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private static Double[] hitbox= new Double[]{10.0,10.0,10.0,10.0};
 	private String type = "Coin";
-	private Image coin = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/coins.gif");
+	private Image coin = Toolkit.getDefaultToolkit().getImage("coins.gif");
 
 	public Coin(double posX, double posY) {
 		super(new Point(posX, posY));
@@ -49,7 +49,7 @@ public class Coin extends Hittable implements Drawable{
 	}
 
 	@Override
-	public void paint(Graphics g, JPanel p) {
+	public void paint(Graphics g, JPanel p , int sonicPosX) {
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int left = posX-getSize(2).intValue();

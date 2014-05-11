@@ -21,12 +21,12 @@ public class Sonic extends Unit implements Controllable {
 	private static final Double normalMaxXSpeed=350.0;
 	private static final Double ballMaxXSpeed=250.0;
 
-	private Double naturalXBrake = 100.0;
+	private Double naturalXBrake = 200.0;
 	private Integer acceleratingX;
 	private Double maxXAcceleration = 150.0;
 
-	private Double maxYUpSpeed = 150.0;
-	private Double maxYDownSpeed = -25.0;
+	private Double maxYUpSpeed = 450.0;
+	private Double maxYDownSpeed = -450.0;
 
 	private Boolean floor;
 	private Boolean falling;
@@ -38,12 +38,12 @@ public class Sonic extends Unit implements Controllable {
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicBallR2.gif");
-	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicFastL.gif");
-	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicFastR.gif");
-	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWalkL.gif");
-	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWalkR.gif");
-	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWaitingR.gif");
+	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("sonicBallR2.gif");
+	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("sonicFastL.gif");
+	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("sonicFastR.gif");
+	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("sonicWalkL.gif");
+	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("sonicWalkR.gif");
+	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("sonicWaitingR.gif");
 	private Image sonicState ;
 
 	public Sonic(int posX, int posY) {
@@ -120,8 +120,12 @@ public class Sonic extends Unit implements Controllable {
 		switch (otherHittable.getType()){
 		case "Block":
 			handleBlock(normal);
-
+			break;
+		case "Coin":
+			System.out.println(coins);
+			break;
 		}
+
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
 	}
 
@@ -135,6 +139,7 @@ public class Sonic extends Unit implements Controllable {
 
 		}*/
 	}
+
 
 
 	public void selfUpdate(Double dT){

@@ -31,6 +31,7 @@ public class TestIG extends JPanel{
 	public void paint(Graphics g){
 		g.drawImage(background , 0,0, 800,700,  this);
 		for (Drawable d : model.getDrawables()){
+			//if(d)
 			d.paint(g, this);
 		}
 

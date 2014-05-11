@@ -57,6 +57,7 @@ public class Model {
 				handleSingleCollision(movingHittables.get(i), fixedHittable);
 				if (fixedHittable.getType() =="DESTROYED"){
 					fixedHittables.remove(fixedHittable);
+					drawables.remove(fixedHittable);
 				}
 
 			}
