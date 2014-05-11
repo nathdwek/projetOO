@@ -82,7 +82,14 @@ public class Sonic extends Unit implements Controllable {
 
 	@Override
 	public String getType() {
-		return "Sonic";
+		String type;
+		if (isBall){
+			type = "SonicBall";
+		}
+		else{
+			type = "Sonic";
+		}
+		return type;
 	}
 
 	@Override
@@ -116,20 +123,29 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public void handleCollision(Hittable otherHittable, Point normal) {
+	public Boolean handleCollision(Hittable otherHittable, Point normal) {
+		Boolean dead;
 		switch (otherHittable.getType()){
 		case "Block":
-			handleBlock(normal);
+			dead = handleBlock(normal);
 			break;
 		case "Coin":
-			System.out.println(coins);
+			dead = handleCoin();
 			break;
+		default:
+			dead = false;
 		}
 
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
+		return dead;
 	}
 
-	private void handleBlock(Point normal) {
+	private Boolean handleCoin() {
+		System.out.println(coins);
+		return false;
+	}
+
+	private Boolean handleBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
 
 		/*if (normal.getX()*getSpeed().getX()<0){
@@ -138,6 +154,7 @@ public class Sonic extends Unit implements Controllable {
 			s.setX(vX+2*normal.getX()*Math.abs(vX));
 
 		}*/
+		return false;
 	}
 
 

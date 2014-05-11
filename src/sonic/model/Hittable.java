@@ -12,7 +12,7 @@ public abstract class Hittable{
 		return position;
 	}
 
-	public abstract void handleCollision(Hittable otherHittable,Point normal);
+	public abstract Boolean handleCollision(Hittable otherHittable,Point normal);
 	public abstract Double getSize(int side);
 	public abstract Point normalAt(int side);
 	public abstract String getType();

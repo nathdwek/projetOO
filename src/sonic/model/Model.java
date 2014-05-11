@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import sonic.controller.Controllable;
-import sonic.controller.Controller;
 import sonic.view.Drawable;
 
 public class Model {
@@ -59,19 +58,9 @@ public class Model {
 					fixedHittables.remove(fixedHittable);
 					drawables.remove(fixedHittable);
 				}
-
 			}
 			for (int j=i+1; j<movingHittables.size();j++){
 				handleSingleCollision(movingHittables.get(i),movingHittables.get(j));
-				if (movingHittables.get(i).getType()=="DESTROYED"){
-					movingHittables.remove(movingHittables.get(i));
-					selfUpdatables.remove(movingHittables.get(i));
-				}
-				if (movingHittables.get(j).getType()=="DESTROYED"){
-					movingHittables.remove(movingHittables.get(j));
-					selfUpdatables.remove(movingHittables.get(j));
-				}
-
 			}
 		}
 		for (SelfUpdatable s :selfUpdatables){
@@ -82,7 +71,9 @@ public class Model {
 	private void handleSingleCollision(Hittable h1, Hittable h2){
 		Point[] normals=collision(h1,h2);
 		if (normals.length!=0){
-			h1.handleCollision(h2,normals[1]);
+			if (h1.handleCollision(h2,normals[1])){
+
+			}
 			h2.handleCollision(h1,normals[0]);
 		}
 	}

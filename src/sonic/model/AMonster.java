@@ -26,16 +26,20 @@ public class AMonster extends Unit {
 	}
 
 	@Override
-	public void handleCollision(Hittable otherHittable, Point normal) {
+	public Boolean handleCollision(Hittable otherHittable, Point normal) {
+		Boolean dead;
 		switch (otherHittable.getType()){
 		case "Block":
-			handleBlock(normal);
-
+			dead=handleBlock(normal);
+			break;
+		default:
+			dead=false;
 		}
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par "+ otherHittable.getType());
+		return dead;
 	}
 
-	private void handleBlock(Point normal) {
+	private Boolean handleBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
 
 		if (normal.getX()*getSpeed().getX()<0){
@@ -44,6 +48,7 @@ public class AMonster extends Unit {
 			s.setX(vX+2*normal.getX()*Math.abs(vX));
 
 		}
+		return false;
 	}
 
 	public void selfUpdate(Double dT) {

@@ -28,9 +28,18 @@ public class Coin extends Hittable implements Drawable{
 	}*/
 
 	@Override
-	public void handleCollision(Hittable otherHittable, Point normal) {
+	public Boolean handleCollision(Hittable otherHittable, Point normal) {
+		Boolean dead;
+		switch (otherHittable.getType()){
+		case "Sonic":
+		case "SonicBall":
+			dead = true;
+			break;
+		default:
+			dead = false;
+		}
 		System.out.println("Coin touché en"+this.getPosition());
-		type = "DESTROYED";
+		return dead;
 	}
 
 	@Override

@@ -25,8 +25,8 @@ public class Block extends Hittable implements Drawable{
 	}
 
 	@Override
-	public void handleCollision(Hittable otherHittable, Point normal) {
-		//System.out.println("Block touché en"+this.getPosition());
+	public Boolean handleCollision(Hittable otherHittable, Point normal) {
+		return false;
 	}
 
 	@Override
