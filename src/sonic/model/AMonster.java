@@ -2,15 +2,20 @@ package sonic.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.JPanel;
 
 import javax.swing.JPanel;
 
 public class AMonster extends Unit {
 
-	private static Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
+	private static Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private static final Double gravity= -10.0;
 	private Boolean floor = false;
+	private Image crabe = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/crabe.gif");
 
 	public AMonster(Point position, Point speed) {
 		super(position, speed);
@@ -80,7 +85,8 @@ public class AMonster extends Unit {
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(Color.BLUE);
 		//System.out.println(this.getPosition());
-		g.fillRect(left,700-top,width,height);
+		g.drawImage(crabe , left,700-top,width,height, p);
+		g.finalize();
 	}
 
 }

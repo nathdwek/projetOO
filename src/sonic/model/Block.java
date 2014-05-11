@@ -43,6 +43,7 @@ public class Block extends Hittable implements Drawable{
 	public Point normalAt(int side) {
 		return normals[side];
 	}
+
 	public void paint(Graphics g, JPanel p){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
@@ -54,5 +55,4 @@ public class Block extends Hittable implements Drawable{
 		//System.out.println(this.getPosition());
 		g.fillRect(left,700-top,width,height);
 	}
-
 }

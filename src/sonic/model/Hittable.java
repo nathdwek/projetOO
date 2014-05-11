@@ -1,6 +1,7 @@
 package sonic.model;
 
 public abstract class Hittable{
+
 	private Point position;
 
 	public Hittable(Point position){
