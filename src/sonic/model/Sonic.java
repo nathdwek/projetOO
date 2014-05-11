@@ -230,7 +230,7 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public void paint(Graphics g, JPanel p) {
+	public void paint(Graphics g, JPanel p, int sonicPosX) {
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int left = posX-getSize(2).intValue();
