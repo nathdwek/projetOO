@@ -49,30 +49,39 @@ public class Model {
 	}
 
 	public void update(Double dT) {
+		LinkedList<Hittable> toDestroy = new LinkedList<Hittable>();
 		for (int i = 0; i<movingHittables.size();i++){
 			for (Hittable fixedHittable : fixedHittables){
-				handleSingleCollision(movingHittables.get(i), fixedHittable);
-				if (fixedHittable.getType() =="DESTROYED"){
-					fixedHittables.remove(fixedHittable);
-					drawables.remove(fixedHittable);
-				}
+				handleSingleCollision(movingHittables.get(i), fixedHittable, toDestroy);
 			}
 			for (int j=i+1; j<movingHittables.size();j++){
-				handleSingleCollision(movingHittables.get(i),movingHittables.get(j));
+				handleSingleCollision(movingHittables.get(i),movingHittables.get(j), toDestroy);
 			}
 		}
 		for (SelfUpdatable s :selfUpdatables){
 			s.selfUpdate(dT);
 		}
+		for (Hittable h : toDestroy){
+			destroy(h);
+		}
 	}
 
-	private void handleSingleCollision(Hittable h1, Hittable h2){
+	private void destroy(Hittable h) {
+		selfUpdatables.remove(h);
+		movingHittables.remove(h);
+		fixedHittables.remove(h);
+		drawables.remove(h);
+	}
+
+	private void handleSingleCollision(Hittable h1, Hittable h2, LinkedList<Hittable> toDestroy){
 		Point[] normals=collision(h1,h2);
 		if (normals.length!=0){
 			if (h1.handleCollision(h2,normals[1])){
-
+				toDestroy.add(h1);
 			}
-			h2.handleCollision(h1,normals[0]);
+			if (h2.handleCollision(h1,normals[0])){
+				toDestroy.add(h2);
+			}
 		}
 	}
 

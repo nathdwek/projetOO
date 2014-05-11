@@ -33,7 +33,6 @@ public class Coin extends Hittable implements Drawable{
 		switch (otherHittable.getType()){
 		case "Sonic":
 		case "SonicBall":
-			type = "DESTROYED";
 			dead = true;
 			break;
 		default:
