@@ -38,12 +38,12 @@ public class Sonic extends Unit implements Controllable {
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("sonicBallR2.gif");
-	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("sonicFastL.gif");
-	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("sonicFastR.gif");
-	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("sonicWalkL.gif");
-	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("sonicWalkR.gif");
-	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("sonicWaitingR.gif");
+	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBallR2.gif");
+	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastL.gif");
+	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastR.gif");
+	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkL.gif");
+	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkR.gif");
+	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWaitingR.gif");
 	private Image sonicState ;
 
 	public Sonic(int posX, int posY) {
@@ -82,7 +82,14 @@ public class Sonic extends Unit implements Controllable {
 
 	@Override
 	public String getType() {
-		return "Sonic";
+		String type;
+		if (isBall){
+			type = "SonicBall";
+		}
+		else{
+			type = "Sonic";
+		}
+		return type;
 	}
 
 	@Override
@@ -116,20 +123,29 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public void handleCollision(Hittable otherHittable, Point normal) {
+	public Boolean handleCollision(Hittable otherHittable, Point normal) {
+		Boolean dead;
 		switch (otherHittable.getType()){
 		case "Block":
-			handleBlock(normal);
+			dead = handleBlock(normal);
 			break;
 		case "Coin":
-			System.out.println(coins);
+			dead = handleCoin();
 			break;
+		default:
+			dead = false;
 		}
 
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
+		return dead;
 	}
 
-	private void handleBlock(Point normal) {
+	private Boolean handleCoin() {
+		System.out.println(coins);
+		return false;
+	}
+
+	private Boolean handleBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
 
 		/*if (normal.getX()*getSpeed().getX()<0){
@@ -138,6 +154,7 @@ public class Sonic extends Unit implements Controllable {
 			s.setX(vX+2*normal.getX()*Math.abs(vX));
 
 		}*/
+		return false;
 	}
 
 

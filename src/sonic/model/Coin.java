@@ -13,7 +13,7 @@ public class Coin extends Hittable implements Drawable{
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private static Double[] hitbox= new Double[]{10.0,10.0,10.0,10.0};
 	private String type = "Coin";
-	private Image coin = Toolkit.getDefaultToolkit().getImage("coins.gif");
+	private Image coin = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/coins.gif");
 
 	public Coin(double posX, double posY) {
 		super(new Point(posX, posY));
@@ -28,9 +28,19 @@ public class Coin extends Hittable implements Drawable{
 	}*/
 
 	@Override
-	public void handleCollision(Hittable otherHittable, Point normal) {
+	public Boolean handleCollision(Hittable otherHittable, Point normal) {
+		Boolean dead;
+		switch (otherHittable.getType()){
+		case "Sonic":
+		case "SonicBall":
+			type = "DESTROYED";
+			dead = true;
+			break;
+		default:
+			dead = false;
+		}
 		System.out.println("Coin touché en"+this.getPosition());
-		type = "DESTROYED";
+		return dead;
 	}
 
 	@Override
