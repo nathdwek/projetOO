@@ -40,12 +40,11 @@ public class Sonic extends Unit implements Controllable {
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicBallR.gif");
+	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicBallR2.gif");
 	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicFastL.gif");
 	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicFastR.gif");
 	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWalkL.gif");
 	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWalkR.gif");
-	//private Image sonicWaitingL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWaitingL.gif");
 	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWaitingR.gif");
 	private Image sonicState ;
 
