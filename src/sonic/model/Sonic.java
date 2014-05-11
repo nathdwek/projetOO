@@ -18,22 +18,22 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean isBall;
 
 	private Double maxXSpeed;
-	private static final Double normalMaxXSpeed=350.0;
-	private static final Double ballMaxXSpeed=250.0;
+	private static final Double normalMaxXSpeed=200.0;
+	private static final Double ballMaxXSpeed=400.0;
 
-	private Double naturalXBrake = 200.0;
+	private Double naturalXBrake = 300.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 150.0;
+	private Double maxXAcceleration = 500.0;
 
-	private Double maxYUpSpeed = 450.0;
-	private Double maxYDownSpeed = -450.0;
+	private Double maxYUpSpeed = 300.0;
+	private Double maxYDownSpeed = -400.0;
 
 	private Boolean floor;
 	private Boolean falling;
 
 	private Integer acceleratingY;
-	private Double maxYAcceleration = 500.0;
-	private Double gravity = -500.0;
+	private Double maxYAcceleration = 1500.0;
+	private Double gravity = -1000.0;
 
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
@@ -194,6 +194,7 @@ public class Sonic extends Unit implements Controllable {
 			a.setY(acceleratingY*maxYAcceleration);
 		}
 		else if (!floor && sY>maxYDownSpeed){
+			acceleratingY=0;
 			falling=true;
 			a.setY(gravity);
 		}
@@ -232,7 +233,7 @@ public class Sonic extends Unit implements Controllable {
 					sonicState = sonicWalkL;
 				}
 			}
-			if(Math.abs(vX)>=300){
+			if(Math.abs(vX)>=normalMaxXSpeed/2){
 				if (vX>0){
 					sonicState = sonicFastR;
 				}else{
