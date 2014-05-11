@@ -32,11 +32,9 @@ public class Model {
 		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{hero,m1}));
 		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{hero,m1}));
 
-		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
+		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3, c1}));
 
 		drawables = new LinkedList<Drawable>(Arrays.asList(new Drawable[]{hero,m1,aB,aB2,aB3,c1}));
-
-		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3, c1}));
 	}
 
 	public boolean gameOver() {

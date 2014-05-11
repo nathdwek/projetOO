@@ -38,12 +38,12 @@ public class Sonic extends Unit implements Controllable {
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("sonicBallR2.gif");
-	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("sonicFastL.gif");
-	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("sonicFastR.gif");
-	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("sonicWalkL.gif");
-	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("sonicWalkR.gif");
-	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("sonicWaitingR.gif");
+	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBallR2.gif");
+	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastL.gif");
+	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastR.gif");
+	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkL.gif");
+	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkR.gif");
+	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWaitingR.gif");
 	private Image sonicState ;
 
 	public Sonic(int posX, int posY) {
