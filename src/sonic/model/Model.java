@@ -29,11 +29,12 @@ public class Model {
 		Block aB=new Block(-1000.0, 1000.0,0.0,125.0);
 		Block aB2 = new Block(0.0,40.0,125.0,155.0);
 		Block aB3 = new Block(300.0,340.0,125.0,155.0);
+		Coin c1 = new Coin(360.0 , 140.0 );
 
 		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{sonic,m1}));
 		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{sonic,m1}));
 
-		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3}));
+		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3, c1}));
 	}
 
 	public boolean gameOver() {
@@ -42,12 +43,13 @@ public class Model {
 	public Sonic getSonic() {
 		return sonic;
 	}
+	public ArrayList<Hittable> getMovingHittables(){
+		return movingHittables;
+	}
 	public LinkedList<Hittable> getFixedHittables(){
 		return fixedHittables;
 	}
-	public LinkedList<SelfUpdatable> getSelfUpdatables(){
-		return selfUpdatables;
-	}
+
 
 	public void update(Double dT) {
 		for (int i = 0; i<movingHittables.size();i++){

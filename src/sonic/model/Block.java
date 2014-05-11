@@ -3,6 +3,8 @@ package sonic.model;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 public class Block extends Hittable{
 
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
@@ -39,7 +41,7 @@ public class Block extends Hittable{
 	public Point normalAt(int side) {
 		return normals[side];
 	}
-	public void paint(Graphics g){
+	public void paint(Graphics g , JPanel p){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int left = posX-getSize(2).intValue();
@@ -50,5 +52,9 @@ public class Block extends Hittable{
 		//System.out.println(this.getPosition());
 		g.fillRect(left,700-top,width,height);
 	}
+
+
+
+
 
 }

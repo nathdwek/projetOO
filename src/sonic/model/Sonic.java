@@ -20,25 +20,34 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean isBall;
 
 	private Double maxXSpeed;
-	private static final Double normalMaxXSpeed=100.0;
-	private static final Double ballMaxXSpeed=200.0;
+	private static final Double normalMaxXSpeed=350.0;
+	private static final Double ballMaxXSpeed=250.0;
 
 	private Double naturalXBrake = 100.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 200.0;
+	private Double maxXAcceleration = 150.0;
 
-	private Double maxYUpSpeed = 100.0;
-	private Double maxYDownSpeed = -200.0;
+	private Double maxYUpSpeed = 150.0;
+	private Double maxYDownSpeed = -25.0;
 
 	private Boolean floor;
 	private Boolean falling;
 
 	private Integer acceleratingY;
-	private Double maxYAcceleration = 200.0;
-	private Double gravity = -400.0;
+	private Double maxYAcceleration = 500.0;
+	private Double gravity = -500.0;
 
-	private Double[] hitbox = new Double[]{10.0,10.0,10.0,10.0};
+	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
+
+	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicBallR.gif");
+	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicFastL.gif");
+	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicFastR.gif");
+	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWalkL.gif");
+	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWalkR.gif");
+	//private Image sonicWaitingL = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWaitingL.gif");
+	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonicWaitingR.gif");
+	private Image sonicState ;
 
 	public Sonic(int posX, int posY) {
 		super(new Point(posX,posY), new Point (0,0));
@@ -100,11 +109,13 @@ public class Sonic extends Unit implements Controllable {
 	public void beBall() {
 		isBall = true;
 		maxXSpeed = ballMaxXSpeed;
+
 	}
 
 	public void beNormal(){
 		isBall = false;
 		maxXSpeed = normalMaxXSpeed;
+
 	}
 
 	@Override
@@ -176,16 +187,6 @@ public class Sonic extends Unit implements Controllable {
 
 	}
 
-	public void paint(Graphics g, JPanel p) {
-		double posx =  this.getPosition().getX();
-		int posX = (int) posx;
-		double posy = this.getPosition().getY();
-		int posY = (int) posy;
-		Image sonic = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/sonic.gif");
-		Image background = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
-		g.drawImage(background , 0,0, 800,700,  p);
-		g.drawImage(sonic,posX  , 700-posY, 60,60, p);
-		g.finalize();
 
 	@Override
 	public void stopX() {
@@ -195,6 +196,49 @@ public class Sonic extends Unit implements Controllable {
 	@Override
 	public void stopJump() {
 		acceleratingY=0;
+	}
+	public Image checkState(){
+		Double vX = getSpeed().getX();
+
+		if (isBall){
+			sonicState = sonicBallR;
+		}else{
+			if(Math.abs(vX)<3){
+				sonicState = sonicWaitingR;
+
+			}
+			if (Math.abs(vX)<300 && Math.abs(vX) >=3) {
+				if ( vX > 0 ){
+					sonicState = sonicWalkR;
+				}else{
+					sonicState = sonicWalkL;
+				}
+			}
+			if(Math.abs(vX)>=300){
+				if (vX>0){
+					sonicState = sonicFastR;
+				}else{
+					sonicState = sonicFastL;
+
+				}
+			}
+		}
+
+
+		return sonicState;
+	}
+
+	@Override
+	public void paint(Graphics g, JPanel p) {
+		int posX =  this.getPosition().getX().intValue();
+		int posY = this.getPosition().getY().intValue();
+		int left = posX-getSize(2).intValue();
+		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
+		int top = posY+getSize(1).intValue();
+		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
+		g.drawImage(this.checkState(),left  , 700-top,width,height, p);
+		g.finalize();
+
 	}
 
 }

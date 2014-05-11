@@ -1,8 +1,10 @@
 package sonic.model;
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 import sonic.view.Drawable;
-public abstract class Hittable {
+public abstract class Hittable implements Drawable {
 	private Point position;
 
 	public Hittable(Point position){
@@ -21,7 +23,7 @@ public abstract class Hittable {
 	public abstract Point normalAt(int side);
 	public abstract String getType();
 
-	public void paint(Graphics g){}
+
 
 }
 
