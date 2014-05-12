@@ -40,7 +40,7 @@ public class PlayPanel extends JPanel{
 	public void paint(Graphics g){
 		Integer windowWidth = this.getWidth();
 		Integer windowHeight = this.getHeight();
-		Point centerA=(new Point(heroPosition.getX()-center.getX(), heroPosition.getY()-center.getY()).times(2.7));
+		Point centerA=(new Point(heroPosition.getX()-center.getX(), heroPosition.getY()-center.getY()).times(2.0));
 		centerA.add(centerV.times(Double.valueOf(-1.5)));
 		centerV.add(centerA.times(loopTimeSecs));
 		center.add(centerV.times(loopTimeSecs));
