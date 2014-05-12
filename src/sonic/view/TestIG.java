@@ -24,18 +24,21 @@ public class TestIG extends JPanel{
 
 	private Model model;
 	private Point center;
-	private Image background = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
+	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBackround.png");
 
 	public TestIG(Model m){
 		model = m;
+		center = model.getHeroPosition();
 	}
 
 	public void paint(Graphics g){
-		center = new Point(model.getHeroPosition().getX(), model.getHeroPosition().getY());
-		center.add(-350,-100);
-		g.drawImage(background , 0,0, 800,700,  this);
+		Integer windowWidth = this.getWidth();
+		Integer windowHeight = this.getHeight();
+		Integer left = center.getX().intValue() - windowWidth/2;
+		Integer top = center.getY().intValue()- windowHeight/2 + 100;
+		g.drawImage(background , 0,0, windowWidth,windowHeight,  this);
 		for (Drawable d : model.getDrawables()){
-			d.paint(g, this, center);
+			d.paint(g, this, left,top, windowWidth, windowHeight);
 		}
 
 	}

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import sonic.model.Sonic;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
 import sonic.controller.SonicListener;
 import sonic.model.Model;
@@ -31,10 +32,16 @@ public class View {
 		window.setVisible(true);
 		testig = new TestIG(model);
 		window.add(testig);
+
 	}
+	public Point getWindowDimension(){
+		return new Point(window.getWidth(),window.getHeight());
+	}
+
 	public void refresh() {
 		window.repaint();
 	}
+
 
 
 

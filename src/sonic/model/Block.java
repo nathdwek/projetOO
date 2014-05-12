@@ -44,17 +44,17 @@ public class Block extends Hittable implements Drawable{
 		return normals[side];
 	}
 
-	public void paint(Graphics g, JPanel p, Point center){
+	public void paint(Graphics g, JPanel p,Integer left, Integer top, Integer windowWidth, Integer windowHeight){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
-		int left = posX-getSize(2).intValue()-center.getX().intValue();
+		int thisLeft = posX-getSize(2).intValue()-left;
 		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int top = posY+getSize(1).intValue()-center.getY().intValue();
+		int thisTop = posY+getSize(1).intValue()-top;
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(new Color(139, 69, 19));
-		g.fillRect(left,700-top+5,width,height-5);
+		g.fillRect(thisLeft,windowHeight-thisTop+5,width,height-5);
 		g.setColor(new Color(0,139,0));
-		g.fillRect(left,700-top-5, width, 10);
+		g.fillRect(thisLeft,windowHeight-thisTop-5, width, 10);
 
 
 
