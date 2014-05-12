@@ -227,11 +227,11 @@ public class Sonic extends Unit implements Controllable {
 				sonicState = sonicBallR;
 			}
 		}else{
-			if(Math.abs(vX)<3){
+			if(Math.abs(vX)<=5){
 				sonicState = sonicWaitingR;
 
 			}
-			if (Math.abs(vX)<300 && Math.abs(vX) >=3) {
+			if (Math.abs(vX)<300 && Math.abs(vX) >5) {
 				if ( vX > 0 ){
 					sonicState = sonicWalkR;
 				}else{

@@ -15,7 +15,7 @@ public class View {
 
 	private  Model model;
 	private  JFrame window;
-	private TestIG testig;
+	private PlayPanel playPanel;
 
 
 	public View(Model m){
@@ -30,8 +30,8 @@ public class View {
 		window.addKeyListener(new SonicListener(model.getHero()));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
-		testig = new TestIG(model);
-		window.add(testig);
+		playPanel = new PlayPanel(model);
+		window.add(playPanel);
 
 	}
 	public Point getWindowDimension(){

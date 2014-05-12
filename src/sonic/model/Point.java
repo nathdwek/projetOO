@@ -48,4 +48,8 @@ public class Point {
 		this.x=0.0;
 		this.y=0.0;
 	}
+
+	public Point copy() {
+		return new Point(this.x,this.y);
+	}
 }
