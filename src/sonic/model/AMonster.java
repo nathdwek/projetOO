@@ -81,12 +81,12 @@ public class AMonster extends Unit {
 	public Point normalAt(int side) {
 		return normals[side];
 	}
-	public void paint(Graphics g, JPanel p, int sonicPosX){
+	public void paint(Graphics g, JPanel p, Point center){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
-		int left = posX-getSize(2).intValue();
+		int left = posX-getSize(2).intValue() - center.getX().intValue();
 		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int top = posY+getSize(1).intValue();
+		int top = posY+getSize(1).intValue()-center.getY().intValue();
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(Color.BLUE);
 		//System.out.println(this.getPosition());

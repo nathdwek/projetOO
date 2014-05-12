@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import sonic.model.Block;
 import sonic.model.Hittable;
 import sonic.model.Model;
+import sonic.model.Point;
 import sonic.model.SelfUpdatable;
 import sonic.model.Sonic;
 
@@ -22,6 +23,7 @@ import sonic.model.Sonic;
 public class TestIG extends JPanel{
 
 	private Model model;
+	private Point center;
 	private Image background = Toolkit.getDefaultToolkit().getImage("C:/Users/junnuo/Desktop/projetsonic/Sonic/image.jpg");
 
 	public TestIG(Model m){
@@ -29,10 +31,11 @@ public class TestIG extends JPanel{
 	}
 
 	public void paint(Graphics g){
+		center = new Point(model.getHeroPosition().getX(), model.getHeroPosition().getY());
+		center.add(-350,-100);
 		g.drawImage(background , 0,0, 800,700,  this);
-		int sonicPosX = 1;//model.getHero().getPosition().getX().intValue();
 		for (Drawable d : model.getDrawables()){
-			d.paint(g, this, sonicPosX);
+			d.paint(g, this, center);
 		}
 
 	}

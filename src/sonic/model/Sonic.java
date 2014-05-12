@@ -18,14 +18,14 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean isBall;
 
 	private Double maxXSpeed;
-	private static final Double normalMaxXSpeed=200.0;
-	private static final Double ballMaxXSpeed=400.0;
+	private static final Double normalMaxXSpeed=400.0;
+	private static final Double ballMaxXSpeed=800.0;
 
 	private Double naturalXBrake = 300.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 500.0;
+	private Double maxXAcceleration = 700.0;
 
-	private Double maxYUpSpeed = 300.0;
+	private Double maxYUpSpeed = 400.0;
 	private Double maxYDownSpeed = -400.0;
 
 	private Boolean floor;
@@ -39,6 +39,7 @@ public class Sonic extends Unit implements Controllable {
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
 	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBallR.gif");
+	private Image sonicSpinning = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicSpinning.gif");
 	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastL.gif");
 	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastR.gif");
 	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkL.gif");
@@ -220,7 +221,11 @@ public class Sonic extends Unit implements Controllable {
 		Double vX = getSpeed().getX();
 
 		if (isBall){
-			sonicState = sonicBallR;
+			if (Math.abs(vX)<=5){
+				sonicState = sonicSpinning;
+			}else{
+				sonicState = sonicBallR;
+			}
 		}else{
 			if(Math.abs(vX)<3){
 				sonicState = sonicWaitingR;
@@ -248,12 +253,12 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public void paint(Graphics g, JPanel p, int sonicPosX) {
+	public void paint(Graphics g, JPanel p, Point center) {
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
-		int left = posX-getSize(2).intValue();
+		int left = (posX-getSize(2).intValue()-center.getX().intValue());
 		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int top = posY+getSize(1).intValue();
+		int top = posY+getSize(1).intValue()-center.getY().intValue();
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.drawImage(this.checkState(),left  , 700-top,width,height, p);
 		g.finalize();

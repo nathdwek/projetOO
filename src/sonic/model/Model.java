@@ -17,14 +17,14 @@ public class Model {
 	private static final int TOP=1;
 	private static final int LEFT=2;
 	private static final int BOTTOM=3;
-	private static final double COLLISION_DISTANCE = 1;
+	private static final double COLLISION_DISTANCE = 5;
 	private Sonic hero;
 
 	public Model(){
 
 		hero =new Sonic(500, 150);
 		AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
-		Block aB=new Block(-1000.0, 1000.0,0.0,125.0);
+		Block aB=new Block(-10000.0, 100000.0,0.0,125.0);
 		Block aB2 = new Block(0.0,40.0,125.0,155.0);
 		Block aB3 = new Block(300.0,340.0,125.0,155.0);
 		Coin c1 = new Coin(360.0 , 140.0 );
@@ -47,7 +47,9 @@ public class Model {
 	public LinkedList<Drawable> getDrawables(){
 		return drawables;
 	}
-
+	public Point getHeroPosition(){
+		return hero.getPosition();
+	}
 	public void update(Double dT) {
 		LinkedList<Hittable> toDestroy = new LinkedList<Hittable>();
 		for (int i = 0; i<movingHittables.size();i++){
