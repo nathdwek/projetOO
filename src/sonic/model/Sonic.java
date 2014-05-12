@@ -28,6 +28,8 @@ public class Sonic extends Unit implements Controllable {
 	private Double maxYUpSpeed = 400.0;
 	private Double maxYDownSpeed = -400.0;
 
+	private Boolean blockedRight;
+	private Boolean blockedLeft;
 	private Boolean floor;
 	private Boolean falling;
 
@@ -69,6 +71,8 @@ public class Sonic extends Unit implements Controllable {
 	public void stepReset(){
 		super.stepReset();
 		this.floor=false;
+		this.blockedRight = false;
+		this.blockedLeft = false;
 	}
 
 	@Override
@@ -100,7 +104,7 @@ public class Sonic extends Unit implements Controllable {
 
 	@Override
 	public void goLeft() {
-		acceleratingX=-1;
+		acceleratingX = -1;
 	}
 
 	@Override
@@ -148,36 +152,30 @@ public class Sonic extends Unit implements Controllable {
 
 	private Boolean handleBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
+		blockedRight = blockedRight || normal.getX()<=-1;
+		blockedLeft = blockedLeft || normal.getX()>=1;
+		falling = falling && !floor;
 
-		/*if (normal.getX()*getSpeed().getX()<0){
-			Point s=getSpeed();
-			Double vX = s.getX();
-			s.setX(vX+2*normal.getX()*Math.abs(vX));
-
-		}*/
+		if (normal.getX()*getSpeed().getX()<0){
+			getSpeed().setX(0);
+		}
+		if (normal.getY()*getSpeed().getY()<0){
+			getSpeed().setY(0);
+		}
 		return false;
 	}
 
 
 
 	public void selfUpdate(Double dT){
-
 		Point s = getSpeed();
 		Double sX = s.getX();
 		Double sY = s.getY();
 
 		Point a = getAcceleration();
 
-
-		if (floor){
-			if (sY<0){
-				s.setY(0);
-			}
-			falling=false;
-		}
-
 		if (acceleratingX!=0){
-			if (acceleratingX*sX<maxXSpeed){
+			if (acceleratingX*sX<maxXSpeed && !blockedX(acceleratingX)){
 				a.setX(acceleratingX*maxXAcceleration);
 			}
 		}
@@ -206,6 +204,17 @@ public class Sonic extends Unit implements Controllable {
 
 
 
+	}
+
+	private boolean blockedX(Integer aX) {
+		Boolean ans;
+		if (aX<0){
+			ans = blockedLeft;
+		}
+		else{
+			ans = blockedRight;
+		}
+		return ans;
 	}
 
 	@Override
