@@ -19,6 +19,13 @@ public class Model {
 	private static final int BOTTOM=3;
 	private static final double COLLISION_DISTANCE = 5;
 	private Sonic hero;
+	private Point playPanelCenter;
+	private Point playPanelCenterSpeed;
+	private Point playPanelCenterAcceleration;
+	private Double kX = 12.0;
+	private Double kY = 2.0;
+	private Double lambdaX = 4.0;
+	private Double lambdaY = 1.0;
 
 	public Model(){
 
@@ -35,6 +42,10 @@ public class Model {
 		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3, c1}));
 
 		drawables = new LinkedList<Drawable>(Arrays.asList(new Drawable[]{hero,m1,aB,aB2,aB3,c1}));
+
+		playPanelCenter = hero.getPosition().copy();
+		playPanelCenterSpeed = new Point(0,0);
+		playPanelCenterAcceleration = new Point(0,0);
 	}
 
 	public boolean gameOver() {
@@ -47,8 +58,8 @@ public class Model {
 	public LinkedList<Drawable> getDrawables(){
 		return drawables;
 	}
-	public Point getHeroPosition(){
-		return hero.getPosition();
+	public Point getPlayPanelCenter(){
+		return playPanelCenter;
 	}
 	public void update(Double dT) {
 		LinkedList<Hittable> toDestroy = new LinkedList<Hittable>();
@@ -66,6 +77,11 @@ public class Model {
 		for (Hittable h : toDestroy){
 			destroy(h);
 		}
+		Point heroPosition = hero.getPosition();
+		playPanelCenterAcceleration.setX(kX*(heroPosition.getX() - playPanelCenter.getX())-lambdaX*playPanelCenterSpeed.getX());
+		playPanelCenterAcceleration.setY(kY*(heroPosition.getY() - playPanelCenter.getY())-lambdaY*playPanelCenterSpeed.getY());
+		playPanelCenterSpeed.add(playPanelCenterAcceleration.times(dT));
+		playPanelCenter.add(playPanelCenterSpeed.times(dT));
 	}
 
 	private void destroy(Hittable h) {
