@@ -30,7 +30,7 @@ public class TestIG extends JPanel{
 
 	public void paint(Graphics g){
 		g.drawImage(background , 0,0, 800,700,  this);
-		int sonicPosX = model.getHero().getPosition().getX().intValue();
+		int sonicPosX = 1;//model.getHero().getPosition().getX().intValue();
 		for (Drawable d : model.getDrawables()){
 			d.paint(g, this, sonicPosX);
 		}

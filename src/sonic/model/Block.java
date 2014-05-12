@@ -44,7 +44,7 @@ public class Block extends Hittable implements Drawable{
 		return normals[side];
 	}
 
-	public void paint(Graphics g, JPanel p){
+	public void paint(Graphics g, JPanel p, int sonicPosX){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int left = posX-getSize(2).intValue();
