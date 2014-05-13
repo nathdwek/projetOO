@@ -7,9 +7,8 @@ import javax.swing.JPanel;
 
 import sonic.view.Drawable;
 
-public class Block extends Hittable implements Drawable{
+public abstract class Block extends Hittable implements Drawable{
 
-	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private Double[] hitbox;
 
 	public Block(Point position, Double sizeX, Double sizeY) {
@@ -39,11 +38,6 @@ public class Block extends Hittable implements Drawable{
 		return hitbox[side];
 	}
 
-	@Override
-	public Point normalAt(int side) {
-		return normals[side];
-	}
-
 	public void paint(Graphics g, JPanel p,Integer left, Integer top, Integer windowWidth, Integer windowHeight){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
@@ -55,8 +49,5 @@ public class Block extends Hittable implements Drawable{
 		g.fillRect(thisLeft,windowHeight-thisTop+5,width,height-5);
 		g.setColor(new Color(0,139,0));
 		g.fillRect(thisLeft,windowHeight-thisTop-5, width, 10);
-
-
-
 	}
 }

@@ -136,6 +136,9 @@ public class Sonic extends Unit implements Controllable {
 		case "Block":
 			dead = handleBlock(normal);
 			break;
+		case "SlopeBlock" :
+			dead = handleSlopeBlock(normal);
+			break;
 		case "Coin":
 			dead = handleCoin();
 			break;
@@ -148,6 +151,14 @@ public class Sonic extends Unit implements Controllable {
 
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
 		return dead;
+	}
+
+	private Boolean handleSlopeBlock(Point normal) {
+		floor = floor || normal.getY()>=1;
+		falling = falling && !floor;
+		getSpeed().setY(normal.getX()*getSpeed().getX());
+		getAcceleration().setX(-2.0*normal.getX()*getSpeed().getX());
+		return false;
 	}
 
 	private Boolean handleMonster() {
