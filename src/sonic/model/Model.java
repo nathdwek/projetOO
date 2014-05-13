@@ -22,9 +22,9 @@ public class Model {
 	private Point playPanelCenter;
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
-	private Double kX = 12.0;
-	private Double kY = 3.0;
-	private Double lambdaX = 5.0;
+	private Double kX = 30.0;
+	private Double kY = 5.0;
+	private Double lambdaX = 10.0;
 	private Double lambdaY = 4.0;
 
 	public Model(){
@@ -49,7 +49,7 @@ public class Model {
 	}
 
 	public boolean gameOver() {
-		return false;
+		return false; //hero.isDead();
 	}
 
 	public Controllable getHero() {

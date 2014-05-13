@@ -48,6 +48,7 @@ public class Sonic extends Unit implements Controllable {
 	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkR.gif");
 	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWaitingR.gif");
 	private Image sonicState ;
+	private boolean isDead;
 
 	public Sonic(int posX, int posY) {
 		super(new Point(posX,posY), new Point (0,0));
@@ -58,6 +59,7 @@ public class Sonic extends Unit implements Controllable {
 		beNormal();
 		this.acceleratingX=0;
 		this.acceleratingY=0;
+		this.isDead = false;
 	}
 
 	public void getCoins(){
@@ -137,11 +139,26 @@ public class Sonic extends Unit implements Controllable {
 		case "Coin":
 			dead = handleCoin();
 			break;
+		case "Monster" :
+			dead = handleMonster();
+			break;
 		default:
 			dead = false;
 		}
 
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
+		return dead;
+	}
+
+	private Boolean handleMonster() {
+		Boolean dead;
+		if (isBall){
+			dead = false;
+		}
+		else{
+			dead = true;
+			this.isDead = true;
+		}
 		return dead;
 	}
 
@@ -272,6 +289,10 @@ public class Sonic extends Unit implements Controllable {
 		g.drawImage(this.checkState(),thisLeft  , windowHeight - thisTop,width,height, p);
 		g.finalize();
 
+	}
+
+	public boolean isDead() {
+		return isDead;
 	}
 
 }

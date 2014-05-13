@@ -31,10 +31,15 @@ public class AMonster extends Unit {
 		case "Block":
 			dead=handleBlock(normal);
 			break;
+		case "Sonic":
+			dead = false;
+			break;
+		case "SonicBall":
+			dead = true;
+			break;
 		default:
 			dead=false;
 		}
-		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par "+ otherHittable.getType());
 		return dead;
 	}
 
@@ -70,7 +75,7 @@ public class AMonster extends Unit {
 	}
 
 	public String getType() {
-		return "AMonster";
+		return "Monster";
 	}
 
 	public Double getSize(int side) {

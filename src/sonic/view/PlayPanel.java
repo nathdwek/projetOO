@@ -22,13 +22,13 @@ import sonic.model.Sonic;
 
 public class PlayPanel extends JPanel{
 
-	private Model model;
+	private LinkedList<Drawable> drawables;
 	private Point center;
 	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBackround.png");
 
 	public PlayPanel(Model m){
-		model = m;
-		center = model.getPlayPanelCenter();
+		drawables = m.getDrawables();
+		center = m.getPlayPanelCenter();
 	}
 
 	public void paint(Graphics g){
@@ -37,7 +37,7 @@ public class PlayPanel extends JPanel{
 		Integer left = center.getX().intValue() - windowWidth/2;
 		Integer top = center.getY().intValue()- windowHeight/2 + 100;
 		g.drawImage(background , 0,0, windowWidth,windowHeight,  this);
-		for (Drawable d : model.getDrawables()){
+		for (Drawable d : drawables){
 			d.paint(g, this, left,top, windowWidth, windowHeight);
 		}
 
