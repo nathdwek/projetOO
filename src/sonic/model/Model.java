@@ -61,6 +61,10 @@ public class Model {
 	public Point getPlayPanelCenter(){
 		return playPanelCenter;
 	}
+	public Integer getCoins(){
+		return hero.getCoins();
+	}
+
 	public void update(Double dT) {
 		LinkedList<Hittable> toDestroy = new LinkedList<Hittable>();
 		for (int i = 0; i<movingHittables.size();i++){

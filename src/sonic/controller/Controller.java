@@ -28,7 +28,7 @@ public class Controller {
 	public void runGame() {
 		//Initialize
 		Timer timer = new Timer(loopTimeMillis, new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(!model.gameOver()) {
@@ -56,7 +56,7 @@ public class Controller {
 			else{System.out.println("lag");}
 
 		}
-		*/
+		 */
 	}
-	
+
 }

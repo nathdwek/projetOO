@@ -62,8 +62,8 @@ public class Sonic extends Unit implements Controllable {
 		this.isDead = false;
 	}
 
-	public void getCoins(){
-		coins+=1;
+	public Integer getCoins(){
+		return coins;
 	}
 
 	public void getLife(){
@@ -163,7 +163,7 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	private Boolean handleCoin() {
-		System.out.println(coins);
+		this.coins+=1;
 		return false;
 	}
 

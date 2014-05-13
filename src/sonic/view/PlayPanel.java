@@ -27,15 +27,17 @@ public class PlayPanel extends JPanel{
 	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBackround.png");
 
 	public PlayPanel(Model m){
+
 		drawables = m.getDrawables();
 		center = m.getPlayPanelCenter();
+
 	}
 
 	public void paint(Graphics g){
 		Integer windowWidth = this.getWidth();
 		Integer windowHeight = this.getHeight();
 		Integer left = center.getX().intValue() - windowWidth/2;
-		Integer top = center.getY().intValue()- windowHeight/2 + 100;
+		Integer top = center.getY().intValue()- windowHeight/2 + 150;
 		g.drawImage(background , 0,0, windowWidth,windowHeight,  this);
 		for (Drawable d : drawables){
 			d.paint(g, this, left,top, windowWidth, windowHeight);

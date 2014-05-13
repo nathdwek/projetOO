@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import sonic.model.Sonic;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -16,6 +17,7 @@ public class View {
 	private  Model model;
 	private  JFrame window;
 	private PlayPanel playPanel;
+	private ScoreBoard scoreBoard;
 
 
 	public View(Model m){
@@ -27,15 +29,15 @@ public class View {
 	private void initializeControls() {
 		window = new JFrame("hi");
 		window.setSize(800,700);
+		window.setLayout(new BorderLayout());
 		window.addKeyListener(new SonicListener(model.getHero()));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		playPanel = new PlayPanel(model);
-		window.add(playPanel);
+		scoreBoard = new ScoreBoard(window.getHeight(), model);
+		window.add(playPanel, BorderLayout.CENTER);
+		window.add(scoreBoard, BorderLayout.NORTH);
 
-	}
-	public Point getWindowDimension(){
-		return new Point(window.getWidth(),window.getHeight());
 	}
 
 	public void refresh() {
