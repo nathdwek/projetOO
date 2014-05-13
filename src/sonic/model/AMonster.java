@@ -14,14 +14,15 @@ public class AMonster extends Unit {
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private static final Double gravity= -10.0;
 	private Boolean floor = false;
-	private Image crabe = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/crabe.gif");
+	private Image crabe;
 
 	public AMonster(Point position, Point speed) {
 		super(position, speed);
+		crabe = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/crabe.gif");
 	}
 
-	public AMonster(Double x, Double y, Double vX, Double vY) {
-		super(new Point(x,y), new Point(vX,vY));
+	public AMonster(double x, double y, double vX, double vY) {
+		this(new Point(x,y), new Point(vX,vY));
 	}
 
 	@Override

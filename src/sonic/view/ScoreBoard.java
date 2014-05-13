@@ -18,11 +18,15 @@ public class ScoreBoard extends JPanel{
 	private JButton buttonStart;
 	private JButton buttonRestart;
 	private Model model;
-	private Image coin = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/coins.gif");
-	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBackground3.jpg");
-	private Image sonicLife = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicLife.jpg");
+	private Image coin;
+	private Image background;
+	private Image sonicLife;
 
 	public ScoreBoard(Integer height, Model m){
+		coin = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/coins.gif");
+		background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBackground3.jpg");
+		sonicLife = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicLife.jpg");
+
 		model = m;
 		buttonStart= new JButton("PAUSE");
 		buttonRestart = new JButton("RESTART");
