@@ -31,12 +31,16 @@ public class Controller {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(!model.gameOver()) {
-					model.update(loopTime);
-					view.refresh();
+				if (!model.gamePaused()){
+
+					if(!model.gameOver()) {
+						model.update(loopTime);
+						view.refresh();
+					}else{
+						view.refresh();
+					}
 				}
-			}
-		});
+			}});
 		timer.start();
 		/*
 		while (!model.gameOver()){

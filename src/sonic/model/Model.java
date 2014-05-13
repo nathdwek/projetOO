@@ -26,6 +26,7 @@ public class Model {
 	private Double kY = 5.0;
 	private Double lambdaX = 10.0;
 	private Double lambdaY = 4.0;
+	private boolean gamePaused = false;
 
 	public Model(){
 
@@ -63,6 +64,12 @@ public class Model {
 	}
 	public Integer getCoins(){
 		return hero.getCoins();
+	}
+	public boolean gamePaused() {
+		return gamePaused;
+	}
+	public void setGamePaused(boolean b){
+		gamePaused = b;
 	}
 
 	public void update(Double dT) {
@@ -152,4 +159,8 @@ public class Model {
 
 		return normals;
 	}
+
+
+
+
 }

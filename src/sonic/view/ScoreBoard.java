@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import sonic.controller.ButtonRestartListener;
 import sonic.controller.ButtonStartListener;
 import sonic.model.Model;
 
@@ -22,14 +23,15 @@ public class ScoreBoard extends JPanel{
 	private Image sonicLife = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicLife.jpg");
 
 	public ScoreBoard(Integer height, Model m){
+		model = m;
 		buttonStart= new JButton("PAUSE");
 		buttonRestart = new JButton("RESTART");
-		buttonStart.addActionListener(new ButtonStartListener(buttonStart));
+		buttonStart.addActionListener(new ButtonStartListener(buttonStart, model));
 		//buttonRestart.addActionListener(new ButtonRestartListener());
 		this.setPreferredSize(new Dimension(-1,height/5));
 		this.add(buttonStart);
 		this.add(buttonRestart);
-		model = m;
+
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
