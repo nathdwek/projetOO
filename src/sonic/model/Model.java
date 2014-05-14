@@ -1,7 +1,6 @@
 package sonic.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 import sonic.controller.Controllable;
@@ -26,13 +25,12 @@ public class Model {
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
 
-	private Double kX = 50.0;
+	private Double kX = 70.0;
 	private Double kY = 20.0;
 	private Double lambdaX = 15.0;
 	private Double lambdaY = 6.0;
 
 	private boolean gamePaused = false;
-
 	public Model(){
 
 		Map map = new Map("src/sonic/map.xml");
@@ -47,6 +45,9 @@ public class Model {
 
 		Slope slope = new Slope(995.0,5000.0,125.0, -125.0);
 		Slope slope2 = new Slope(4999.0,10000.0,-125.0, 375.0);
+
+		Slope slope = new Slope(995.0,5000.0,125.0,-500.0, 125.0);
+		Slope slope2 = new Slope(4999.0,10000.0,-500.0, 375.0, 20.0);
 		Block aB2 = new GroundBlock(0.0,40.0,125.0,155.0);
 		Block aB3 = new GroundBlock(300.0,340.0,125.0,155.0);
 		Coin c1 = new Coin(360.0 , 140.0 );

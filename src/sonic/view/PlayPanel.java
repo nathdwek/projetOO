@@ -5,7 +5,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.JOptionPane;
+
+
 import java.util.LinkedList;
+
 import javax.swing.JPanel;
 
 import sonic.model.Model;
@@ -23,6 +27,8 @@ public class PlayPanel extends JPanel{
 
 		drawables = m.getDrawables();
 		center = m.getPlayPanelCenter();
+
+
 
 	}
 
