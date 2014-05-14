@@ -13,31 +13,36 @@ public class Model {
 	private LinkedList<Hittable> fixedHittables;
 	private ArrayList<Hittable> movingHittables;
 	private LinkedList<Drawable> drawables;
+	private Sonic hero;
+	private Point heroPosition;
+
 	private static final int RIGHT=0;
 	private static final int TOP=1;
 	private static final int LEFT=2;
 	private static final int BOTTOM=3;
 	private static final double COLLISION_DISTANCE = 10;
-	private Sonic hero;
+
 	private Point playPanelCenter;
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
+
 	private Double kX = 50.0;
 	private Double kY = 20.0;
 	private Double lambdaX = 15.0;
 	private Double lambdaY = 6.0;
+
 	private boolean gamePaused = false;
 
 	public Model(){
 
-		/*Map map = new Map("src/map.xml");
+		Map map = new Map("src/sonic/map.xml");
 		selfUpdatables = map.getSelfUpdatables();
 		movingHittables = map.getMovingHittables();
-		fixedHittables = map.getFixedHittables();
-		drawables = map.getDrawables();*/
+		fixedHittables = map.getfixedHittables();
+		drawables = map.getDrawables();
+		hero = map.getHero();
 
-		hero =new Sonic(500, 150);
-		AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
+		/*AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
 		Block aB=new GroundBlock(-10000.0, 1000.0,125.0);
 
 		Slope slope = new Slope(995.0,5000.0,125.0, -125.0);
@@ -55,18 +60,19 @@ public class Model {
 
 		drawables = new LinkedList<Drawable>(Arrays.asList(new Drawable[]{hero,m1,aB,aB2,aB3,c1}));
 		drawables.addAll(slope.getBlocks());
-		drawables.addAll(slope2.getBlocks());
+		drawables.addAll(slope2.getBlocks());*/
 
 		playPanelCenter = hero.getPosition().copy();
 		playPanelCenterSpeed = new Point(0,0);
 		playPanelCenterAcceleration = new Point(0,0);
+		heroPosition = hero.getPosition();
 	}
 
 	public boolean gameOver() {
 		return false; //hero.isDead();
 	}
 
-	public Controllable getHero() {
+	public Controllable getControlledHero() {
 		return hero;
 	}
 	public LinkedList<Drawable> getDrawables(){
@@ -101,8 +107,12 @@ public class Model {
 		for (Hittable h : toDestroy){
 			destroy(h);
 		}
+		updatePlayPanelCenter(dT);
 
-		Point heroPosition = hero.getPosition();
+
+	}
+
+	private void updatePlayPanelCenter(Double dT) {
 		playPanelCenterAcceleration.setX(kX*(heroPosition.getX() - playPanelCenter.getX())-lambdaX*playPanelCenterSpeed.getX());
 		playPanelCenterAcceleration.setY(kY*(heroPosition.getY() - playPanelCenter.getY())-lambdaY*playPanelCenterSpeed.getY());
 		playPanelCenterSpeed.add(playPanelCenterAcceleration.times(dT));
