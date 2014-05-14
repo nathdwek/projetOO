@@ -37,8 +37,10 @@ public class Controller {
 						model.update(loopTime);
 						view.refresh();
 					}else{
-						view.refresh();
+						//view.gameOver();
 					}
+				}else{
+					view.refresh();
 				}
 			}});
 		timer.start();

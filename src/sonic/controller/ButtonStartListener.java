@@ -31,9 +31,9 @@ public class ButtonStartListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		model.setGamePaused(true);
 		JOptionPane pausedMessage = new JOptionPane();
-		int retour =JOptionPane.showConfirmDialog(playPanel, "QUIT ?", "PAUSED", JOptionPane.OK_CANCEL_OPTION);
+		int ans =JOptionPane.showConfirmDialog(playPanel, "QUIT ?", "PAUSED", JOptionPane.OK_CANCEL_OPTION);
 
-		if (retour == JOptionPane.CANCEL_OPTION || retour== JOptionPane.CLOSED_OPTION){
+		if (ans == JOptionPane.CANCEL_OPTION || ans== JOptionPane.CLOSED_OPTION){
 			model.setGamePaused(false);
 		}else{
 			//page d'acceuil

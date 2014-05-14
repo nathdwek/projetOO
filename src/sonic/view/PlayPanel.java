@@ -37,7 +37,7 @@ public class PlayPanel extends JPanel{
 		Integer windowWidth = this.getWidth();
 		Integer windowHeight = this.getHeight();
 		Integer left = center.getX().intValue() - windowWidth/2;
-		Integer top = center.getY().intValue()- windowHeight/2 + 150;
+		Integer top = center.getY().intValue()- windowHeight/2 + 110;
 		g.drawImage(background , 0,0, windowWidth,windowHeight,  this);
 		for (Drawable d : drawables){
 			d.draw(g, this, left,top, windowWidth, windowHeight);

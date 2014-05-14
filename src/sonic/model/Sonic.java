@@ -256,17 +256,17 @@ public class Sonic extends Unit implements Controllable {
 		Double vX = getSpeed().getX();
 
 		if (isBall){
-			if (Math.abs(vX)<=5){
+			if (Math.abs(vX)<=15){
 				sonicState = sonicSpinning;
 			}else{
 				sonicState = sonicBallR;
 			}
 		}else{
-			if(Math.abs(vX)<=5){
+			if(Math.abs(vX)<=15){
 				sonicState = sonicWaitingR;
 
 			}
-			if (Math.abs(vX)<300 && Math.abs(vX) >5) {
+			if (Math.abs(vX)<300 && Math.abs(vX) >15) {
 				if ( vX > 0 ){
 					sonicState = sonicWalkR;
 				}else{

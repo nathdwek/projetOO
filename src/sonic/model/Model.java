@@ -23,7 +23,7 @@ public class Model {
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
 	private Double kX = 70.0;
-	private Double kY = 20.0;
+	private Double kY =20.0;
 	private Double lambdaX = 15.0;
 	private Double lambdaY = 6.0;
 	private boolean gamePaused = false;
