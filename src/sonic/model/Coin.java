@@ -58,7 +58,7 @@ public class Coin extends Hittable implements Drawable{
 	}
 
 	@Override
-	public void paint(Graphics g, JPanel p , Integer left, Integer top , Integer windowWidth , Integer windowHeight) {
+	public void draw(Graphics g, JPanel p , Integer left, Integer top , Integer windowWidth , Integer windowHeight) {
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int thisLeft = posX-getSize(2).intValue()- left;

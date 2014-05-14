@@ -1,6 +1,4 @@
 package sonic.model;
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Graphics;
@@ -21,12 +19,12 @@ public class Sonic extends Unit implements Controllable {
 	private static final Double normalMaxXSpeed=400.0;
 	private static final Double ballMaxXSpeed=800.0;
 
-	private Double naturalXBrake = 300.0;
+	private Double naturalXBrake = 800.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 700.0;
+	private Double maxXAcceleration = 1700.0;
 
-	private Double maxYUpSpeed = 400.0;
-	private Double maxYDownSpeed = -400.0;
+	private Double maxYUpSpeed = 500.0;
+	private Double maxYDownSpeed = -800.0;
 
 	private Boolean blockedRight;
 	private Boolean blockedLeft;
@@ -34,7 +32,7 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean falling;
 
 	private Integer acceleratingY;
-	private Double maxYAcceleration = 1500.0;
+	private Double maxYAcceleration = 2500.0;
 	private Double gravity = -1000.0;
 
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
@@ -150,7 +148,7 @@ public class Sonic extends Unit implements Controllable {
 		}
 
 		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
-		return dead;
+		return false;
 	}
 
 	private Boolean handleSlopeBlock(Point normal) {
@@ -290,7 +288,7 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public void paint(Graphics g, JPanel p,Integer left, Integer top, Integer windowWidth , Integer windowHeight) {
+	public void draw(Graphics g, JPanel p,Integer left, Integer top, Integer windowWidth , Integer windowHeight) {
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
 		int thisLeft = (posX-getSize(2).intValue()-left);

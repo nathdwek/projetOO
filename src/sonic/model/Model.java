@@ -25,15 +25,21 @@ public class Model {
 	private Double kX = 50.0;
 	private Double kY = 20.0;
 	private Double lambdaX = 15.0;
-	private Double lambdaY = 4.0;
+	private Double lambdaY = 6.0;
 	private boolean gamePaused = false;
 
 	public Model(){
 
+		/*Map map = new Map("src/map.xml");
+		selfUpdatables = map.getSelfUpdatables();
+		movingHittables = map.getMovingHittables();
+		fixedHittables = map.getFixedHittables();
+		drawables = map.getDrawables();*/
+
 		hero =new Sonic(500, 150);
 		AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
 		Block aB=new GroundBlock(-10000.0, 1000.0,0.0,125.0);
-		
+
 		Slope slope = new Slope(995.0,5000.0,125.0, -125.0, 125.0);
 		Slope slope2 = new Slope(4999.0,10000.0,-125.0, 375.0, 20.0);
 		Block aB2 = new GroundBlock(0.0,40.0,125.0,155.0);
@@ -95,6 +101,7 @@ public class Model {
 		for (Hittable h : toDestroy){
 			destroy(h);
 		}
+
 		Point heroPosition = hero.getPosition();
 		playPanelCenterAcceleration.setX(kX*(heroPosition.getX() - playPanelCenter.getX())-lambdaX*playPanelCenterSpeed.getX());
 		playPanelCenterAcceleration.setY(kY*(heroPosition.getY() - playPanelCenter.getY())-lambdaY*playPanelCenterSpeed.getY());
