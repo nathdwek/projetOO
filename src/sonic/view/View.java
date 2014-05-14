@@ -3,7 +3,6 @@ package sonic.view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 
@@ -31,7 +30,7 @@ public class View {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		playPanel = new PlayPanel(model);
 		playPanel.setFocusable(true);
-		playPanel.addKeyListener(new SonicListener(model.getHero()));
+		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
 		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
 		window.add(playPanel, BorderLayout.CENTER);
 		window.add(scoreBoard, BorderLayout.NORTH);

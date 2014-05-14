@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<terrain>
+   <ground start = "0" end = "1000" level ="125"/>
+</terrain>

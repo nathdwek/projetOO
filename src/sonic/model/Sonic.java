@@ -252,31 +252,37 @@ public class Sonic extends Unit implements Controllable {
 	public void stopJump() {
 		acceleratingY=0;
 	}
-	public Image checkState(){
+	private Image checkState(){
 		Double vX = getSpeed().getX();
 
 		if (isBall){
-			if (Math.abs(vX)<=15){
+
+			if (Math.abs(vX)<=Unit.getMiniRealSpeed()){
+
 				sonicState = sonicSpinning;
 			}else{
 				sonicState = sonicBallR;
 			}
 		}else{
-			if(Math.abs(vX)<=15){
+
+			if(Math.abs(vX)<=Unit.getMiniRealSpeed()){
 				sonicState = sonicWaitingR;
 
 			}
-			if (Math.abs(vX)<300 && Math.abs(vX) >15) {
+			else if (Math.abs(vX)<normalMaxXSpeed/1.1) {
+
 				if ( vX > 0 ){
 					sonicState = sonicWalkR;
-				}else{
+				}
+				else{
 					sonicState = sonicWalkL;
 				}
 			}
-			if(Math.abs(vX)>=normalMaxXSpeed/2){
+			else{
 				if (vX>0){
 					sonicState = sonicFastR;
-				}else{
+				}
+				else{
 					sonicState = sonicFastL;
 
 				}
