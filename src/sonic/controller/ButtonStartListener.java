@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 
 
 
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sonic.model.Model;
+
 
 
 public class ButtonStartListener implements ActionListener {
@@ -37,7 +39,6 @@ public class ButtonStartListener implements ActionListener {
 			//page d'acceuil
 		}
 
-		playPanel.requestFocus(true);
 
 	}
 }

@@ -31,7 +31,7 @@ public class View {
 		window.addKeyListener(new SonicListener(model.getHero()));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		playPanel = new PlayPanel(model);
-		playPanel.setFocusable(true);
+		window.setFocusable(true);
 		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
 		window.add(playPanel, BorderLayout.CENTER);
 		window.add(scoreBoard, BorderLayout.NORTH);
