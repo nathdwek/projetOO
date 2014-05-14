@@ -9,6 +9,7 @@ import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sonic.model.Block;
@@ -30,6 +31,8 @@ public class PlayPanel extends JPanel{
 
 		drawables = m.getDrawables();
 		center = m.getPlayPanelCenter();
+
+
 
 	}
 

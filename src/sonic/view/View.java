@@ -2,6 +2,7 @@ package sonic.view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import sonic.model.Sonic;
 
@@ -34,7 +35,8 @@ public class View {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		playPanel = new PlayPanel(model);
-		scoreBoard = new ScoreBoard(window.getHeight(), model);
+		playPanel.setFocusable(true);
+		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
 		window.add(playPanel, BorderLayout.CENTER);
 		window.add(scoreBoard, BorderLayout.NORTH);
 

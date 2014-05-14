@@ -2,6 +2,12 @@ package sonic.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -10,6 +16,7 @@ import sonic.view.Drawable;
 public abstract class Block extends Hittable implements Drawable{
 
 	private Double[] hitbox;
+	private Image ground = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/textureGround.jpg");
 
 	public Block(Point position, Double sizeX, Double sizeY) {
 		super(position);
