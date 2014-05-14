@@ -17,7 +17,7 @@ public class Model {
 	private static final int TOP=1;
 	private static final int LEFT=2;
 	private static final int BOTTOM=3;
-	private static final double COLLISION_DISTANCE = 5;
+	private static final double COLLISION_DISTANCE = 10;
 	private Sonic hero;
 	private Point playPanelCenter;
 	private Point playPanelCenterSpeed;
@@ -38,10 +38,10 @@ public class Model {
 
 		hero =new Sonic(500, 150);
 		AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
-		Block aB=new GroundBlock(-10000.0, 1000.0,0.0,125.0);
+		Block aB=new GroundBlock(-10000.0, 1000.0,125.0);
 
-		Slope slope = new Slope(995.0,5000.0,125.0, -125.0, 125.0);
-		Slope slope2 = new Slope(4999.0,10000.0,-125.0, 375.0, 20.0);
+		Slope slope = new Slope(995.0,5000.0,125.0, -125.0);
+		Slope slope2 = new Slope(4999.0,10000.0,-125.0, 375.0);
 		Block aB2 = new GroundBlock(0.0,40.0,125.0,155.0);
 		Block aB3 = new GroundBlock(300.0,340.0,125.0,155.0);
 		Coin c1 = new Coin(360.0 , 140.0 );

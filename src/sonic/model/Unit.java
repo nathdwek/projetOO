@@ -5,7 +5,7 @@ import sonic.view.Drawable;
 public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
 	private Point speed;
 	private Point acceleration;
-	private static final Double miniRealSpeed = 0.5;
+	private static final Double miniRealSpeed = 5.0;
 
 	public static Double getMiniRealSpeed(){
 		return miniRealSpeed;
