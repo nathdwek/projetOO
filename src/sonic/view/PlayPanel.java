@@ -2,22 +2,18 @@ package sonic.view;
 
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.ImageObserver;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
+
+
+import java.util.LinkedList;
+
 import javax.swing.JPanel;
 
-import sonic.model.Block;
-import sonic.model.Hittable;
 import sonic.model.Model;
 import sonic.model.Point;
-import sonic.model.SelfUpdatable;
-import sonic.model.Sonic;
 
 
 
@@ -37,14 +33,14 @@ public class PlayPanel extends JPanel{
 	}
 
 	public void paint(Graphics g){
+		super.paint(g);
 		Integer windowWidth = this.getWidth();
 		Integer windowHeight = this.getHeight();
 		Integer left = center.getX().intValue() - windowWidth/2;
 		Integer top = center.getY().intValue()- windowHeight/2 + 150;
 		g.drawImage(background , 0,0, windowWidth,windowHeight,  this);
 		for (Drawable d : drawables){
-			d.paint(g, this, left,top, windowWidth, windowHeight);
+			d.draw(g, this, left,top, windowWidth, windowHeight);
 		}
-
 	}
 }

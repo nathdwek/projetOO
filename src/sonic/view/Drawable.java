@@ -7,5 +7,5 @@ import javax.swing.JPanel;
 import sonic.model.Point;
 
 public interface Drawable {
-	public void paint(Graphics g, JPanel p, Integer left, Integer top, Integer windowWidth , Integer windowHeight);
+	public void draw(Graphics g, JPanel p, Integer left, Integer top, Integer windowWidth , Integer windowHeight);
 }
