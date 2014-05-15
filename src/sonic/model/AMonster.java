@@ -12,7 +12,6 @@ public class AMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
-	private Boolean floor = false;
 	private Image crabe;
 
 	public AMonster(Point position, Point speed) {
@@ -31,6 +30,9 @@ public class AMonster extends Unit {
 		case "Block":
 			dead=handleBlock(normal);
 			break;
+		case "SlopeBlock":
+			dead = super.handleSlopeBlock(normal);
+			break;
 		case "Sonic":
 			dead = false;
 			break;
@@ -43,20 +45,18 @@ public class AMonster extends Unit {
 		return dead;
 	}
 
-	private Boolean handleBlock(Point normal) {
-		floor = floor || normal.getY()>=1;
-
+	public Boolean handleBlock(Point normal) {
 		if (normal.getX()*getSpeed().getX()<0){
 			Point s=getSpeed();
 			Double vX = s.getX();
 			s.setX(vX+2*normal.getX()*Math.abs(vX));
 
 		}
-		return false;
+		return super.handleBlock(normal);
 	}
 
 	public void selfUpdate(Double dT) {
-		if (floor){
+		if (getFloor()){
 			Point s=getSpeed();
 			if (s.getY()<0){
 				s.setY(0);
@@ -66,11 +66,6 @@ public class AMonster extends Unit {
 			getAcceleration().setY(Unit.getGravity());
 		}
 		super.selfUpdate(dT);
-	}
-
-	public void stepReset(){
-		super.stepReset();
-		floor = false;
 	}
 
 	public String getType() {
