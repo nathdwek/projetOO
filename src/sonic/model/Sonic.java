@@ -152,8 +152,12 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean handleSlopeBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
 		falling = falling && !floor;
-		getSpeed().setY(normal.getX()*getSpeed().getX());
-		getAcceleration().setX(-2.0*normal.getX()*getSpeed().getX());
+		Point s = getSpeed();
+		Double effect = normal.getX()*s.getX();
+		if (s.getY() < effect){
+			s.setY(effect);
+		}
+		getAcceleration().setX(-2.0*effect);
 		return false;
 	}
 

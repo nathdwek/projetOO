@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Slope{
 	LinkedList<SlopeBlock> blocks;
-	Integer step = 5;
+	Integer step = 1;
 	private static final Double WIDTH = GroundBlock.getDefaultWidth();
 	public Slope(Double left, Double right, Double leftHeight, Double rightHeight){
 		blocks = new LinkedList<SlopeBlock>();

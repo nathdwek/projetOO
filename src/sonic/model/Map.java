@@ -87,13 +87,6 @@ public class Map {
 					}
 					thisX+=Coin.getWidth();
 				}
-
-
-				/*Double.valueOf(),
-				Double.valueOf();
-
-				fixedHittables.addAll(slope.getBlocks());
-				drawables.addAll(slope.getBlocks());*/
 			}
 		}
 	}

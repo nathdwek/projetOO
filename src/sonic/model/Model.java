@@ -39,29 +39,6 @@ public class Model {
 		hero = map.getHero();
 		deathLevel = map.getDeathLevel();
 
-		/*AMonster m1 = new AMonster(100.0,200.0 ,50.0, 0.0);
-		Block aB=new GroundBlock(-10000.0, 1000.0,125.0);
-
-		Slope slope = new Slope(995.0,5000.0,125.0, -125.0);
-		Slope slope2 = new Slope(4999.0,10000.0,-125.0, 375.0);
-
-		Slope slope = new Slope(995.0,5000.0,125.0,-500.0, 125.0);
-		Slope slope2 = new Slope(4999.0,10000.0,-500.0, 375.0, 20.0);
-		Block aB2 = new GroundBlock(0.0,40.0,125.0,155.0);
-		Block aB3 = new GroundBlock(300.0,340.0,125.0,155.0);
-		Coin c1 = new Coin(360.0 , 140.0 );
-
-		selfUpdatables =  new LinkedList<SelfUpdatable>(Arrays.asList(new SelfUpdatable[]{hero,m1}));
-		movingHittables = new ArrayList<Hittable>(Arrays.asList(new Hittable[]{hero,m1}));
-
-		fixedHittables = new LinkedList<Hittable>(Arrays.asList(new Hittable[]{aB,aB2,aB3, c1}));
-		fixedHittables.addAll(slope.getBlocks());
-		fixedHittables.addAll(slope2.getBlocks());
-
-		drawables = new LinkedList<Drawable>(Arrays.asList(new Drawable[]{hero,m1,aB,aB2,aB3,c1}));
-		drawables.addAll(slope.getBlocks());
-		drawables.addAll(slope2.getBlocks());*/
-
 		playPanelCenter = hero.getPosition().copy();
 		playPanelCenterSpeed = new Point(0,0);
 		playPanelCenterAcceleration = new Point(0,0);
