@@ -50,12 +50,25 @@ public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
 		stepReset();
 	}
 
-	public Boolean handleSlopeBlock(Point normal) {
+	public Boolean handleBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
+		if (normal.getY()*getSpeed().getY()<0){
+			getSpeed().setY(0);
+		}
+		return false;
+	}
+
+	public Boolean handleSlopeBlock(Point normal) {
 		Point s = getSpeed();
-		Double effect = normal.getX()*s.getX();
-		if (s.getY() < effect){
-			s.setY(effect);
+		if (normal.getY()>=1){
+			floor = true;
+			Double effect = normal.getX()*s.getX();
+			if (s.getY() < effect){
+				s.setY(effect);
+			}
+		}
+		else if (normal.getY()*getSpeed().getY()<0){
+			getSpeed().setY(0);
 		}
 		return false;
 	}
@@ -64,9 +77,4 @@ public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
 		this.acceleration.setZero();
 		this.floor = false;
 	}
-
-	public void setFloor(boolean b) {
-		floor = b;
-	}
-
 }
