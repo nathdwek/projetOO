@@ -44,6 +44,13 @@ public class Map {
 			else{
 				createTerrain(terrains.item(0));
 			}
+			NodeList monstersSets = doc.getElementsByTagName("monsters");
+			if (monstersSets.getLength()>1){
+				throw new Exception("More than 1 set of monsters defined!");
+			}
+			else{
+				createMonsters(monstersSets.item(0));
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,6 +60,29 @@ public class Map {
 		movingHittables.add(hero);
 		selfUpdatables.add(hero);
 
+	}
+
+	private void createMonsters(Node monsters) {
+		Element monstersE = (Element) monsters;
+		NodeList crabsList = monstersE.getElementsByTagName("crab");
+
+		createCrabs(crabsList);
+	}
+
+	private void createCrabs(NodeList crabsList) {
+		for (int i = 0; i < crabsList.getLength(); i++){
+			Node crabNode = crabsList.item(i);
+			if (crabNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element crabElement = (Element) crabNode;
+				AMonster crab = new AMonster(Double.valueOf(crabElement.getAttribute("X")),
+						Double.valueOf(crabElement.getAttribute("Y")),
+						Double.valueOf(crabElement.getAttribute("vX")),
+						0.0);
+				drawables.add(crab);
+				movingHittables.add(crab);
+				selfUpdatables.add(crab);
+			}
+		}
 	}
 
 	private void createTerrain(Node terrain) {

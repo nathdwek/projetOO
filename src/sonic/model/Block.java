@@ -53,8 +53,8 @@ public abstract class Block extends Hittable implements Drawable{
 		int thisTop = posY+getSize(1).intValue()-top;
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(new Color(139, 69, 19));
-		g.fillRect(thisLeft,windowHeight-thisTop+5,width,height-5);
+		g.fillRect(thisLeft,windowHeight-thisTop,width+1,height-10);
 		g.setColor(new Color(0,139,0));
-		g.fillRect(thisLeft,windowHeight-thisTop-5, width, 10);
+		g.fillRect(thisLeft,windowHeight-thisTop-10, width+1, 10);
 	}
 }

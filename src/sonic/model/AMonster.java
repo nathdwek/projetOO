@@ -12,7 +12,6 @@ public class AMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
-	private static final Double gravity= -10.0;
 	private Boolean floor = false;
 	private Image crabe;
 
@@ -64,7 +63,7 @@ public class AMonster extends Unit {
 			}
 		}
 		else{
-			getAcceleration().setY(gravity);
+			getAcceleration().setY(Unit.getGravity());
 		}
 		super.selfUpdate(dT);
 	}

@@ -4,12 +4,13 @@
 <sonicMap>
    <terrain deathLevel = "-1000">
       <ground start = "0" end = "1000" level ="125"/>
-      <obstacle start = "1000" end="1100" level = "125" height = "25"/>
+      <obstacle start = "0" end="200" level = "125" height = "100"/>
       <slope start = "900" end = "2000" startLevel = "0" endLevel = "-300"/>
       <coins start = "100" end = "500" level = "200" vertQty = "2"/>
       <coins start = "1000" end = "2000" level = "150" vertQty = "1"/>
       <slope start = "2100" end = "4000" startLevel = "-400" endLevel = "0"/>
    </terrain>
    <monsters>
+      <crab X = "700" Y= "200" vX = "100"/>
    </monsters>
 </sonicMap>

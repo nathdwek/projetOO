@@ -16,14 +16,14 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean isBall;
 
 	private Double maxXSpeed;
-	private static final Double normalMaxXSpeed=400.0;
-	private static final Double ballMaxXSpeed=800.0;
+	private static final Double normalMaxXSpeed=300.0;
+	private static final Double ballMaxXSpeed=600.0;
 
-	private Double naturalXBrake = 800.0;
+	private Double naturalXBrake = 1000.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 1700.0;
+	private Double maxXAcceleration = 1500.0;
 
-	private Double maxYUpSpeed = 500.0;
+	private Double maxYUpSpeed = 400.0;
 	private Double maxYDownSpeed = -800.0;
 
 	private Boolean blockedRight;
@@ -32,8 +32,7 @@ public class Sonic extends Unit implements Controllable {
 	private Boolean falling;
 
 	private Integer acceleratingY;
-	private Double maxYAcceleration = 2500.0;
-	private Double gravity = -1000.0;
+	private Double maxYAcceleration = 2000.0;
 
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
@@ -149,7 +148,7 @@ public class Sonic extends Unit implements Controllable {
 		return false;
 	}
 
-	private Boolean handleSlopeBlock(Point normal) {
+	public Boolean handleSlopeBlock(Point normal) {
 		floor = floor || normal.getY()>=1;
 		falling = falling && !floor;
 		Point s = getSpeed();
@@ -223,7 +222,7 @@ public class Sonic extends Unit implements Controllable {
 		else if (!floor && sY>maxYDownSpeed){
 			acceleratingY=0;
 			falling=true;
-			a.setY(gravity);
+			a.setY(Unit.getGravity());
 		}
 
 		super.selfUpdate(dT);
