@@ -146,8 +146,6 @@ public class Sonic extends Unit implements Controllable {
 		default:
 			dead = false;
 		}
-
-		//System.out.println("AMonster touché en"+getPosition()+" Normale = "+ normal+ "par"+ otherHittable.getType());
 		return false;
 	}
 
@@ -225,11 +223,6 @@ public class Sonic extends Unit implements Controllable {
 		}
 
 		super.selfUpdate(dT);
-
-		//System.out.println(getPosition()+"  "+getSpeed());
-
-
-
 	}
 
 	private boolean blockedX(Integer aX) {

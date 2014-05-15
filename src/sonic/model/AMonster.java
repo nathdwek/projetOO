@@ -67,7 +67,6 @@ public class AMonster extends Unit {
 			getAcceleration().setY(gravity);
 		}
 		super.selfUpdate(dT);
-		//System.out.println(getPosition()+" "+getSpeed());
 	}
 
 	public void stepReset(){
@@ -94,7 +93,6 @@ public class AMonster extends Unit {
 		int thisTop = posY+getSize(1).intValue()-top;
 		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
 		g.setColor(Color.BLUE);
-		//System.out.println(this.getPosition());
 		g.drawImage(crabe , thisLeft, windowHeight-thisTop,width,height, p);
 		g.finalize();
 	}

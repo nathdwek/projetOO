@@ -26,7 +26,6 @@ public class Controller {
 	}
 
 	public void runGame() {
-		//Initialize
 		Timer timer = new Timer(loopTimeMillis, new ActionListener() {
 
 			@Override
@@ -44,25 +43,6 @@ public class Controller {
 				}
 			}});
 		timer.start();
-		/*
-		while (!model.gameOver()){
-			Long startTime = System.currentTimeMillis();
-
-			model.update(Double.valueOf(loopTime)/1000);
-			view.refresh();
-			Long waitTime = loopTime-(System.currentTimeMillis()-startTime);
-			if (waitTime>0 ){
-				try {
-					Thread.sleep(waitTime);
-				}
-				catch (InterruptedException e) {
-				}
-
-			}
-			else{System.out.println("lag");}
-
-		}
-		 */
 	}
 
 }

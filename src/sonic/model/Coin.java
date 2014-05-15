@@ -68,4 +68,12 @@ public class Coin extends Hittable implements Drawable{
 		g.drawImage(coin ,thisLeft  , windowHeight-thisTop,width,height, p);
 		g.finalize();
 	}
+
+	public static Double getWidth(){
+		return hitbox[Hittable.LEFT]+hitbox[Hittable.RIGHT];
+	}
+
+	public static Double getHeight() {
+		return hitbox[Hittable.TOP]+hitbox[Hittable.BOTTOM];
+	}
 }

@@ -1,4 +1,13 @@
 <?xml version="1.0"?>
-<terrain>
-   <ground start = "0" end = "1000" level ="125"/>
-</terrain>
+
+<!-- For the moment start = leftX and end = rightX. Having start>left could cause unexpected results (but not fatal to the execution)-->
+<sonicMap>
+   <terrain deathLevel = "-1000">
+      <ground start = "0" end = "5000" level ="125"/>
+      <obstacle start = "1000" end="1100" level = "125" height = "25"/>
+      <slope start = "5000" end = "10000" startLevel = "125" endLevel = "-500"/>
+      <coins start = "100" end = "500" level = "200" vertQty = "2"/>
+   </terrain>
+   <monsters>
+   </monsters>
+</sonicMap>

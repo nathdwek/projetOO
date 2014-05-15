@@ -10,7 +10,6 @@ public class SonicListener implements KeyListener {
 	private Controllable hero;
 
 	public SonicListener(Controllable h){
-		System.out.println(h);
 		hero = h;
 	}
 
