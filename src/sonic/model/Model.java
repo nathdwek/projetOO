@@ -29,6 +29,7 @@ public class Model {
 	private Double lambdaY = 6.0;
 
 	private boolean gamePaused = false;
+	private boolean restart = false;
 	public Model(){
 
 		Map map = new Map("src/sonic/map.xml");
@@ -44,9 +45,26 @@ public class Model {
 		playPanelCenterAcceleration = new Point(0,0);
 		heroPosition = hero.getPosition();
 	}
+	public Model setNewGame(){
+		return new Model();
+	}
+
+	public boolean restart(){
+		return restart;
+	}
+
+	public void setRestart(boolean b){
+		restart = b;
+	}
+
+
 
 	public boolean gameOver() {
-		return false; //hero.isDead();
+		if(hero.isDead()){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public Controllable getControlledHero() {
@@ -158,6 +176,7 @@ public class Model {
 
 		return normals;
 	}
+
 
 
 

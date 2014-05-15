@@ -26,18 +26,27 @@ public class Controller {
 	}
 
 	public void runGame() {
+
 		Timer timer = new Timer(loopTimeMillis, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (!model.gamePaused()){
+					if(!model.restart()){
 
-					if(!model.gameOver()) {
-						model.update(loopTime);
-						view.refresh();
+						if(!model.gameOver()) {
+							model.update(loopTime);
+							view.refresh();
+						}else{
+							model= model.setNewGame();
+							view.gameOver(model);
+						}
 					}else{
-						//view.gameOver();
+						model = model.setNewGame();
+						view.restartGame(model);
 					}
+
+
 				}else{
 					view.refresh();
 				}

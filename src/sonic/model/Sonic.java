@@ -306,4 +306,5 @@ public class Sonic extends Unit implements Controllable {
 		return isDead;
 	}
 
+
 }

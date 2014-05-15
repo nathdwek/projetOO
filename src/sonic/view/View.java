@@ -1,5 +1,6 @@
 package sonic.view;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -43,14 +44,30 @@ public class View {
 		window.repaint();
 
 	}
-	public void gameOver(){
+	public void gameOver(Model m){
 		JOptionPane replayMessage = new JOptionPane();
 		int ans = JOptionPane.showConfirmDialog(playPanel, "REPLAY ?", "GAME OVER" , JOptionPane.YES_NO_OPTION);
 		if (ans == JOptionPane.YES_OPTION){
-			//replay
+			this.model = m;
+			restartGame(model);
 		}else{
-			//retourne à la page d'acceuil
+			System.out.println("hi");
+			model = model.setNewGame();
 		}
+
+	}
+
+	public void restartGame(Model model) {
+		window.remove(playPanel);
+		window.remove(scoreBoard);
+		playPanel = new PlayPanel(model);
+		playPanel.setFocusable(true);
+		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
+		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
+		window.add(playPanel, BorderLayout.CENTER);
+		window.add(scoreBoard, BorderLayout.NORTH);
+		window.validate();
+
 	}
 
 
