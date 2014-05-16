@@ -16,19 +16,22 @@ public class View {
 	private  JFrame window;
 	private PlayPanel playPanel;
 	private ScoreBoard scoreBoard;
+	private WelcomeBoard welcomeBoard;
 
 
 	public View(Model m){
 		model=m;
-		initializeControls();
+		//initializeControls();
 
 	}
 
-	private void initializeControls() {
+	public void initializeControls() {
 		window = new JFrame("hi");
 		window.setSize(800,700);
 		window.setLayout(new BorderLayout());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		/*welcomeBoard = new WelcomeBoard(model);
+		window.add(welcomeBoard);*/
 		playPanel = new PlayPanel(model);
 		playPanel.setFocusable(true);
 		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
@@ -48,6 +51,8 @@ public class View {
 		JOptionPane replayMessage = new JOptionPane();
 		int ans = JOptionPane.showConfirmDialog(playPanel, "REPLAY ?", "GAME OVER" , JOptionPane.YES_NO_OPTION);
 		if (ans == JOptionPane.YES_OPTION){
+			window.remove(playPanel);
+			window.remove(scoreBoard);
 			this.model = m;
 			restartGame(model);
 		}else{
@@ -67,6 +72,18 @@ public class View {
 		window.add(playPanel, BorderLayout.CENTER);
 		window.add(scoreBoard, BorderLayout.NORTH);
 		window.validate();
+
+	}
+	public void startGame(Model m){
+		window.remove(welcomeBoard);
+		playPanel = new PlayPanel(model);
+		playPanel.setFocusable(true);
+		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
+		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
+		window.add(playPanel, BorderLayout.CENTER);
+		window.add(scoreBoard, BorderLayout.NORTH);
+		window.validate();
+
 
 	}
 

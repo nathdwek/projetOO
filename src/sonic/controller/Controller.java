@@ -26,11 +26,15 @@ public class Controller {
 	}
 
 	public void runGame() {
+		view.initializeControls();
 
 		Timer timer = new Timer(loopTimeMillis, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//if (model.startGame()){
+				//view.startGame(model);
+
 				if (!model.gamePaused()){
 					if(!model.restart()){
 
@@ -50,6 +54,7 @@ public class Controller {
 				}else{
 					view.refresh();
 				}
+				//}
 			}});
 		timer.start();
 	}

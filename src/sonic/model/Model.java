@@ -30,6 +30,7 @@ public class Model {
 
 	private boolean gamePaused = false;
 	private boolean restart = false;
+	private boolean startGame = false;
 	public Model(){
 
 		Map map = new Map("src/sonic/map.xml");
@@ -47,6 +48,14 @@ public class Model {
 	}
 	public Model setNewGame(){
 		return new Model();
+	}
+
+	public boolean startGame(){
+		return startGame;
+	}
+
+	public void setStartGame(boolean b){
+		startGame = b;
 	}
 
 	public boolean restart(){
