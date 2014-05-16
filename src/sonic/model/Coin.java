@@ -1,11 +1,5 @@
 package sonic.model;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
-
-import javax.swing.JPanel;
-
 import sonic.view.Drawable;
 import sonic.view.CoinSprite;
 
@@ -13,7 +7,6 @@ public class Coin extends Hittable implements HasSprite{
 
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private static Double[] hitbox= new Double[]{10.0,10.0,10.0,10.0};
-	private String type = "Coin";
 	private Drawable sprite;
 
 	public Coin(double posX, double posY) {

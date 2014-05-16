@@ -1,9 +1,4 @@
 package sonic.model;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
 
 import sonic.controller.Controllable;
 import sonic.view.SonicSprite;

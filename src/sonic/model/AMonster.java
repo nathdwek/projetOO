@@ -1,12 +1,5 @@
 package sonic.model;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
-
-import javax.swing.JPanel;
-
 import sonic.view.CrabSprite;
 
 public class AMonster extends Unit {

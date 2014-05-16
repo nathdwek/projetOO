@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import sonic.controller.Controllable;
-import sonic.view.Drawable;
 
 public class Model {
 
