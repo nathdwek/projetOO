@@ -8,24 +8,22 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import sonic.controller.ButtonStartGameListener;
+import sonic.controller.Controller;
 import sonic.model.Model;
 
 public class WelcomeBoard extends JPanel {
-	private Model model;
 	private JButton start;
 	private JComboBox level;
 	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicAcceuil3.jpg");
 
-	public WelcomeBoard(Model m){
-		model = m;
+	public WelcomeBoard(Controller c){
 		this.setLayout(null);
 		String[] levelNumber = {"LEVEL 1","LEVEL 2"};
 		start = new JButton("START");
 		level = new JComboBox(levelNumber);
 		start.setBounds(200,250, 100, 40);
 		level.setBounds(200,350, 100,40);
-		start.addActionListener(new ButtonStartGameListener(model));
+		start.addActionListener(c);
 		start.setFocusable(true);
 		level.setFocusable(true);
 		this.add(start);
@@ -39,6 +37,4 @@ public class WelcomeBoard extends JPanel {
 		start.requestFocus(true);
 		level.requestFocus(true);
 	}
-
-
 }

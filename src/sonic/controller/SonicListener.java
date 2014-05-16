@@ -3,8 +3,6 @@ package sonic.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import sonic.model.Sonic;
-
 public class SonicListener implements KeyListener {
 
 	private Controllable hero;
@@ -12,10 +10,10 @@ public class SonicListener implements KeyListener {
 	public SonicListener(Controllable h){
 		hero = h;
 	}
-
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		switch (key){
+
 		case KeyEvent.VK_RIGHT:
 			hero.goRight();
 			break;
@@ -50,5 +48,8 @@ public class SonicListener implements KeyListener {
 	}
 	public void keyTyped(KeyEvent e){
 
+	}
+	public void setHero(Controllable controlledHero) {
+		this.hero = controlledHero;
 	}
 }
