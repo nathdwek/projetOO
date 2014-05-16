@@ -2,12 +2,8 @@ package sonic.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.TexturePaint;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -16,7 +12,6 @@ import sonic.view.Drawable;
 public abstract class Block extends Hittable implements Drawable{
 
 	private Double[] hitbox;
-	private Image ground = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/textureGround.jpg");
 
 	public Block(Point position, Double sizeX, Double sizeY) {
 		super(position);
@@ -48,10 +43,10 @@ public abstract class Block extends Hittable implements Drawable{
 	public void draw(Graphics g, JPanel p,Integer left, Integer top, Integer windowWidth, Integer windowHeight){
 		int posX =  this.getPosition().getX().intValue();
 		int posY = this.getPosition().getY().intValue();
-		int thisLeft = posX-getSize(2).intValue()-left;
-		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int thisTop = posY+getSize(1).intValue()-top;
-		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
+		int thisLeft = posX-getSize(Hittable.LEFT).intValue()-left;
+		int width = Double.valueOf(getSize(Hittable.LEFT)+getSize(Hittable.RIGHT)).intValue();
+		int thisTop = posY+getSize(Hittable.TOP).intValue()-top;
+		int height = Double.valueOf(getSize(Hittable.TOP)+getSize(Hittable.BOTTOM)).intValue();
 		g.setColor(new Color(139, 69, 19));
 		g.fillRect(thisLeft,windowHeight-thisTop,width+1,height-10);
 		g.setColor(new Color(0,139,0));
