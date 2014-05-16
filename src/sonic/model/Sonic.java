@@ -132,6 +132,8 @@ public class Sonic extends Unit implements Controllable {
 		case "Block":
 			dead = handleBlock(normal);
 			break;
+		case "Spikes":
+			dead = isDead = true;
 		case "SlopeBlock" :
 			dead = handleSlopeBlock(normal);
 			break;
@@ -151,6 +153,9 @@ public class Sonic extends Unit implements Controllable {
 		if (normal.getY()>1){
 			Double effect = normal.getX()*getSpeed().getX();
 			getAcceleration().setX(-2.0*effect);
+		}
+		if (normal.getY()<0){
+			falling = true;
 		}
 		return super.handleSlopeBlock(normal);
 	}
@@ -175,6 +180,9 @@ public class Sonic extends Unit implements Controllable {
 	public Boolean handleBlock(Point normal) {
 		blockedRight = blockedRight || normal.getX()<=-1;
 		blockedLeft = blockedLeft || normal.getX()>=1;
+		if (normal.getY()<0){
+			falling = true;
+		}
 		if (normal.getX()*getSpeed().getX()<0){
 			getSpeed().setX(0);
 		}

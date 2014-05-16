@@ -92,10 +92,27 @@ public class Map {
 		NodeList slopesList = terrainE.getElementsByTagName("slope");
 		NodeList obstacleBlockList = terrainE.getElementsByTagName("obstacle");
 		NodeList coinsList = terrainE.getElementsByTagName("coins");
+		NodeList spikesList = terrainE.getElementsByTagName("spike");
 		createGround(groundList);
 		createObstacles(obstacleBlockList);
 		createSlopes(slopesList);
 		createCoins(coinsList);
+		createSpikes(spikesList);
+		}
+
+	private void createSpikes(NodeList spikesList) {
+		for (int i = 0; i < spikesList.getLength(); i++){
+			Node spikeNode = spikesList.item(i);
+			if (spikeNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element spikeElement = (Element) spikeNode;
+				Spikes spike = new Spikes(
+						Double.valueOf(Double.valueOf(spikeElement.getAttribute("X"))),
+						Double.valueOf(spikeElement.getAttribute("level")));
+
+				fixedHittables.add(spike);
+				drawables.add(spike);
+			}
+		}		
 	}
 
 	private void createCoins(NodeList coinsList) {
@@ -107,7 +124,6 @@ public class Map {
 				Double end = Double.valueOf(coinPackElement.getAttribute("end"));
 				Double level = Double.valueOf(coinPackElement.getAttribute("level"));
 				Integer vertQty = Integer.valueOf(coinPackElement.getAttribute("vertQty"));
-
 				Double thisX = start;
 				while (thisX < end ){
 					for (int j = 0; j<vertQty; j++){

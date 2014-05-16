@@ -20,13 +20,6 @@ public class Coin extends Hittable implements Drawable{
 
 	}
 
-	/*public Coin(Double sideX1, Double sideX2, Double sideY1, Double sideY2) {
-		super(new Point((sideX1+sideX2)/2,(sideY1+sideY2)/2));
-		Double halfSizeX=Math.abs(sideX1-sideX2)/2;
-		Double halfSizeY=Math.abs(sideY1-sideY2)/2;
-		hitbox = new Double[]{halfSizeX,halfSizeY,halfSizeX,halfSizeY};
-	}*/
-
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
 		Boolean dead;
@@ -38,7 +31,6 @@ public class Coin extends Hittable implements Drawable{
 		default:
 			dead = false;
 		}
-		System.out.println("Coin touché en"+this.getPosition());
 		return dead;
 	}
 
