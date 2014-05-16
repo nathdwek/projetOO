@@ -10,15 +10,6 @@ public class GroundBlock extends Block{
 	public GroundBlock(Double sideX1, Double sideX2, Double sideY1, Double sideY2) {
 		super(sideX1, sideX2,sideY1, sideY2);
 	}
-	@Override
-	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		return false;
-	}
-
-	@Override
-	public String getType() {
-		return "Block";
-	}
 
 	@Override
 	public Point normalAt(int side) {
@@ -26,10 +17,6 @@ public class GroundBlock extends Block{
 	}
 	public static Double getDefaultWidth() {
 		return WIDTH;
-	}
-	@Override
-	public Boolean handleAMonster(Point normal) {
-		return false;
 	}
 }
 

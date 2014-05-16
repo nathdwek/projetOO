@@ -110,11 +110,11 @@ public class Model {
 	private void handleSingleCollision(Hittable h1, Hittable h2, LinkedList<Hittable> toDestroy){
 		Point[] normals=collision(h1,h2);
 		if (normals.length!=0){
-			if (h1.handleCollision(h2,normals[1])){
-				toDestroy.add(h1);
-			}
-			if (h2.handleCollision(h1,normals[0])){
+			if (h1.handleCollision(h2,normals[0])){
 				toDestroy.add(h2);
+			}
+			if (h2.handleCollision(h1,normals[1])){
+				toDestroy.add(h1);
 			}
 		}
 	}

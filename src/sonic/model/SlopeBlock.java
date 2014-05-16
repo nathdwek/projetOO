@@ -18,7 +18,8 @@ public class SlopeBlock extends Block{
 	}
 
 	@Override
-	public Boolean handleAMonster(Point normal) {
-		return false;
+	public Boolean handleCollision(Hittable otherHittable,Point normal){
+		return otherHittable.handleSlopeBlock(normal);
 	}
+
 }

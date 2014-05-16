@@ -25,24 +25,7 @@ public class AMonster extends Unit {
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		/*Boolean dead;
-		switch (otherHittable.getType()){
-		case "Block":
-			dead=handleBlock(normal);
-			break;
-		case "SlopeBlock":
-			dead = super.handleSlopeBlock(normal);
-			break;
-		case "Sonic":
-			dead = false;
-			break;
-		case "SonicBall":
-			dead = true;
-			break;
-		default:
-			dead=false;
-		}*/
-		return otherHittable.handleAMonster(null);
+		return otherHittable.handleAMonster(normal);
 	}
 
 	public Boolean handleBlock(Point normal) {
@@ -66,10 +49,6 @@ public class AMonster extends Unit {
 			getAcceleration().setY(Unit.getGravity());
 		}
 		super.selfUpdate(dT);
-	}
-
-	public String getType() {
-		return "Monster";
 	}
 
 	public Double getSize(int side) {

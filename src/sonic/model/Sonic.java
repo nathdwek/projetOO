@@ -78,18 +78,6 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public String getType() {
-		String type;
-		if (isBall){
-			type = "SonicBall";
-		}
-		else{
-			type = "Sonic";
-		}
-		return type;
-	}
-
-	@Override
 	public void goRight() {
 		acceleratingX = 1;
 	}
@@ -121,28 +109,6 @@ public class Sonic extends Unit implements Controllable {
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		/*Boolean dead;
-		switch (otherHittable.getType()){
-		case "Block":
-			dead = handleBlock(normal);
-			break;
-		case "Spikes":
-			dead = true;
-			isDead = true;
-			break;
-		case "SlopeBlock" :
-			dead = handleSlopeBlock(normal);
-			break;
-		case "Coin":
-			dead = handleCoin();
-			break;
-		case "Monster" :
-			dead = handleMonster();
-			break;
-		default:
-			dead = false;
-		}
-		return dead;*/
 		return otherHittable.handleSonic(normal, this);
 	}
 
@@ -169,9 +135,14 @@ public class Sonic extends Unit implements Controllable {
 		return dead;
 	}
 
-	private Boolean handleCoin() {
+	public Boolean handleCoin() {
 		this.coins+=1;
 		return false;
+	}
+
+	public Boolean handleSpikes(Point normal){
+		isDead = true;
+		return true;
 	}
 
 	public Boolean handleBlock(Point normal) {
@@ -253,5 +224,11 @@ public class Sonic extends Unit implements Controllable {
 
 	public double getNormalMaxXSpeed() {
 		return normalMaxXSpeed;
+	}
+
+	@Override
+	public Boolean handleSonic(Point normal, Sonic sonic) {
+		System.out.println("Sonic just collided sonic?");
+		return false;
 	}
 }

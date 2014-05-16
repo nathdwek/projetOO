@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 import sonic.view.Drawable;
-import sonic.viewµ.CoinSprite;
+import sonic.view.CoinSprite;
 
 public class Coin extends Hittable implements HasSprite{
 
@@ -24,21 +24,7 @@ public class Coin extends Hittable implements HasSprite{
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		Boolean dead;
-		switch (otherHittable.getType()){
-		case "Sonic":
-		case "SonicBall":
-			dead = true;
-			break;
-		default:
-			dead = false;
-		}
-		return dead;
-	}
-
-	@Override
-	public String getType() {
-		return type;
+		return otherHittable.handleCoin();
 	}
 
 	@Override
@@ -70,6 +56,23 @@ public class Coin extends Hittable implements HasSprite{
 
 	@Override
 	public Boolean handleAMonster(Point normal) {
+		return false;
+	}
+
+	@Override
+	public Boolean handleSonic(Point normal, Sonic sonic) {
+		return true;
+	}
+
+	@Override
+	public Boolean handleSlopeBlock(Point normal) {
+		System.out.println("Coin and Block just collided?");
+		return false;
+	}
+
+	@Override
+	public Boolean handleBlock(Point normal) {
+		System.out.println("Coin and Block just collided?");
 		return false;
 	}
 }

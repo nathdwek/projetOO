@@ -1,10 +1,5 @@
 package sonic.model;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
-
 import sonic.view.BlockSprite;
 import sonic.view.Drawable;
 
@@ -29,12 +24,7 @@ public abstract class Block extends Hittable implements HasSprite{
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		return false;
-	}
-
-	@Override
-	public String getType() {
-		return "Block";
+		return otherHittable.handleBlock(normal);
 	}
 
 	@Override
@@ -50,4 +40,23 @@ public abstract class Block extends Hittable implements HasSprite{
 		return this.sprite;
 	}
 
+	public Boolean handleAMonster(Point normal){
+		return false;
+	}
+
+	public Boolean handleSonic(Point normal,Sonic sonic){
+		return false;
+	}
+
+	@Override
+	public Boolean handleBlock(Point normal) {
+		System.out.println("2 blocks collided?");
+		return false;
+	}
+
+	@Override
+	public Boolean handleSlopeBlock(Point normal) {
+		System.out.println("2 blocks collided?");
+		return false;
+	}
 }

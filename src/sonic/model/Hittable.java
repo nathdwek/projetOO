@@ -16,13 +16,22 @@ public abstract class Hittable{
 		return position;
 	}
 
-	public abstract Boolean handleCollision(Hittable otherHittable,Point normal);
 	public abstract Double getSize(int side);
 	public abstract Point normalAt(int side);
-	public abstract String getType();
+
+	public abstract Boolean handleCollision(Hittable otherHittable,Point normal);
 
 	public abstract Boolean handleAMonster(Point normal);
-
 	public abstract Boolean handleSonic(Point normal, Sonic sonic);
+	public abstract Boolean handleBlock(Point normal);
+	public abstract Boolean handleSlopeBlock(Point normal);
+
+	public Boolean handleCoin(){
+		return false;
+	}
+
+	public Boolean handleSpikes(Point normal) {
+		return false;
+	}
 }
 
