@@ -9,7 +9,7 @@ import sonic.view.View;
 
 import javax.swing.Timer;
 
-public class Controller {
+public class Controller implements ActionListener{
 
 	private Model model;
 	private View view;
@@ -26,37 +26,29 @@ public class Controller {
 	}
 
 	public void runGame() {
-		view.initializeControls();
+		view.welcomeUser(this);
+	}
 
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		view.startGame(model);
 		Timer timer = new Timer(loopTimeMillis, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//if (model.startGame()){
-				//view.startGame(model);
-
 				if (!model.gamePaused()){
-					if(!model.restart()){
-
-						if(!model.gameOver()) {
-							model.update(loopTime);
-							view.refresh();
-						}else{
-							model= model.setNewGame();
-							view.gameOver(model);
-						}
+					if(!model.gameOver()) {
+						model.update(loopTime);
+						view.refresh();
 					}else{
-						model = model.setNewGame();
-						view.restartGame(model);
+						view.gameOver();
 					}
-
-
-				}else{
-					view.refresh();
 				}
-				//}
-			}});
-		timer.start();
-	}
+			}
 
+		});
+		timer.start();
+
+	}
 }
+

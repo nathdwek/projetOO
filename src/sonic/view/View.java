@@ -1,13 +1,12 @@
 package sonic.view;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 
 import sonic.controller.SonicListener;
+import sonic.controller.Controller;
 import sonic.model.Model;
 
 public class View {
@@ -25,19 +24,19 @@ public class View {
 
 	}
 
-	public void initializeControls() {
+	public void welcomeUser(Controller c) {
 		window = new JFrame("hi");
 		window.setSize(800,700);
 		window.setLayout(new BorderLayout());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		/*welcomeBoard = new WelcomeBoard(model);
-		window.add(welcomeBoard);*/
-		playPanel = new PlayPanel(model);
+		welcomeBoard = new WelcomeBoard(c);
+		window.add(welcomeBoard);
+		/*playPanel = new PlayPanel(model);
 		playPanel.setFocusable(true);
 		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
 		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
 		window.add(playPanel, BorderLayout.CENTER);
-		window.add(scoreBoard, BorderLayout.NORTH);
+		window.add(scoreBoard, BorderLayout.NORTH);*/
 		window.setVisible(true);
 
 	}
@@ -47,17 +46,14 @@ public class View {
 		window.repaint();
 
 	}
-	public void gameOver(Model m){
-		JOptionPane replayMessage = new JOptionPane();
+	public void gameOver(){
 		int ans = JOptionPane.showConfirmDialog(playPanel, "REPLAY ?", "GAME OVER" , JOptionPane.YES_NO_OPTION);
 		if (ans == JOptionPane.YES_OPTION){
-			window.remove(playPanel);
-			window.remove(scoreBoard);
-			this.model = m;
-			restartGame(model);
+			model.initialize();
+			playPanel.initialize();
 		}else{
-			System.out.println("hi");
-			model = model.setNewGame();
+			model.initialize();
+			playPanel.initialize();
 		}
 
 	}
@@ -67,7 +63,6 @@ public class View {
 		window.remove(scoreBoard);
 		playPanel = new PlayPanel(model);
 		playPanel.setFocusable(true);
-		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
 		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
 		window.add(playPanel, BorderLayout.CENTER);
 		window.add(scoreBoard, BorderLayout.NORTH);
@@ -75,6 +70,7 @@ public class View {
 
 	}
 	public void startGame(Model m){
+
 		window.remove(welcomeBoard);
 		playPanel = new PlayPanel(model);
 		playPanel.setFocusable(true);
