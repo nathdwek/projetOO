@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import sonic.controller.Controllable;
+import sonic.view.SonicSprite;
 
 
 public class Sonic extends Unit implements Controllable {
@@ -36,14 +37,6 @@ public class Sonic extends Unit implements Controllable {
 	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBallR.gif");
-	private Image sonicSpinning = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicSpinning.gif");
-	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastL.gif");
-	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastR.gif");
-	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkL.gif");
-	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkR.gif");
-	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWaitingR.gif");
-	private Image sonicState ;
 	private boolean isDead;
 
 	public Sonic(int posX, int posY) {
@@ -56,6 +49,7 @@ public class Sonic extends Unit implements Controllable {
 		this.acceleratingX=0;
 		this.acceleratingY=0;
 		this.isDead = false;
+		setSprite(new SonicSprite(this));
 	}
 
 	public Integer getCoins(){
@@ -127,13 +121,15 @@ public class Sonic extends Unit implements Controllable {
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		Boolean dead;
+		/*Boolean dead;
 		switch (otherHittable.getType()){
 		case "Block":
 			dead = handleBlock(normal);
 			break;
 		case "Spikes":
-			dead = isDead = true;
+			dead = true;
+			isDead = true;
+			break;
 		case "SlopeBlock" :
 			dead = handleSlopeBlock(normal);
 			break;
@@ -146,7 +142,8 @@ public class Sonic extends Unit implements Controllable {
 		default:
 			dead = false;
 		}
-		return false;
+		return dead;*/
+		return otherHittable.handleSonic(normal, this);
 	}
 
 	public Boolean handleSlopeBlock(Point normal) {
@@ -160,7 +157,7 @@ public class Sonic extends Unit implements Controllable {
 		return super.handleSlopeBlock(normal);
 	}
 
-	private Boolean handleMonster() {
+	public Boolean handleAMonster(Point normal) {
 		Boolean dead;
 		if (isBall){
 			dead = false;
@@ -245,63 +242,16 @@ public class Sonic extends Unit implements Controllable {
 	public void stopJump() {
 		acceleratingY=0;
 	}
-	private Image checkState(){
-		Double vX = getSpeed().getX();
-
-		if (isBall){
-
-			if (Math.abs(vX)<=Unit.getMiniRealSpeed()){
-
-				sonicState = sonicSpinning;
-			}else{
-				sonicState = sonicBallR;
-			}
-		}else{
-
-			if(Math.abs(vX)<=Unit.getMiniRealSpeed()){
-				sonicState = sonicWaitingR;
-
-			}
-			else if (Math.abs(vX)<normalMaxXSpeed/1.1) {
-
-				if ( vX > 0 ){
-					sonicState = sonicWalkR;
-				}
-				else{
-					sonicState = sonicWalkL;
-				}
-			}
-			else{
-				if (vX>0){
-					sonicState = sonicFastR;
-				}
-				else{
-					sonicState = sonicFastL;
-
-				}
-			}
-		}
-
-
-		return sonicState;
-	}
-
-	@Override
-	public void draw(Graphics g, JPanel p,Integer left, Integer top, Integer windowWidth , Integer windowHeight) {
-		int posX =  this.getPosition().getX().intValue();
-		int posY = this.getPosition().getY().intValue();
-		int thisLeft = (posX-getSize(2).intValue()-left);
-		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int thisTop = posY+getSize(1).intValue()-top;
-		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
-		g.drawImage(this.checkState(),thisLeft  , windowHeight - thisTop,width,height, p);
-		g.finalize();
-
-	}
 
 	public boolean isDead() {
 		return isDead;
 	}
 
+	public boolean isBall() {
+		return isBall;
+	}
 
+	public double getNormalMaxXSpeed() {
+		return normalMaxXSpeed;
+	}
 }

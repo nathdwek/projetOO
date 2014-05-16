@@ -16,4 +16,9 @@ public class SlopeBlock extends Block{
 	public Point normalAt(int side) {
 		return normals[side];
 	}
+
+	@Override
+	public Boolean handleAMonster(Point normal) {
+		return false;
+	}
 }

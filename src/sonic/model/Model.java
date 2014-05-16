@@ -13,7 +13,7 @@ public class Model {
 	private LinkedList<SelfUpdatable> selfUpdatables;
 	private LinkedList<Hittable> fixedHittables;
 	private ArrayList<Hittable> movingHittables;
-	private LinkedList<Drawable> drawables;
+	private LinkedList<HasSprite> paintables;
 	private Double deathLevel;
 
 	private Sonic hero;
@@ -25,22 +25,23 @@ public class Model {
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
 
-	private Double kX = 70.0;
-	private Double kY =20.0;
-	private Double lambdaX = 15.0;
-	private Double lambdaY = 6.0;
+	private final Double kX = 70.0;
+	private final Double kY =20.0;
+	private final Double lambdaX = 15.0;
+	private final Double lambdaY = 6.0;
 
 	private boolean gamePaused = false;
-	private boolean restart = false;
+
 	public Model(){
 		initialize();
 	}
+
 	public void initialize() {
 		map = new Map("src/sonic/map.xml");
 		selfUpdatables = map.getSelfUpdatables();
 		movingHittables = map.getMovingHittables();
 		fixedHittables = map.getfixedHittables();
-		drawables = map.getDrawables();
+		paintables = map.getPaintables();
 		hero = map.getHero();
 		deathLevel = map.getDeathLevel();
 
@@ -51,18 +52,14 @@ public class Model {
 	}
 
 	public boolean gameOver() {
-		if(hero.isDead()){
-			return true;
-		}else{
-			return false;
-		}
+		return (hero.isDead() || hero.getPosition().getY() < deathLevel);
 	}
 
 	public Controllable getControlledHero() {
 		return hero;
 	}
-	public LinkedList<Drawable> getDrawables(){
-		return drawables;
+	public LinkedList<HasSprite> getPaintables(){
+		return paintables;
 	}
 	public Point getPlayPanelCenter(){
 		return playPanelCenter;
@@ -107,7 +104,7 @@ public class Model {
 		selfUpdatables.remove(h);
 		movingHittables.remove(h);
 		fixedHittables.remove(h);
-		drawables.remove(h);
+		paintables.remove(h);
 	}
 
 	private void handleSingleCollision(Hittable h1, Hittable h2, LinkedList<Hittable> toDestroy){
@@ -167,9 +164,4 @@ public class Model {
 
 		return normals;
 	}
-
-
-
-
-
 }

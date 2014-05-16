@@ -20,5 +20,9 @@ public abstract class Hittable{
 	public abstract Double getSize(int side);
 	public abstract Point normalAt(int side);
 	public abstract String getType();
+
+	public abstract Boolean handleAMonster(Point normal);
+
+	public abstract Boolean handleSonic(Point normal, Sonic sonic);
 }
 

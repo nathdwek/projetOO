@@ -4,14 +4,34 @@
 <sonicMap>
    <terrain deathLevel = "-1000">
       <ground start = "0" end = "1000" level ="125"/>
+      <spikes X="270" level="125"/>
       <obstacle start = "0" end="200" level = "125" height = "100"/>
       <slope start = "900" end = "2000" startLevel = "0" endLevel = "-300"/>
-      <coins start = "100" end = "500" level = "200" vertQty = "2"/>
+      <coins start = "50" end = "400" level = "300" vertQty = "2"/>
       <coins start = "1000" end = "2000" level = "150" vertQty = "1"/>
       <slope start = "2100" end = "3000" startLevel = "-400" endLevel = "0"/>
       <slope start = "1100" end = "1800" startLevel = "250" endLevel = "400"/>
+      <ground start ="1900" end= "3000" level ="450"/>
+      <obstacle start ="2300" end="2700" level ="450" height="100"/>
+      <coins start ="2000" end ="2300" level="500" vertQty ="2"/>
+      <coins start ="2750" end ="3000" level="500" vertQty ="2"/>
+      <coins start ="2300" end ="2700" level="600" vertQty ="2"/>
+      <spikes X="2100" level="450"/>
+      <spikes X="2770" level="450"/>
+      <slope start="3100" end="3700" startLevel= "50" endLevel="-200"/>
+      <ground start="3650" end="6000" level="-100"/>
+      <obstacle start="4000" end ="4300" level ="-100" height="100"/>
+      <coins start ="4000" end ="4300" level="50" vertQty ="2"/>
+      <coins start ="5200" end ="5500" level="50" vertQty ="2"/>
+      <coins start ="4700" end ="5000" level="-50" vertQty ="2"/>
+      <spikes X="4500" level="-100"/>
+      <obstacle start ="5200" end ="5500" level="-100" height="100"/>
+      <spikes X="5000" level="-100"/>
+      
    </terrain>
    <monsters>
       <crab X = "700" Y= "200" vX = "100"/>
+      <crab X = "5000" Y= "-50" vX = "100"/>
+      <crab X = "5000" Y="-50" vX="-200"/>
    </monsters>
 </sonicMap>

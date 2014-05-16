@@ -7,15 +7,16 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
+import sonic.view.CrabSprite;
+
 public class AMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
-	private Image crabe;
 
 	public AMonster(Point position, Point speed) {
 		super(position, speed);
-		crabe = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/crabe.gif");
+		setSprite(new CrabSprite(this));
 	}
 
 	public AMonster(double x, double y, double vX, double vY) {
@@ -24,7 +25,7 @@ public class AMonster extends Unit {
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		Boolean dead;
+		/*Boolean dead;
 		switch (otherHittable.getType()){
 		case "Block":
 			dead=handleBlock(normal);
@@ -40,8 +41,8 @@ public class AMonster extends Unit {
 			break;
 		default:
 			dead=false;
-		}
-		return dead;
+		}*/
+		return otherHittable.handleAMonster(null);
 	}
 
 	public Boolean handleBlock(Point normal) {
@@ -78,16 +79,15 @@ public class AMonster extends Unit {
 	public Point normalAt(int side) {
 		return normals[side];
 	}
-	public void draw(Graphics g, JPanel p, Integer left, Integer top, Integer windowWidth , Integer windowHeight){
-		int posX =  this.getPosition().getX().intValue();
-		int posY = this.getPosition().getY().intValue();
-		int thisLeft = posX-getSize(2).intValue() - left;
-		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int thisTop = posY+getSize(1).intValue()-top;
-		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
-		g.setColor(Color.BLUE);
-		g.drawImage(crabe , thisLeft, windowHeight-thisTop,width,height, p);
-		g.finalize();
+
+	@Override
+	public Boolean handleAMonster(Point normal) {
+		return false;
+	}
+
+	@Override
+	public Boolean handleSonic(Point normal, Sonic sonic) {
+		return sonic.isBall();
 	}
 
 }

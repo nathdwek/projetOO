@@ -18,7 +18,7 @@ public class Map {
 	private LinkedList<Hittable> fixedHittables;
 	private LinkedList<SelfUpdatable> selfUpdatables;
 	private ArrayList<Hittable> movingHittables;
-	private LinkedList<Drawable> drawables;
+	private LinkedList<HasSprite> paintables;
 	private Sonic hero;
 	private Double deathLevel;
 
@@ -28,7 +28,7 @@ public class Map {
 		fixedHittables = new LinkedList<Hittable>();
 		selfUpdatables = new LinkedList<SelfUpdatable>();
 		movingHittables = new ArrayList<Hittable>();
-		drawables = new LinkedList<Drawable>();
+		paintables = new LinkedList<HasSprite>();
 		try {
 
 			File fXmlFile = new File(mapXML);
@@ -56,7 +56,7 @@ public class Map {
 			e.printStackTrace();
 		}
 		hero =new Sonic(500, 150);
-		drawables.add(hero);
+		paintables.add(hero);
 		movingHittables.add(hero);
 		selfUpdatables.add(hero);
 
@@ -78,7 +78,7 @@ public class Map {
 						Double.valueOf(crabElement.getAttribute("Y")),
 						Double.valueOf(crabElement.getAttribute("vX")),
 						0.0);
-				drawables.add(crab);
+				paintables.add(crab);
 				movingHittables.add(crab);
 				selfUpdatables.add(crab);
 			}
@@ -92,13 +92,13 @@ public class Map {
 		NodeList slopesList = terrainE.getElementsByTagName("slope");
 		NodeList obstacleBlockList = terrainE.getElementsByTagName("obstacle");
 		NodeList coinsList = terrainE.getElementsByTagName("coins");
-		NodeList spikesList = terrainE.getElementsByTagName("spike");
+		NodeList spikesList = terrainE.getElementsByTagName("spikes");
 		createGround(groundList);
 		createObstacles(obstacleBlockList);
 		createSlopes(slopesList);
 		createCoins(coinsList);
 		createSpikes(spikesList);
-		}
+	}
 
 	private void createSpikes(NodeList spikesList) {
 		for (int i = 0; i < spikesList.getLength(); i++){
@@ -110,9 +110,9 @@ public class Map {
 						Double.valueOf(spikeElement.getAttribute("level")));
 
 				fixedHittables.add(spike);
-				drawables.add(spike);
+				paintables.add(spike);
 			}
-		}		
+		}
 	}
 
 	private void createCoins(NodeList coinsList) {
@@ -128,7 +128,7 @@ public class Map {
 				while (thisX < end ){
 					for (int j = 0; j<vertQty; j++){
 						Coin coin = new Coin(thisX,level+j*Coin.getHeight());
-						drawables.add(coin);
+						paintables.add(coin);
 						fixedHittables.add(coin);
 					}
 					thisX+=Coin.getWidth();
@@ -149,7 +149,9 @@ public class Map {
 						Double.valueOf(sElement.getAttribute("endLevel")));
 
 				fixedHittables.addAll(slope.getBlocks());
-				drawables.addAll(slope.getBlocks());
+				for (Block slopeBlock : slope.getBlocks()){
+					paintables.add(slopeBlock);
+				}
 			}
 		}
 	}
@@ -167,7 +169,7 @@ public class Map {
 						Double.valueOf(oBElement.getAttribute("height"))+bottom);
 
 				fixedHittables.add(obstacleBlock);
-				drawables.add(obstacleBlock);
+				paintables.add(obstacleBlock);
 			}
 		}
 	}
@@ -183,7 +185,7 @@ public class Map {
 						Double.valueOf(gBElement.getAttribute("level")));
 
 				fixedHittables.add(groundBlock);
-				drawables.add(groundBlock);
+				paintables.add(groundBlock);
 			}
 		}
 	}
@@ -200,8 +202,8 @@ public class Map {
 		return fixedHittables;
 	}
 
-	public LinkedList<Drawable> getDrawables() {
-		return drawables;
+	public LinkedList<HasSprite> getPaintables() {
+		return paintables;
 	}
 
 	public Sonic getHero(){

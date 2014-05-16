@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import sonic.controller.Controller;
+import sonic.controller.GameStartListener;
 import sonic.model.Model;
 
 public class WelcomeBoard extends JPanel {
@@ -23,7 +24,7 @@ public class WelcomeBoard extends JPanel {
 		level = new JComboBox(levelNumber);
 		start.setBounds(200,250, 100, 40);
 		level.setBounds(200,350, 100,40);
-		start.addActionListener(c);
+		start.addActionListener(new GameStartListener(c));
 		start.setFocusable(true);
 		level.setFocusable(true);
 		this.add(start);

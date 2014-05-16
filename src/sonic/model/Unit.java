@@ -2,10 +2,12 @@ package sonic.model;
 
 import sonic.view.Drawable;
 
-public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
+public abstract class Unit extends Hittable implements SelfUpdatable, HasSprite {
 	private Point speed;
 	private Point acceleration;
 	private Boolean floor;
+
+	private Drawable sprite;
 	private static final Double miniRealSpeed = 10.0;
 	private static final Double GRAVITY = -1000.0;
 
@@ -21,7 +23,6 @@ public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
 		super(position);
 		this.speed= speed;
 		this.acceleration=new Point(0,0);
-
 		this.floor = false;
 	}
 
@@ -76,5 +77,13 @@ public abstract class Unit extends Hittable implements SelfUpdatable, Drawable {
 	public void stepReset(){
 		this.acceleration.setZero();
 		this.floor = false;
+	}
+
+	public Drawable getSprite(){
+		return this.sprite;
+	}
+
+	public void setSprite(Drawable sprite){
+		this.sprite = sprite;
 	}
 }

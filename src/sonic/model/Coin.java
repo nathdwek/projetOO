@@ -7,16 +7,18 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 import sonic.view.Drawable;
+import sonic.viewµ.CoinSprite;
 
-public class Coin extends Hittable implements Drawable{
+public class Coin extends Hittable implements HasSprite{
 
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 	private static Double[] hitbox= new Double[]{10.0,10.0,10.0,10.0};
 	private String type = "Coin";
-	private Image coin = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/coins.gif");
+	private Drawable sprite;
 
 	public Coin(double posX, double posY) {
 		super(new Point(posX, posY));
+		this.sprite = new CoinSprite(this);
 
 	}
 
@@ -49,23 +51,25 @@ public class Coin extends Hittable implements Drawable{
 		return normals[side];
 	}
 
-	@Override
-	public void draw(Graphics g, JPanel p , Integer left, Integer top , Integer windowWidth , Integer windowHeight) {
-		int posX =  this.getPosition().getX().intValue();
-		int posY = this.getPosition().getY().intValue();
-		int thisLeft = posX-getSize(2).intValue()- left;
-		int width = Double.valueOf(getSize(2)+getSize(0)).intValue();
-		int thisTop = posY+getSize(1).intValue()- top;
-		int height = Double.valueOf(getSize(1)+getSize(3)).intValue();
-		g.drawImage(coin ,thisLeft  , windowHeight-thisTop,width,height, p);
-		g.finalize();
-	}
-
 	public static Double getWidth(){
 		return hitbox[Hittable.LEFT]+hitbox[Hittable.RIGHT];
 	}
 
 	public static Double getHeight() {
 		return hitbox[Hittable.TOP]+hitbox[Hittable.BOTTOM];
+	}
+
+	public Drawable getSprite(){
+		return this.sprite;
+	}
+
+	@Override
+	public void setSprite(Drawable sprite) {
+		this.sprite = sprite;
+	}
+
+	@Override
+	public Boolean handleAMonster(Point normal) {
+		return false;
 	}
 }

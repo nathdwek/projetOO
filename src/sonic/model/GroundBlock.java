@@ -27,5 +27,9 @@ public class GroundBlock extends Block{
 	public static Double getDefaultWidth() {
 		return WIDTH;
 	}
+	@Override
+	public Boolean handleAMonster(Point normal) {
+		return false;
+	}
 }
 
