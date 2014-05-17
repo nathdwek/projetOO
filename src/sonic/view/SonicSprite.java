@@ -12,35 +12,43 @@ import sonic.model.Unit;
 public class SonicSprite implements Drawable {
 
 	private Sonic hero;
-	private Image sonicBallR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicBallR.gif");
-	private Image sonicSpinning = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicSpinning.gif");
-	private Image sonicFastL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastL.gif");
-	private Image sonicFastR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicFastR.gif");
-	private Image sonicWalkL = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkL.gif");
-	private Image sonicWalkR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWalkR.gif");
-	private Image sonicWaitingR = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicWaitingR.gif");
+	private Image sonicBallR;
+	private Image sonicSpinning;
+	private Image sonicFastL;
+	private Image sonicFastR;
+	private Image sonicWalkL;
+	private Image sonicWalkR;
+	private Image sonicWaitingR;
 
 
 	public SonicSprite(Sonic hero){
 		this.hero = hero;
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		sonicBallR = tk.getImage("src/sonic/sprites/sonicBallR.gif");
+		sonicSpinning = tk.getImage("src/sonic/sprites/sonicSpinning.gif");
+		sonicFastL = tk.getImage("src/sonic/sprites/sonicFastL.gif");
+		sonicFastR = tk.getImage("src/sonic/sprites/sonicFastR.gif");
+		sonicWalkL = tk.getImage("src/sonic/sprites/sonicWalkL.gif");
+		sonicWalkR = tk.getImage("src/sonic/sprites/sonicWalkR.gif");
+		sonicWaitingR = tk.getImage("src/sonic/sprites/sonicWaitingR.gif");
 	}
 
 	public Image checkState(){
 		Double vX = hero.getSpeed().getX();
 		Image sonicState;
+
 		if (hero.isBall()){
 
 			if (Math.abs(vX)<=Unit.getMiniRealSpeed()){
-
 				sonicState = sonicSpinning;
 			}else{
 				sonicState = sonicBallR;
 			}
+
 		}else{
 
 			if(Math.abs(vX)<=Unit.getMiniRealSpeed()){
 				sonicState = sonicWaitingR;
-
 			}
 			else if (Math.abs(vX)<hero.getNormalMaxXSpeed()/1.1) {
 
@@ -50,16 +58,19 @@ public class SonicSprite implements Drawable {
 				else{
 					sonicState = sonicWalkL;
 				}
+
 			}
 			else{
+
 				if (vX>0){
 					sonicState = sonicFastR;
 				}
 				else{
 					sonicState = sonicFastL;
-
 				}
+
 			}
+
 		}
 
 

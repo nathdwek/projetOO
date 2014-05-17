@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -21,8 +20,8 @@ public class WelcomeBoard extends JPanel {
 
 	public WelcomeBoard(Controller c, int w , int h){
 		this.setLayout(null);
-		editMap = new JButton(new ImageIcon("src/sonic/sprites/editMapButton.png"));
-		start = new JButton(new ImageIcon("src/sonic/sprites/startButton.jpg"));
+		editMap = new JButton("Select Map");
+		start = new JButton("PLAY!");
 		editMap.setBounds(335,7*h/8, 130,30);
 		start.setBounds(3*w/8,4*h/5, 200, 40);
 		editMap.addActionListener(new ChooseMapListener(this,c));
