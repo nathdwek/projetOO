@@ -17,7 +17,7 @@ public class Sonic extends Unit implements Controllable {
 
 	private Double naturalXBrake = 1000.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 1500.0;
+	private Double maxXAcceleration = 2000.0;
 
 	private Double maxYUpSpeed = 400.0;
 	private Double maxYDownSpeed = -800.0;

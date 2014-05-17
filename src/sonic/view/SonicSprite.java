@@ -42,7 +42,7 @@ public class SonicSprite implements Drawable {
 				sonicState = sonicWaitingR;
 
 			}
-			else if (Math.abs(vX)<hero.getNormalMaxXSpeed()/1.1) {
+			else if (Math.abs(vX)<hero.getNormalMaxXSpeed()) {
 
 				if ( vX > 0 ){
 					sonicState = sonicWalkR;
