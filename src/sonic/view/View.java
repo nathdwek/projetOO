@@ -46,31 +46,25 @@ public class View {
 			model.initialize();
 			playPanel.initialize();
 		}else{
-
+			model.initialize();
+			playPanel.initialize();
 		}
 
 	}
 
 
-	public void startGame(Model m, Controller c){
+	public void startGame(Model m){
 
-		window.getContentPane().removeAll();
-		m.initialize();
-		m.setGamePaused(false);
+		window.remove(welcomeBoard);
 		playPanel = new PlayPanel(model);
 		playPanel.setFocusable(true);
 		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
-		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel, c);
+		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel);
 		window.add(playPanel, BorderLayout.CENTER);
 		window.add(scoreBoard, BorderLayout.NORTH);
 		window.validate();
 
 
-	}
-	public void backToMenu(Controller c){
-		window.getContentPane().removeAll();
-		window.add(new WelcomeBoard(c));
-		window.validate();
 	}
 
 

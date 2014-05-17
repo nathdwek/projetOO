@@ -53,13 +53,13 @@ public class Controller{
 	}
 
 	public void startGame() {
-		view.startGame(model , this);
+		view.startGame(model);
 		this.mainLoop.start();
 	}
 
 	public void stopGame() {
 		this.mainLoop.stop();
-		view.backToMenu(this);
+		view.welcomeUser(this);
 	}
 
 }
