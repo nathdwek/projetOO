@@ -26,41 +26,27 @@ public class Controller{
 
 
 	public Controller(Model m, View v) {
-
-		model = m;
-		view = v;
-		mainLoop = new Timer(loopTimeMillis, new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (!model.gamePaused()){
-					if(!model.gameOver()) {
-						model.update(loopTime);
-						view.refresh();
-					}else{
-						view.gameOver();
-					}
-				}
-			}
-
+		this.model = m;
+		this.view = v;
+		mainLoop = new Timer(loopTimeMillis, new MainLoopListener(m,v,this,loopTime) {
 		});
-
-
 	}
 
 	public void runGame() {
+		view.initialize();
 		view.welcomeUser(this);
 	}
 
 	public void startGame() {
-		view.startGame(model);
+		model.initialize();
+		view.startGame(this);
 		this.mainLoop.start();
 	}
 
 	public void stopGame() {
-		this.mainLoop.stop();
+		view.removeGamePanels();
 		view.welcomeUser(this);
+		this.mainLoop.stop();
 	}
-
 }
 
