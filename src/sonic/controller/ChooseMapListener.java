@@ -1,19 +1,21 @@
 package sonic.controller;
 
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
 import sonic.view.WelcomeBoard;
 
-public class EditMapListener implements ActionListener {
+public class ChooseMapListener implements ActionListener {
 	private WelcomeBoard welcomeBoard;
+	private Controller controller;
 
-	public EditMapListener(WelcomeBoard welcomeBoard){
+	public ChooseMapListener(WelcomeBoard welcomeBoard, Controller c){
 		this.welcomeBoard = welcomeBoard;
+		this.controller = c;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -21,15 +23,14 @@ public class EditMapListener implements ActionListener {
 		int option = editMap.showOpenDialog(welcomeBoard);
 
 		if (option == JFileChooser.APPROVE_OPTION){
-			File selectedFile = editMap.getSelectedFile();
-			try
-			{
-
-				Desktop.getDesktop().open(selectedFile);
+			String selectedMap;
+			try {
+				selectedMap = editMap.getSelectedFile().getCanonicalPath();
+				controller.setMap(selectedMap);
 			}
-			catch(Exception exception)
-			{
-				System.out.println("Problem occour when to open the file");
+			catch (IOException e) {
+				System.out.println("error occured when selecting the map");
+				e.printStackTrace();
 			}
 		}
 	}

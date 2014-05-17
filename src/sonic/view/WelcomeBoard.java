@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import sonic.controller.Controller;
-import sonic.controller.EditMapListener;
+import sonic.controller.ChooseMapListener;
 import sonic.controller.GameStartListener;
 
 
@@ -24,7 +24,7 @@ public class WelcomeBoard extends JPanel {
 		start = new JButton(new ImageIcon("src/sonic/sprites/startButton.jpg"));
 		editMap.setBounds(335,7*h/8, 130,30);
 		start.setBounds(3*w/8,4*h/5, 200, 40);
-		editMap.addActionListener(new EditMapListener(this));
+		editMap.addActionListener(new ChooseMapListener(this,c));
 		start.addActionListener(new GameStartListener(c));
 		editMap.setFocusable(true);
 		start.setFocusable(true);
