@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sonic.model.Model;
-import sonic.view.View;
+
 
 
 

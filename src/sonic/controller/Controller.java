@@ -2,16 +2,11 @@ package sonic.controller;
 
 import sonic.model.Model;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+
 
 import sonic.view.View;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
+
 import javax.swing.Timer;
 
 public class Controller{

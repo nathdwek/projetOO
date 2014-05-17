@@ -1,7 +1,7 @@
 package sonic.model;
 
 import sonic.view.CrabSprite;
-import sonic.view.Drawable;
+
 
 public class GroundMonster extends Unit {
 
