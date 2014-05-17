@@ -29,7 +29,7 @@ public class Model {
 	private final Double lambdaX = 15.0;
 	private final Double lambdaY = 6.0;
 
-	private boolean gamePaused = false;
+	private boolean gamePaused;
 
 	public Model(){
 		initialize();
@@ -48,6 +48,7 @@ public class Model {
 		playPanelCenterSpeed = new Point(0,0);
 		playPanelCenterAcceleration = new Point(0,0);
 		heroPosition = hero.getPosition();
+		gamePaused = false;
 	}
 
 	public boolean gameOver() {
