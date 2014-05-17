@@ -12,7 +12,6 @@ public class GameStartListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controller.startGame();
-
 	}
 
 }
