@@ -4,31 +4,35 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 import sonic.controller.Controller;
+import sonic.controller.EditMapListener;
 import sonic.controller.GameStartListener;
 import sonic.model.Model;
 
 public class WelcomeBoard extends JPanel {
 	private JButton start;
-	private JComboBox level;
+	private JButton editMap;
 	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicAcceuil3.jpg");
 
-	public WelcomeBoard(Controller c){
+	public WelcomeBoard(Controller c, int w , int h){
 		this.setLayout(null);
-		String[] levelNumber = {"LEVEL 1","LEVEL 2"};
-		start = new JButton("START");
-		level = new JComboBox(levelNumber);
-		start.setBounds(200,250, 100, 40);
-		level.setBounds(200,350, 100,40);
+		editMap = new JButton("EDIT MAP");
+		start = new JButton(new ImageIcon("src/sonic/sprites/startButton.jpg"));
+		editMap.setBounds(325,7*h/8, 150,30);
+		start.setBounds(3*w/8,4*h/5, 200, 40);
+		editMap.addActionListener(new EditMapListener(this));
 		start.addActionListener(new GameStartListener(c));
+		editMap.setFocusable(true);
 		start.setFocusable(true);
-		level.setFocusable(true);
+		this.add(editMap);
 		this.add(start);
-		this.add(level);
+
 
 	}
 
@@ -36,6 +40,6 @@ public class WelcomeBoard extends JPanel {
 		super.paint(g);
 		g.drawImage(background ,0,0 , this.getWidth(), this.getHeight(), this);
 		start.requestFocus(true);
-		level.requestFocus(true);
+		editMap.requestFocus(true);
 	}
 }

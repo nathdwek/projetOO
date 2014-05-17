@@ -29,7 +29,7 @@ public class View {
 		window.setSize(800,700);
 		window.setLayout(new BorderLayout());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		welcomeBoard = new WelcomeBoard(c);
+		welcomeBoard = new WelcomeBoard(c , window.getWidth(), window.getHeight());
 		window.add(welcomeBoard);
 		window.setVisible(true);
 
@@ -69,7 +69,7 @@ public class View {
 	}
 	public void backToMenu(Controller c){
 		window.getContentPane().removeAll();
-		window.add(new WelcomeBoard(c));
+		window.add(new WelcomeBoard(c, window.getWidth(),window.getHeight()));
 		window.validate();
 	}
 
