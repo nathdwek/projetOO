@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import sonic.controller.ButtonRestartListener;
 import sonic.controller.ButtonPauseListener;
+import sonic.controller.Controller;
 import sonic.model.Model;
 
 public class ScoreBoard extends JPanel{
@@ -20,12 +21,12 @@ public class ScoreBoard extends JPanel{
 	private Model model;
 	private Image coin;
 
-	public ScoreBoard(Integer height, Model m, PlayPanel playPanel ){
+	public ScoreBoard(Integer height, Model m, PlayPanel playPanel,Controller c ){
 		coin = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/coins.gif");
 		model = m;
 		buttonPause= new JButton("PAUSE");
 		buttonRestart = new JButton("RESTART");
-		buttonPause.addActionListener(new ButtonPauseListener(model, playPanel));
+		buttonPause.addActionListener(new ButtonPauseListener(model, playPanel , c));
 		buttonRestart.addActionListener(new ButtonRestartListener(model, playPanel));
 		this.setPreferredSize(new Dimension(-1,height/12));
 		this.setBackground(Color.BLACK);
