@@ -6,7 +6,6 @@ import sonic.model.Model;
 
 import sonic.view.View;
 
-
 import javax.swing.Timer;
 
 public class Controller{
@@ -42,6 +41,10 @@ public class Controller{
 		view.removeGamePanels();
 		view.welcomeUser(this);
 		this.mainLoop.stop();
+	}
+
+	public void setMap(String selectedMap) {
+		model.setMap(selectedMap);
 	}
 }
 

@@ -31,12 +31,15 @@ public class Model {
 
 	private boolean gamePaused;
 
+	private String mapXML;
+
 	public Model(){
+		mapXML = "src/sonic/map.xml";
 		initialize();
 	}
 
 	public void initialize() {
-		map = new Map("src/sonic/map.xml");
+		map = new Map(mapXML);
 		selfUpdatables = map.getSelfUpdatables();
 		movingHittables = map.getMovingHittables();
 		fixedHittables = map.getfixedHittables();
@@ -163,5 +166,9 @@ public class Model {
 		}
 
 		return normals;
+	}
+
+	public void setMap(String selectedMap) {
+		this.mapXML = selectedMap;
 	}
 }

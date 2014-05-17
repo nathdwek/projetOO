@@ -4,8 +4,6 @@ package sonic.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-
-
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
@@ -17,6 +15,7 @@ import sonic.model.Point;
 
 
 
+@SuppressWarnings("serial")
 public class PlayPanel extends JPanel{
 
 	private Model model;
