@@ -40,7 +40,7 @@ public abstract class Block extends Hittable implements HasSprite{
 		return this.sprite;
 	}
 
-	public Boolean handleAMonster(Point normal){
+	public Boolean handleGroundMonster(Point normal){
 		return false;
 	}
 

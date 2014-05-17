@@ -118,7 +118,7 @@ public class Sonic extends Unit implements Controllable {
 		return super.handleSlopeBlock(normal);
 	}
 
-	public Boolean handleAMonster(Point normal) {
+	public Boolean handleGroundMonster(Point normal) {
 		Boolean dead;
 		if (isBall){
 			dead = false;

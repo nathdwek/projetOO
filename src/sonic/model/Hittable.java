@@ -21,7 +21,7 @@ public abstract class Hittable{
 
 	public abstract Boolean handleCollision(Hittable otherHittable,Point normal);
 
-	public abstract Boolean handleAMonster(Point normal);
+	public abstract Boolean handleGroundMonster(Point normal);
 	public abstract Boolean handleSonic(Point normal, Sonic sonic);
 	public abstract Boolean handleBlock(Point normal);
 	public abstract Boolean handleSlopeBlock(Point normal);

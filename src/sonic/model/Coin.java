@@ -48,7 +48,7 @@ public class Coin extends Hittable implements HasSprite{
 	}
 
 	@Override
-	public Boolean handleAMonster(Point normal) {
+	public Boolean handleGroundMonster(Point normal) {
 		return false;
 	}
 

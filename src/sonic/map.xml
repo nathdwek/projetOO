@@ -27,11 +27,12 @@
       <spikes X="4500" level="-100"/>
       <obstacle start ="5200" end ="5500" level="-100" height="100"/>
       <spikes X="5000" level="-100"/>
-      
    </terrain>
    <monsters>
       <crab X = "700" Y= "200" vX = "100"/>
+      <bomb X = "800" Y= "200" vX = "-50"/>
       <crab X = "5000" Y= "-50" vX = "100"/>
       <crab X = "5000" Y="-50" vX="-200"/>
    </monsters>
+   <sonic X = "500" Y= "150"/>
 </sonicMap>

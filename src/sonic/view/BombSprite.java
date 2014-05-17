@@ -9,12 +9,12 @@ import javax.swing.JPanel;
 
 import sonic.model.GroundMonster;
 
-public class CrabSprite implements Drawable {
+public class BombSprite implements Drawable{
 
 	private GroundMonster groundMonster;
-	private Image sprite = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/crabe.gif");
+	private Image sprite = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/bomb.gif");
 
-	public CrabSprite(GroundMonster gM){
+	public BombSprite(GroundMonster gM){
 		this.groundMonster = gM;
 	}
 
@@ -30,6 +30,4 @@ public class CrabSprite implements Drawable {
 		//redimensionnement et positionement bizarre du crabe a cause de la large transparence autour du gif.
 		g.finalize();
 	}
-
-
 }

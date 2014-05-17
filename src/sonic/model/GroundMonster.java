@@ -1,24 +1,25 @@
 package sonic.model;
 
 import sonic.view.CrabSprite;
+import sonic.view.Drawable;
 
-public class AMonster extends Unit {
+public class GroundMonster extends Unit {
 
 	private static Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
 	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	public AMonster(Point position, Point speed) {
+	public GroundMonster(Point position, Point speed) {
 		super(position, speed);
 		setSprite(new CrabSprite(this));
 	}
 
-	public AMonster(double x, double y, double vX, double vY) {
+	public GroundMonster(double x, double y, double vX, double vY) {
 		this(new Point(x,y), new Point(vX,vY));
 	}
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		return otherHittable.handleAMonster(normal);
+		return otherHittable.handleGroundMonster(normal);
 	}
 
 	public Boolean handleBlock(Point normal) {
@@ -53,7 +54,7 @@ public class AMonster extends Unit {
 	}
 
 	@Override
-	public Boolean handleAMonster(Point normal) {
+	public Boolean handleGroundMonster(Point normal) {
 		return false;
 	}
 

@@ -12,6 +12,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import sonic.view.BombSprite;
+
 public class Map {
 	private LinkedList<Hittable> fixedHittables;
 	private LinkedList<SelfUpdatable> selfUpdatables;
@@ -49,21 +51,37 @@ public class Map {
 			else{
 				createMonsters(monstersSets.item(0));
 			}
+			NodeList heroes = doc.getElementsByTagName("sonic");
+			if (heroes.getLength()>1){
+				throw new Exception("More than 1 hero defined!");
+			}
+			else{
+				createSonic(heroes.item(0));
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		hero =new Sonic(500, 150);
+	}
+
+	private void createSonic(Node sonicNode){
+		if (sonicNode.getNodeType() == Node.ELEMENT_NODE) {
+			Element sonicElement = (Element) sonicNode;
+			hero = new Sonic(Integer.valueOf(sonicElement.getAttribute("X")),
+					Integer.valueOf(sonicElement.getAttribute("Y")));
+		}
+
 		paintables.add(hero);
 		movingHittables.add(hero);
 		selfUpdatables.add(hero);
-
 	}
 
 	private void createMonsters(Node monsters) {
 		Element monstersE = (Element) monsters;
 		NodeList crabsList = monstersE.getElementsByTagName("crab");
+		NodeList bombsList = monstersE.getElementsByTagName("bomb");
 
+		createBombs(bombsList);
 		createCrabs(crabsList);
 	}
 
@@ -72,13 +90,30 @@ public class Map {
 			Node crabNode = crabsList.item(i);
 			if (crabNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element crabElement = (Element) crabNode;
-				AMonster crab = new AMonster(Double.valueOf(crabElement.getAttribute("X")),
+				GroundMonster crab = new GroundMonster(Double.valueOf(crabElement.getAttribute("X")),
 						Double.valueOf(crabElement.getAttribute("Y")),
 						Double.valueOf(crabElement.getAttribute("vX")),
 						0.0);
 				paintables.add(crab);
 				movingHittables.add(crab);
 				selfUpdatables.add(crab);
+			}
+		}
+	}
+
+	private void createBombs(NodeList bombsList) {
+		for (int i = 0; i < bombsList.getLength(); i++){
+			Node bombNode = bombsList.item(i);
+			if (bombNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element bombElement = (Element) bombNode;
+				GroundMonster bomb = new GroundMonster(Double.valueOf(bombElement.getAttribute("X")),
+						Double.valueOf(bombElement.getAttribute("Y")),
+						Double.valueOf(bombElement.getAttribute("vX")),
+						0.0);
+				bomb.setSprite(new BombSprite(bomb));
+				paintables.add(bomb);
+				movingHittables.add(bomb);
+				selfUpdatables.add(bomb);
 			}
 		}
 	}
