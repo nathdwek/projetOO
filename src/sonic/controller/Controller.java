@@ -1,7 +1,5 @@
 package sonic.controller;
 
-import java.io.File;
-
 import sonic.model.Model;
 
 

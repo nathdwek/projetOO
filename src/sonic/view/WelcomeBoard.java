@@ -13,6 +13,7 @@ import sonic.controller.ChooseMapListener;
 import sonic.controller.GameStartListener;
 
 
+@SuppressWarnings("serial")
 public class WelcomeBoard extends JPanel {
 	private JButton start;
 	private JButton editMap;

@@ -15,6 +15,7 @@ import sonic.controller.ButtonPauseListener;
 import sonic.controller.Controller;
 import sonic.model.Model;
 
+@SuppressWarnings("serial")
 public class ScoreBoard extends JPanel{
 	private JButton buttonPause;
 	private JButton buttonRestart;
