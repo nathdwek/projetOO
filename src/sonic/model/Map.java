@@ -30,33 +30,36 @@ public class Map {
 		movingHittables = new ArrayList<Hittable>();
 		paintables = new LinkedList<HasSprite>();
 		try {
-
-			File fXmlFile = new File(mapXML);
+			File XmlFile = new File(mapXML);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(XmlFile);
 			doc.getDocumentElement().normalize();
-
-			NodeList terrains = doc.getElementsByTagName("terrain");
-			if (terrains.getLength()>1){
-				throw new Exception("More than 1 terrain defined!");
+			if (doc.getDocumentElement().getNodeName() != "sonicMap"){
+				throw new Exception("are you sure this is as sonic map?");
 			}
 			else{
-				createTerrain(terrains.item(0));
-			}
-			NodeList monstersSets = doc.getElementsByTagName("monsters");
-			if (monstersSets.getLength()>1){
-				throw new Exception("More than 1 set of monsters defined!");
-			}
-			else{
-				createMonsters(monstersSets.item(0));
-			}
-			NodeList heroes = doc.getElementsByTagName("sonic");
-			if (heroes.getLength()>1){
-				throw new Exception("More than 1 hero defined!");
-			}
-			else{
-				createSonic(heroes.item(0));
+				NodeList terrains = doc.getElementsByTagName("terrain");
+				if (terrains.getLength()>1){
+					throw new Exception("More than 1 terrain defined!");
+				}
+				else{
+					createTerrain(terrains.item(0));
+				}
+				NodeList monstersSets = doc.getElementsByTagName("monsters");
+				if (monstersSets.getLength()>1){
+					throw new Exception("More than 1 set of monsters defined!");
+				}
+				else{
+					createMonsters(monstersSets.item(0));
+				}
+				NodeList heroes = doc.getElementsByTagName("sonic");
+				if (heroes.getLength()>1){
+					throw new Exception("More than 1 hero defined!");
+				}
+				else{
+					createSonic(heroes.item(0));
+				}
 			}
 
 		} catch (Exception e) {

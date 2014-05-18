@@ -33,7 +33,7 @@ public class View {
 	}
 
 	public void welcomeUser(Controller c){
-		welcomeBoard = new WelcomeBoard(c ,window.getWidth(),window.getHeight());
+		welcomeBoard = new WelcomeBoard(model,c ,window.getWidth(),window.getHeight());
 		window.add(welcomeBoard);
 		window.validate();
 	}

@@ -10,6 +10,6 @@ public class Main {
 		View v = new View(m);
 		Controller c = new Controller(m,v);
 
-		c.runGame();
+		c.runSonic();
 	}
 }

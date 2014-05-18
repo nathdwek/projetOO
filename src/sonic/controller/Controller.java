@@ -26,7 +26,7 @@ public class Controller{
 		});
 	}
 
-	public void runGame() {
+	public void runSonic() {
 		view.initialize();
 		view.welcomeUser(this);
 	}
@@ -41,10 +41,6 @@ public class Controller{
 		view.removeGamePanels();
 		view.welcomeUser(this);
 		this.mainLoop.stop();
-	}
-
-	public void setMap(String selectedMap) {
-		model.setMap(selectedMap);
 	}
 }
 
