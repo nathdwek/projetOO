@@ -24,7 +24,7 @@ public class Model {
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
 
-	private final Double kX = 70.0;
+	private final Double kX = 50.0;
 	private final Double kY =20.0;
 	private final Double lambdaX = 15.0;
 	private final Double lambdaY = 6.0;
