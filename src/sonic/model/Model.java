@@ -16,16 +16,16 @@ public class Model {
 	private Sonic hero;
 	private Point heroPosition;
 
-	private static final double COLLISION_DISTANCE = 10;
+	private static final Double COLLISION_DISTANCE = 10.0;
 
 	private Point playPanelCenter;
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
 
-	private final Double kX = 50.0;
-	private final Double kY =20.0;
-	private final Double lambdaX = 15.0;
-	private final Double lambdaY = 6.0;
+	private static final Double KX = 50.0;
+	private static final Double KY =20.0;
+	private static final Double LAMBDA_X = 15.0;
+	private static final Double LAMBDA_Y = 6.0;
 
 	private String mapXML;
 
@@ -86,8 +86,8 @@ public class Model {
 	}
 
 	private void updatePlayPanelCenter(Double dT) {
-		playPanelCenterAcceleration.setX(kX*(heroPosition.getX() - playPanelCenter.getX())-lambdaX*playPanelCenterSpeed.getX());
-		playPanelCenterAcceleration.setY(kY*(heroPosition.getY() - playPanelCenter.getY())-lambdaY*playPanelCenterSpeed.getY());
+		playPanelCenterAcceleration.setX(KX*(heroPosition.getX() - playPanelCenter.getX())-LAMBDA_X*playPanelCenterSpeed.getX());
+		playPanelCenterAcceleration.setY(KY*(heroPosition.getY() - playPanelCenter.getY())-LAMBDA_Y*playPanelCenterSpeed.getY());
 		playPanelCenterSpeed.add(playPanelCenterAcceleration.times(dT));
 		playPanelCenter.add(playPanelCenterSpeed.times(dT));
 	}
