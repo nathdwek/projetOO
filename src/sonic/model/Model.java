@@ -7,8 +7,6 @@ import sonic.controller.Controllable;
 
 public class Model {
 
-	private Map map;
-
 	private LinkedList<SelfUpdatable> selfUpdatables;
 	private LinkedList<Hittable> fixedHittables;
 	private ArrayList<Hittable> movingHittables;
@@ -24,12 +22,11 @@ public class Model {
 	private Point playPanelCenterSpeed;
 	private Point playPanelCenterAcceleration;
 
-	private final Double kX = 60.0;
+
+	private final Double kX = 50.0;
 	private final Double kY =20.0;
 	private final Double lambdaX = 15.0;
 	private final Double lambdaY = 6.0;
-
-	private boolean gamePaused;
 
 	private String mapXML;
 
@@ -39,7 +36,7 @@ public class Model {
 	}
 
 	public void initialize() {
-		map = new Map(mapXML);
+		Map map = new Map(mapXML);
 		selfUpdatables = map.getSelfUpdatables();
 		movingHittables = map.getMovingHittables();
 		fixedHittables = map.getfixedHittables();
@@ -51,7 +48,6 @@ public class Model {
 		playPanelCenterSpeed = new Point(0,0);
 		playPanelCenterAcceleration = new Point(0,0);
 		heroPosition = hero.getPosition();
-		gamePaused = false;
 	}
 
 	public boolean gameOver() {
@@ -69,12 +65,6 @@ public class Model {
 	}
 	public Integer getCoins(){
 		return hero.getCoins();
-	}
-	public boolean gamePaused() {
-		return gamePaused;
-	}
-	public void setGamePaused(boolean b){
-		gamePaused = b;
 	}
 
 	public void update(Double dT) {

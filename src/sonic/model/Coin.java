@@ -53,7 +53,7 @@ public class Coin extends Hittable implements HasSprite{
 	}
 
 	@Override
-	public Boolean handleSonic(Point normal, Sonic sonic) {
+	public Boolean handleSonic(Sonic sonic) {
 		return true;
 	}
 

@@ -27,7 +27,7 @@ public class ScoreBoard extends JPanel{
 		model = m;
 		buttonPause= new JButton("PAUSE");
 		buttonRestart = new JButton("RESTART");
-		buttonPause.addActionListener(new ButtonPauseListener(model, playPanel, c));
+		buttonPause.addActionListener(new ButtonPauseListener(playPanel, c));
 		buttonRestart.addActionListener(new ButtonRestartListener(model, playPanel));
 		this.setPreferredSize(new Dimension(-1,height/12));
 		this.setBackground(Color.BLACK);

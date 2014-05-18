@@ -13,6 +13,7 @@ public class Controller{
 	private Model model;
 	private View view;
 	private Timer mainLoop;
+	private boolean gamePaused;
 	private static final Short fps = 60;
 	private static Integer loopTimeMillis = Double.valueOf((1000.0/fps)).intValue();
 	private static final Double loopTime = 1.0/fps;
@@ -26,12 +27,13 @@ public class Controller{
 		});
 	}
 
-	public void runGame() {
+	public void runSonic() {
 		view.initialize();
 		view.welcomeUser(this);
 	}
 
 	public void startGame() {
+		gamePaused = false;
 		model.initialize();
 		view.startGame(this);
 		this.mainLoop.start();
@@ -43,8 +45,12 @@ public class Controller{
 		this.mainLoop.stop();
 	}
 
-	public void setMap(String selectedMap) {
-		model.setMap(selectedMap);
+	public void setGamePaused(boolean b) {
+		this.gamePaused = b;
+	}
+
+	public boolean gamePaused() {
+		return gamePaused;
 	}
 }
 

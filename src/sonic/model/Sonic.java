@@ -104,7 +104,7 @@ public class Sonic extends Unit implements Controllable {
 
 	@Override
 	public Boolean handleCollision(Hittable otherHittable, Point normal) {
-		return otherHittable.handleSonic(normal, this);
+		return otherHittable.handleSonic(this);
 	}
 
 	public Boolean handleSlopeBlock(Point normal) {
@@ -135,7 +135,7 @@ public class Sonic extends Unit implements Controllable {
 		return false;
 	}
 
-	public Boolean handleSpikes(Point normal){
+	public Boolean handleSpikes(){
 		isDead = true;
 		return true;
 	}
@@ -222,7 +222,7 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	@Override
-	public Boolean handleSonic(Point normal, Sonic sonic) {
+	public Boolean handleSonic(Sonic sonic) {
 		System.out.println("Sonic just collided sonic?");
 		return false;
 	}

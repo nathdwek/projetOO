@@ -22,7 +22,7 @@ public abstract class Hittable{
 	public abstract Boolean handleCollision(Hittable otherHittable,Point normal);
 
 	public abstract Boolean handleGroundMonster(Point normal);
-	public abstract Boolean handleSonic(Point normal, Sonic sonic);
+	public abstract Boolean handleSonic(Sonic sonic);
 	public abstract Boolean handleBlock(Point normal);
 	public abstract Boolean handleSlopeBlock(Point normal);
 
@@ -30,7 +30,7 @@ public abstract class Hittable{
 		return false;
 	}
 
-	public Boolean handleSpikes(Point normal) {
+	public Boolean handleSpikes() {
 		return false;
 	}
 }
