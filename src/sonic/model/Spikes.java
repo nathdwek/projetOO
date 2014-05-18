@@ -10,6 +10,6 @@ public class Spikes extends GroundBlock{
 	}
 
 	public Boolean handleCollision(Hittable otherHittable, Point normal){
-		return otherHittable.handleSpikes(normal);
+		return otherHittable.handleSpikes();
 	}
 }

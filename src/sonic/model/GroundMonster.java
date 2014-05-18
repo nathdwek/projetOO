@@ -59,7 +59,7 @@ public class GroundMonster extends Unit {
 	}
 
 	@Override
-	public Boolean handleSonic(Point normal, Sonic sonic) {
+	public Boolean handleSonic(Sonic sonic) {
 		return sonic.isBall();
 	}
 

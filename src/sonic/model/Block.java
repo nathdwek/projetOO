@@ -44,7 +44,7 @@ public abstract class Block extends Hittable implements HasSprite{
 		return false;
 	}
 
-	public Boolean handleSonic(Point normal,Sonic sonic){
+	public Boolean handleSonic(Sonic sonic){
 		return false;
 	}
 
