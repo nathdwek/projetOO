@@ -11,8 +11,8 @@ import sonic.model.Model;
 
 public class View {
 
-	private  Model model;
-	private  JFrame window;
+	private Model model;
+	private JFrame window;
 	private PlayPanel playPanel;
 	private ScoreBoard scoreBoard;
 	private WelcomeBoard welcomeBoard;
