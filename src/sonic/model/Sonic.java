@@ -1,12 +1,10 @@
 package sonic.model;
 
-import sonic.controller.Controllable;
 import sonic.view.SonicSprite;
 
 
 public class Sonic extends Unit implements Controllable {
 
-	private Integer life;
 	private Integer coins;
 
 	private Boolean isBall;
@@ -15,28 +13,29 @@ public class Sonic extends Unit implements Controllable {
 	private static final Double normalMaxXSpeed=300.0;
 	private static final Double ballMaxXSpeed=600.0;
 
-	private Double naturalXBrake = 1000.0;
+	private static final Double naturalXBrake = 1000.0;
 	private Integer acceleratingX;
-	private Double maxXAcceleration = 2000.0;
 
-	private Double maxYUpSpeed = 400.0;
-	private Double maxYDownSpeed = -800.0;
+	private static final Double maxXAcceleration = 1500.0;
+
+
+	private static final Double maxYUpSpeed = 400.0;
+	private static final Double maxYDownSpeed = -800.0;
 
 	private Boolean blockedRight;
 	private Boolean blockedLeft;
 	private Boolean falling;
 
 	private Integer acceleratingY;
-	private Double maxYAcceleration = 2000.0;
+	private static final Double maxYAcceleration = 2000.0;
 
-	private Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
-	private Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
+	private static final Double[] hitbox = new Double[]{20.0,20.0,20.0,20.0};
+	private static final Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
-	private boolean isDead;
+	private Boolean isDead;
 
 	public Sonic(int posX, int posY) {
 		super(new Point(posX,posY), new Point (0,0));
-		this.life=0;
 		this.coins=0;
 		this.falling=true;
 		stepReset();
@@ -49,10 +48,6 @@ public class Sonic extends Unit implements Controllable {
 
 	public Integer getCoins(){
 		return coins;
-	}
-
-	public void getLife(){
-		life+=1;
 	}
 
 	public void stepReset(){
