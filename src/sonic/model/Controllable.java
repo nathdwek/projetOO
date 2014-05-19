@@ -1,4 +1,4 @@
-package sonic.controller;
+package sonic.model;
 
 public interface Controllable {
 

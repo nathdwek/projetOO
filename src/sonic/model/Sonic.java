@@ -1,6 +1,5 @@
 package sonic.model;
 
-import sonic.controller.Controllable;
 import sonic.view.SonicSprite;
 
 

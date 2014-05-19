@@ -3,8 +3,6 @@ package sonic.model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import sonic.controller.Controllable;
-
 public class Model {
 
 	private LinkedList<SelfUpdatable> selfUpdatables;

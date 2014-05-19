@@ -3,6 +3,8 @@ package sonic.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import sonic.model.Controllable;
+
 public class SonicListener implements KeyListener {
 
 	private Controllable hero;
