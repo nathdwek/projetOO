@@ -27,6 +27,7 @@
       <spikes X="4500" level="-100"/>
       <obstacle start ="5200" end ="5500" level="-100" height="100"/>
       <spikes X="5000" level="-100"/>
+      <win X="700" level = "125"/>
    </terrain>
    <monsters>
       <crab X = "700" Y= "200" vX = "100"/>
