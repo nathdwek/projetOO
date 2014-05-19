@@ -19,6 +19,7 @@ public class WelcomeBoard extends JPanel {
 	private JButton editMap;
 	private Image background = Toolkit.getDefaultToolkit().getImage("src/sonic/sprites/sonicAcceuil3.jpg");
 
+
 	public WelcomeBoard(Model model, Controller c, int w , int h){
 		this.setLayout(null);
 		editMap = new JButton("Select Map");

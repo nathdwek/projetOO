@@ -27,6 +27,23 @@
       <spikes X="4500" level="-100"/>
       <obstacle start ="5200" end ="5500" level="-100" height="100"/>
       <spikes X="5000" level="-100"/>
+      <slope start ="6050" end ="6500" startLevel="-100" endLevel="200"/>
+      <slope start ="6800" end="7200" startLevel="200" endLevel="-100"/>
+      <ground start="6400" end ="6900" level="0"/>
+      <coins start ="6500" end ="6800" level="250" vertQty= "3"/>
+      <spikes X="6450" level="0"/>
+      <spikes X="6550" level="0"/>
+      <spikes X="6650" level="0"/>
+      <spikes X="6750" level="0"/>
+      <spikes X="6850" level="0"/>
+      <ground start="7300" end="11000" level="-300"/>
+      <ground start="7300" end="11000" level="0"/>
+      <obstacle start ="7400" end ="7700" level="-300" height="100/>
+      <coins start ="7800" end ="8100" level="-250" vertQty= "2"/>
+      <obstacle start ="7400" end ="7700" level="0" height="100/>
+      <obstacle start ="8200" end ="8500" level="-300" height="50/>
+      <obstacle start ="8200" end ="8500" level="0" height="50/>
+      
    </terrain>
    <monsters>
       <crab X = "700" Y= "200" vX = "100"/>
