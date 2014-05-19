@@ -33,8 +33,10 @@ public class Sonic extends Unit implements Controllable {
 	private static final Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
 
 	private Boolean isDead;
+	private Boolean hasWin;
+	private Double deathLevel;
 
-	public Sonic(int posX, int posY) {
+	public Sonic(double posX, double posY, double deathLevel) {
 		super(new Point(posX,posY), new Point (0,0));
 		this.coins=0;
 		this.falling=true;
@@ -43,6 +45,8 @@ public class Sonic extends Unit implements Controllable {
 		this.acceleratingX=0;
 		this.acceleratingY=0;
 		this.isDead = false;
+		this.hasWin = false;
+		this.deathLevel = deathLevel;
 		setSprite(new SonicSprite(this));
 	}
 
@@ -205,7 +209,7 @@ public class Sonic extends Unit implements Controllable {
 	}
 
 	public boolean isDead() {
-		return isDead;
+		return isDead || getPosition().getY()<deathLevel;
 	}
 
 	public boolean isBall() {
@@ -220,5 +224,15 @@ public class Sonic extends Unit implements Controllable {
 	public Boolean handleSonic(Sonic sonic) {
 		System.out.println("Sonic just collided sonic?");
 		return false;
+	}
+
+	@Override
+	public Boolean handleWinFlag(){
+		this.hasWin = true;
+		return false;
+	}
+
+	public Boolean hasWin(){
+		return hasWin;
 	}
 }

@@ -22,11 +22,11 @@ public class MainLoopListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (!controller.gamePaused()){
-			if(!model.gameOver()) {
+			if(model.gameOver()==0) {
 				model.update(loopTime);
 				view.refresh();
 			}else{
-				view.gameOver(controller);
+				view.gameOver(controller,model.gameOver());
 			}
 		}
 	}

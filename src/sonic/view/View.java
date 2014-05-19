@@ -11,7 +11,7 @@ import sonic.model.Model;
 
 public class View {
 
-	private Model model;
+	private final Model model;
 	private JFrame window;
 	private PlayPanel playPanel;
 	private ScoreBoard scoreBoard;
@@ -19,35 +19,36 @@ public class View {
 
 
 	public View(Model m){
-		model=m;
+		this.model=m;
 
 
 	}
 
 	public void initialize() {
-		window = new JFrame("Sonic");
-		window.setSize(800,700);
-		window.setLayout(new BorderLayout());
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
+		this.window = new JFrame("Sonic");
+		this.window.setSize(800,700);
+		this.window.setLayout(new BorderLayout());
+		this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.window.setVisible(true);
 	}
 
 	public void welcomeUser(Controller c){
-		welcomeBoard = new WelcomeBoard(model,c ,window.getWidth(),window.getHeight());
-		window.add(welcomeBoard);
-		window.validate();
+		this.welcomeBoard = new WelcomeBoard(this.model,c ,this.window.getWidth(),this.window.getHeight());
+		this.window.add(this.welcomeBoard);
+		this.window.validate();
 	}
 
 	public void refresh() {
-		playPanel.requestFocus(true);
-		window.repaint();
+		this.playPanel.requestFocus(true);
+		this.window.repaint();
 	}
 
-	public void gameOver(Controller c){
-		int ans = JOptionPane.showConfirmDialog(playPanel, "REPLAY ?", "GAME OVER" , JOptionPane.YES_NO_OPTION);
+	public void gameOver(Controller c, Integer reason){
+		String title = (reason<2)? "GAME OVER" : "YOU WIN!";
+		int ans = JOptionPane.showConfirmDialog(this.playPanel, "Play again?", title , JOptionPane.YES_NO_OPTION);
 		if (ans == JOptionPane.YES_OPTION){
-			model.initialize();
-			playPanel.initialize();
+			this.model.initialize();
+			this.playPanel.initialize();
 		}else{
 			c.stopGame();
 		}
@@ -55,21 +56,21 @@ public class View {
 
 
 	public void startGame(Controller c){
-		window.remove(welcomeBoard);
-		playPanel = new PlayPanel(model);
-		playPanel.setFocusable(true);
-		playPanel.addKeyListener(new SonicListener(model.getControlledHero()));
-		scoreBoard = new ScoreBoard(window.getHeight(), model, playPanel, c, this);
-		window.add(playPanel, BorderLayout.CENTER);
-		window.add(scoreBoard, BorderLayout.NORTH);
-		window.validate();
+		this.window.remove(this.welcomeBoard);
+		this.playPanel = new PlayPanel(this.model);
+		this.playPanel.setFocusable(true);
+		this.playPanel.addKeyListener(new SonicListener(this.model.getControlledHero()));
+		this.scoreBoard = new ScoreBoard(this.window.getHeight(), this.model, this.playPanel, c, this);
+		this.window.add(this.playPanel, BorderLayout.CENTER);
+		this.window.add(this.scoreBoard, BorderLayout.NORTH);
+		this.window.validate();
 	}
 
 
 	public void removeGamePanels() {
-		window.remove(playPanel);
-		window.remove(scoreBoard);
-		window.validate();
+		this.window.remove(this.playPanel);
+		this.window.remove(this.scoreBoard);
+		this.window.validate();
 	}
 
 

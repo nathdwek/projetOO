@@ -9,7 +9,6 @@ public class Model {
 	private LinkedList<Hittable> fixedHittables;
 	private ArrayList<Hittable> movingHittables;
 	private LinkedList<HasSprite> paintables;
-	private Double deathLevel;
 
 	private Sonic hero;
 	private Point heroPosition;
@@ -41,7 +40,6 @@ public class Model {
 		fixedHittables = map.getfixedHittables();
 		paintables = map.getPaintables();
 		hero = map.getHero();
-		deathLevel = map.getDeathLevel();
 
 		playPanelCenter = hero.getPosition().copy();
 		playPanelCenterSpeed = new Point(0,0);
@@ -49,8 +47,18 @@ public class Model {
 		heroPosition = hero.getPosition();
 	}
 
-	public boolean gameOver() {
-		return (hero.isDead() || hero.getPosition().getY() < deathLevel);
+	public Integer gameOver() {
+		Integer gameOver;
+		if (hero.isDead()){
+			gameOver = 1;
+		}
+		else if (hero.hasWin()){
+			gameOver = 2;
+		}
+		else{
+			gameOver=0;
+		}
+		return gameOver;
 	}
 
 	public Controllable getControlledHero() {

@@ -1,17 +1,14 @@
 package sonic.model;
 
-import sonic.view.Drawable;
 import sonic.view.CoinSprite;
 
-public class Coin extends Hittable implements HasSprite{
+public class Coin extends MapObject{
 
-	private static Point[] normals = new Point[]{new Point(1,0),new Point(0,1),new Point(-1,0),new Point(0,-1)};
-	private static Double[] hitbox= new Double[]{10.0,10.0,10.0,10.0};
-	private Drawable sprite;
+	private static final Double[] hitbox= new Double[]{10.0,10.0,10.0,10.0};
 
 	public Coin(double posX, double posY) {
 		super(new Point(posX, posY));
-		this.sprite = new CoinSprite(this);
+		setSprite(new CoinSprite(this));
 
 	}
 
@@ -25,10 +22,6 @@ public class Coin extends Hittable implements HasSprite{
 		return hitbox[side];
 	}
 
-	@Override
-	public Point normalAt(int side) {
-		return normals[side];
-	}
 
 	public static Double getWidth(){
 		return hitbox[Hittable.LEFT]+hitbox[Hittable.RIGHT];
@@ -38,34 +31,8 @@ public class Coin extends Hittable implements HasSprite{
 		return hitbox[Hittable.TOP]+hitbox[Hittable.BOTTOM];
 	}
 
-	public Drawable getSprite(){
-		return this.sprite;
-	}
-
-	@Override
-	public void setSprite(Drawable sprite) {
-		this.sprite = sprite;
-	}
-
-	@Override
-	public Boolean handleGroundMonster(Point normal) {
-		return false;
-	}
-
 	@Override
 	public Boolean handleSonic(Sonic sonic) {
 		return true;
-	}
-
-	@Override
-	public Boolean handleSlopeBlock(Point normal) {
-		System.out.println("Coin and Block just collided?");
-		return false;
-	}
-
-	@Override
-	public Boolean handleBlock(Point normal) {
-		System.out.println("Coin and Block just collided?");
-		return false;
 	}
 }

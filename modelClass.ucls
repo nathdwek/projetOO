@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="sonic.model.Coin" project="repo" file="/repo/src/sonic/model/Coin.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="666" y="1452"/>    
+    <position height="-1" width="-1" x="826" y="1525"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -118,99 +118,125 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <generalization id="14">    
+  <class id="14" language="java" name="sonic.model.WinFlag" project="repo" file="/repo/src/sonic/model/WinFlag.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="597" y="1564"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="sonic.model.MapObject" project="repo" file="/repo/src/sonic/model/MapObject.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="549" y="1112"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="16">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <generalization id="15">    
+  <generalization id="17">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="16">    
+  <association id="18">    
     <bendpoint x="566" y="436"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="movingHittables"/>      
-      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
+      <attribute id="19" name="movingHittables"/>      
+      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="19">    
+  <generalization id="21">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <realization id="22">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="13"/>  
   </realization>  
-  <generalization id="20">    
+  <generalization id="23">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <association id="21">    
+  <association id="24">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="22" name="paintables"/>      
-      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
+      <attribute id="25" name="paintables"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="24">    
+  <realization id="27">    
     <bendpoint x="845" y="866"/>    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="8"/>  
   </realization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="26">    
+  <association id="28">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="27" name="fixedHittables"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+      <attribute id="29" name="fixedHittables"/>      
+      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="29">    
+  <generalization id="31">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="32">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <realization id="30">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <generalization id="31">    
+  <generalization id="33">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <realization id="32">    
+  <generalization id="34">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <realization id="35">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="12"/>  
   </realization>  
-  <association id="33">    
+  <realization id="36">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <association id="37">    
     <bendpoint x="904" y="491"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="34" name="selfUpdatables"/>      
-      <multiplicity id="35" minimum="0" maximum="2147483647"/>    
+      <attribute id="38" name="selfUpdatables"/>      
+      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="36">    
+  <association id="40">    
     <bendpoint x="1154" y="423"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="37" name="hero"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
+      <attribute id="41" name="hero"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="39">    
+  <generalization id="43">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <generalization id="40">    
+  <generalization id="44">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </generalization>  
-  <realization id="41">    
+  <realization id="45">    
     <bendpoint x="426" y="790"/>    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="12"/>  

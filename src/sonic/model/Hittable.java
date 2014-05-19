@@ -33,5 +33,9 @@ public abstract class Hittable{
 	public Boolean handleSpikes() {
 		return false;
 	}
+
+	public Boolean handleWinFlag() {
+		return false;
+	}
 }
 

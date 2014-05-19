@@ -70,8 +70,8 @@ public class Map {
 	private void createSonic(Node sonicNode){
 		if (sonicNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element sonicElement = (Element) sonicNode;
-			hero = new Sonic(Integer.valueOf(sonicElement.getAttribute("X")),
-					Integer.valueOf(sonicElement.getAttribute("Y")));
+			hero = new Sonic(Double.valueOf(sonicElement.getAttribute("X")),
+					Double.valueOf(sonicElement.getAttribute("Y")), deathLevel);
 		}
 
 		paintables.add(hero);
@@ -129,11 +129,28 @@ public class Map {
 		NodeList obstacleBlockList = terrainE.getElementsByTagName("obstacle");
 		NodeList coinsList = terrainE.getElementsByTagName("coins");
 		NodeList spikesList = terrainE.getElementsByTagName("spikes");
+		NodeList winFlagsList = terrainE.getElementsByTagName("win");
 		createGround(groundList);
 		createObstacles(obstacleBlockList);
 		createSlopes(slopesList);
 		createCoins(coinsList);
 		createSpikes(spikesList);
+		createWinFlags(winFlagsList);
+	}
+
+	private void createWinFlags(NodeList winFlagsList) {
+		for (int i = 0; i < winFlagsList.getLength(); i++){
+			Node wFNode = winFlagsList.item(i);
+			if (wFNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element wFElement = (Element) wFNode;
+				WinFlag winFlag = new WinFlag(new Point(
+						Double.valueOf(Double.valueOf(wFElement.getAttribute("X"))),
+						Double.valueOf(wFElement.getAttribute("level"))));
+
+				fixedHittables.add(winFlag);
+				paintables.add(winFlag);
+			}
+		}
 	}
 
 	private void createSpikes(NodeList spikesList) {
@@ -245,9 +262,4 @@ public class Map {
 	public Sonic getHero(){
 		return hero;
 	}
-
-	public Double getDeathLevel() {
-		return deathLevel;
-	}
-
 }

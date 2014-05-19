@@ -43,7 +43,9 @@
       <obstacle start ="7400" end ="7700" level="0" height="100/>
       <obstacle start ="8200" end ="8500" level="-300" height="50/>
       <obstacle start ="8200" end ="8500" level="0" height="50/>
-      
+
+      <win X="700" level = "125"/>
+
    </terrain>
    <monsters>
       <crab X = "700" Y= "200" vX = "100"/>
