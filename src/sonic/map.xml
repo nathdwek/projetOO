@@ -6,12 +6,13 @@
       <ground start = "0" end = "1000" level ="125"/>
       <slope start = "-200" end = "600" startLevel = "-200" endLevel = "-600"/>
       <ground start = "700" end = "2000" level = "-550" />
-      <coins start = "750" end = "1900" level = "-500" vertQty = "2"/>
+      <coins start = "750" end = "1000" level = "-500" vertQty = "2"/>
+      <coins start = "1500" end = "1750" level = "-500" vertQty = "2"/>
       <spikes X="270" level="125"/>
       <obstacle start = "0" end="200" level = "125" height = "100"/>
       <slope start = "900" end = "2000" startLevel = "0" endLevel = "-300"/>
-      <coins start = "50" end = "400" level = "300" vertQty = "2"/>
-      <coins start = "1000" end = "2000" level = "150" vertQty = "1"/>
+      <coins start = "-30" end = "100" level = "300" vertQty = "2"/>
+      <coins start = "1000" end = "1400" level = "150" vertQty = "1"/>
       <slope start = "2150" end = "3000" startLevel = "-450" endLevel = "0"/>
       <slope start = "1100" end = "1800" startLevel = "250" endLevel = "400"/>
       <ground start ="1900" end= "3000" level ="450"/>
@@ -21,9 +22,10 @@
       <coins start ="2300" end ="2700" level="600" vertQty ="2"/>
       <spikes X="2100" level="450"/>
       <spikes X="2770" level="450"/>
-      <slope start="3100" end="3700" startLevel= "50" endLevel="-200"/>
-      <ground start="3650" end="6000" level="-100"/>
-      <obstacle start="4000" end ="4300" level ="-100" height="100"/>
+      <slope start="3100" end="3700" startLevel= "50" endLevel="-70"/>
+      <slope start="3650" end="4000" startLevel= "40" endLevel="200"/>
+      <ground start="3800" end="6000" level="-100"/>
+      <obstacle start="4100" end ="4300" level ="-100" height="100"/>
       <coins start ="4000" end ="4300" level="50" vertQty ="2"/>
       <coins start ="5200" end ="5500" level="50" vertQty ="2"/>
       <coins start ="4700" end ="5000" level="-50" vertQty ="2"/>

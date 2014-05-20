@@ -25,10 +25,10 @@ public class Map {
 
 	public Map(String mapXML){
 
-		fixedHittables = new LinkedList<Hittable>();
-		selfUpdatables = new LinkedList<SelfUpdatable>();
-		movingHittables = new ArrayList<Hittable>();
-		paintables = new LinkedList<HasSprite>();
+		this.fixedHittables = new LinkedList<Hittable>();
+		this.selfUpdatables = new LinkedList<SelfUpdatable>();
+		this.movingHittables = new ArrayList<Hittable>();
+		this.paintables = new LinkedList<HasSprite>();
 		try {
 			File XmlFile = new File(mapXML);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -44,21 +44,21 @@ public class Map {
 					throw new Exception("More than 1 terrain defined!");
 				}
 				else{
-					createTerrain(terrains.item(0));
+					this.createTerrain(terrains.item(0));
 				}
 				NodeList monstersSets = doc.getElementsByTagName("monsters");
 				if (monstersSets.getLength()>1){
 					throw new Exception("More than 1 set of monsters defined!");
 				}
 				else{
-					createMonsters(monstersSets.item(0));
+					this.createMonsters(monstersSets.item(0));
 				}
 				NodeList heroes = doc.getElementsByTagName("sonic");
 				if (heroes.getLength()>1){
 					throw new Exception("More than 1 hero defined!");
 				}
 				else{
-					createSonic(heroes.item(0));
+					this.createSonic(heroes.item(0));
 				}
 			}
 
@@ -70,13 +70,13 @@ public class Map {
 	private void createSonic(Node sonicNode){
 		if (sonicNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element sonicElement = (Element) sonicNode;
-			hero = new Sonic(Double.valueOf(sonicElement.getAttribute("X")),
-					Double.valueOf(sonicElement.getAttribute("Y")), deathLevel);
+			this.hero = new Sonic(Double.valueOf(sonicElement.getAttribute("X")),
+					Double.valueOf(sonicElement.getAttribute("Y")), this.deathLevel);
 		}
 
-		paintables.add(hero);
-		movingHittables.add(hero);
-		selfUpdatables.add(hero);
+		this.paintables.add(this.hero);
+		this.movingHittables.add(this.hero);
+		this.selfUpdatables.add(this.hero);
 	}
 
 	private void createMonsters(Node monsters) {
@@ -84,8 +84,8 @@ public class Map {
 		NodeList crabsList = monstersE.getElementsByTagName("crab");
 		NodeList bombsList = monstersE.getElementsByTagName("bomb");
 
-		createBombs(bombsList);
-		createCrabs(crabsList);
+		this.createBombs(bombsList);
+		this.createCrabs(crabsList);
 	}
 
 	private void createCrabs(NodeList crabsList) {
@@ -97,9 +97,9 @@ public class Map {
 						Double.valueOf(crabElement.getAttribute("Y")),
 						Double.valueOf(crabElement.getAttribute("vX")),
 						0.0);
-				paintables.add(crab);
-				movingHittables.add(crab);
-				selfUpdatables.add(crab);
+				this.paintables.add(crab);
+				this.movingHittables.add(crab);
+				this.selfUpdatables.add(crab);
 			}
 		}
 	}
@@ -114,28 +114,28 @@ public class Map {
 						Double.valueOf(bombElement.getAttribute("vX")),
 						0.0);
 				bomb.setSprite(new BombSprite(bomb));
-				paintables.add(bomb);
-				movingHittables.add(bomb);
-				selfUpdatables.add(bomb);
+				this.paintables.add(bomb);
+				this.movingHittables.add(bomb);
+				this.selfUpdatables.add(bomb);
 			}
 		}
 	}
 
 	private void createTerrain(Node terrain) {
 		Element terrainE = (Element) terrain;
-		deathLevel = Double.valueOf(terrainE.getAttribute("deathLevel"));
+		this.deathLevel = Double.valueOf(terrainE.getAttribute("deathLevel"));
 		NodeList groundList = terrainE.getElementsByTagName("ground");
 		NodeList slopesList = terrainE.getElementsByTagName("slope");
 		NodeList obstacleBlockList = terrainE.getElementsByTagName("obstacle");
 		NodeList coinsList = terrainE.getElementsByTagName("coins");
 		NodeList spikesList = terrainE.getElementsByTagName("spikes");
 		NodeList winFlagsList = terrainE.getElementsByTagName("win");
-		createGround(groundList);
-		createObstacles(obstacleBlockList);
-		createSlopes(slopesList);
-		createCoins(coinsList);
-		createSpikes(spikesList);
-		createWinFlags(winFlagsList);
+		this.createGround(groundList);
+		this.createObstacles(obstacleBlockList);
+		this.createSlopes(slopesList);
+		this.createCoins(coinsList);
+		this.createSpikes(spikesList);
+		this.createWinFlags(winFlagsList);
 	}
 
 	private void createWinFlags(NodeList winFlagsList) {
@@ -147,8 +147,8 @@ public class Map {
 						Double.valueOf(Double.valueOf(wFElement.getAttribute("X"))),
 						Double.valueOf(wFElement.getAttribute("level"))));
 
-				fixedHittables.add(winFlag);
-				paintables.add(winFlag);
+				this.fixedHittables.add(winFlag);
+				this.paintables.add(winFlag);
 			}
 		}
 	}
@@ -162,8 +162,8 @@ public class Map {
 						Double.valueOf(Double.valueOf(spikeElement.getAttribute("X"))),
 						Double.valueOf(spikeElement.getAttribute("level")));
 
-				fixedHittables.add(spike);
-				paintables.add(spike);
+				this.fixedHittables.add(spike);
+				this.paintables.add(spike);
 			}
 		}
 	}
@@ -181,8 +181,8 @@ public class Map {
 				while (thisX < end ){
 					for (int j = 0; j<vertQty; j++){
 						Coin coin = new Coin(thisX,level+j*Coin.getHeight());
-						paintables.add(coin);
-						fixedHittables.add(coin);
+						this.paintables.add(coin);
+						this.fixedHittables.add(coin);
 					}
 					thisX+=Coin.getWidth();
 				}
@@ -201,13 +201,12 @@ public class Map {
 						Double.valueOf(sElement.getAttribute("startLevel")),
 						Double.valueOf(sElement.getAttribute("endLevel")));
 
-				fixedHittables.addAll(slope.getBlocks());
-				for (Block slopeBlock : slope.getBlocks()){
-					paintables.add(slopeBlock);
-				}
+				this.fixedHittables.addAll(slope.getBlocks());
+				this.paintables.add(slope);
 			}
 		}
 	}
+
 
 	private void createObstacles(NodeList obstacleBlockList) {
 		for (int i = 0; i < obstacleBlockList.getLength(); i++){
@@ -221,8 +220,8 @@ public class Map {
 						bottom,
 						Double.valueOf(oBElement.getAttribute("height"))+bottom);
 
-				fixedHittables.add(obstacleBlock);
-				paintables.add(obstacleBlock);
+				this.fixedHittables.add(obstacleBlock);
+				this.paintables.add(obstacleBlock);
 			}
 		}
 	}
@@ -237,29 +236,29 @@ public class Map {
 						Double.valueOf(gBElement.getAttribute("end")),
 						Double.valueOf(gBElement.getAttribute("level")));
 
-				fixedHittables.add(groundBlock);
-				paintables.add(groundBlock);
+				this.fixedHittables.add(groundBlock);
+				this.paintables.add(groundBlock);
 			}
 		}
 	}
 
 	public LinkedList<SelfUpdatable> getSelfUpdatables() {
-		return selfUpdatables;
+		return this.selfUpdatables;
 	}
 
 	public ArrayList<Hittable> getMovingHittables() {
-		return movingHittables;
+		return this.movingHittables;
 	}
 
 	public LinkedList<Hittable> getfixedHittables() {
-		return fixedHittables;
+		return this.fixedHittables;
 	}
 
 	public LinkedList<HasSprite> getPaintables() {
-		return paintables;
+		return this.paintables;
 	}
 
 	public Sonic getHero(){
-		return hero;
+		return this.hero;
 	}
 }
